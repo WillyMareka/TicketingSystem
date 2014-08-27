@@ -64,3 +64,12 @@
 {
 	padding: 20px;
 }
+
+#close-button
+{
+	cursor: pointer;
+}
+
+.blur-me {
+  filter: blur(20px);
+}

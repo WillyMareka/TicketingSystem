@@ -21,4 +21,15 @@ $(document).ready(function()
 		$('#login').removeClass("bounceInDown");
 		$('#login').addClass("bounceOutUp");
 	});
+
+	$('#close-button').click(function(){
+		$('#login').removeClass("bounceInDown");
+		$('#login').addClass("bounceOutUp");
+	});
+	$('.navbar-brand').hover(function(){
+		$('.navbar-brand').addClass('pulse');
+	}, function()
+	{
+		$('.navbar-brand').removeClass('pulse');
+	});
 });

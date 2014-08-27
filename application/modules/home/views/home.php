@@ -21,7 +21,7 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="#">SU Notification Portal</a>
+		      <a class="navbar-brand animated" href="#">SU Notification Portal</a>
 		    </div>
 
 		    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -36,7 +36,7 @@
 		  </div><!-- /.container-fluid -->
 		</nav>
 
-		<div class="jumbotron">
+		<div class="jumbotron blur-me">
 			<div id = "jumbo-instruction" class = "col-md-7">
 				<h3>Welcome to Strathmore Notification System</h3>
 				<p>
@@ -51,9 +51,9 @@
 				<?php echo validation_errors(); ?>
 				<?php echo form_open('verifylogin'); ?>
 				<?php $attributes = array('class' => 'su-notification-login', 'id' => 'slasa-login', 'style' => 'background: '); ?>
-				<input type="text" id="username" name="username" required placeholder = "Enter Username" class = "form-control input-sm" />
+				<div class = "form-group"><div class = "input-group"><input type="text" id="username" name="username" required placeholder = "Enter Username" class = "form-control" /><span class="input-group-addon"><i class = "fui-user"></i></span></div></div>
 				<br/>
-				<input type="password" required placeholder = "Enter Password"  id="passowrd" name="password" class = "form-control input-sm"/>
+				<div class = "form-group"><div class = "input-group"><input type="password" required placeholder = "Enter Password"  id="passowrd" name="password" class = "form-control"/><span class="input-group-addon"><i class = "glyphicon-padlock"></i></span></div></div>
 				<br/>
 				<button class = "btn btn-primary" type="submit">Login</button>
 				<?php echo form_close(); ?>
