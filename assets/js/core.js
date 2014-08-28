@@ -5,10 +5,11 @@ $(document).ready(function()
 	var timetaken = (new Date() - start);
 	});
 	// $('#login').hide();
-	$('#login-button').toggle(function(){
+	$('#login-button').click(function(){
 		if($('#login').hasClass('not-active'))
 		{
 			$('#login').removeClass("not-active");
+			$('#login').removeClass("bounceOutUp");
 			$('#login').addClass("animated bounceInDown");
 		}
 		else
@@ -17,9 +18,6 @@ $(document).ready(function()
 			$('#login').addClass("animated bounceInDown");
 		}
 		// $('#login').show();
-	}, function(){
-		$('#login').removeClass("bounceInDown");
-		$('#login').addClass("bounceOutUp");
 	});
 
 	$('#close-button').click(function(){
@@ -32,4 +30,19 @@ $(document).ready(function()
 	{
 		$('.navbar-brand').removeClass('pulse');
 	});
+
+	$(function() {
+	$('a[href*=#]:not([href=#])').click(function() {
+	if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+	    var target = $(this.hash);
+	    target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+	    if (target.length) {
+	        $('html,body').animate({
+	        scrollTop: target.offset().top
+	        }, 1000);
+	        return false;
+	      }
+	    }
+	  });
+});
 });
