@@ -1,0 +1,177 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans|Roboto|Oswald|Lato|Droid+Sans|PT+Sans|Source+Sans+Pro|Open+Sans+Condensed:300|Roboto+Condensed|Droid+Serif|Ubuntu|Raleway|Montserrat|PT+Sans+Narrow|Roboto+Slab|Lobster|Arimo|Yanone+Kaffeesatz|Lora|Bitter);
+body
+{
+	overflow-x: auto; 
+}
+.navbar
+{
+	border-radius: 0;
+	background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.navbar ul li a
+{
+	color: #fff !important;
+}
+
+.navbar ul li a:hover
+{
+	border-bottom: 1px solid white;
+}
+
+.navbar-brand
+{
+	color: #f3f3f3 !important;
+}
+.jumbotron
+{
+	height: 700px;
+	width: 100% !important;
+	bottom: 0;
+	z-index: -2;
+	margin: 0;
+	font-family: 'Ubuntu', sans-serif;
+	overflow: auto;
+}
+
+.jumbotron-back
+{
+	background-image: url('../images/home.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+#jumbo-instruction
+{
+	margin-top: 70px !important;
+	background-color: rgba(255, 255, 255, 0.8);
+	z-index: 1;
+	margin-left: 0;
+}
+
+#login
+{
+	margin-top: 70px !important;
+	position: relative;
+	float: right;
+	height: 250px;
+	z-index: 1;
+}
+
+.not-active
+{
+	display: none;
+}
+
+#close-button
+{
+	position: absolute;
+	top: -13px;
+	right: -5px;
+}
+
+.login-header
+{
+	padding: 20px;
+}
+
+#close-button
+{
+	cursor: pointer;
+}
+
+.blur-me {
+  filter: blur(20px);
+}
+
+.about-jumbotron
+{
+	width: 100%;
+	background-image: url('../images/about.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+.about-description
+{
+	background-color: #000000;
+	opacity: 0.8;
+	margin-top: 150px;
+	position: absolute;
+	padding: 10px;
+	color: #fff;
+	font-weight: normal;
+}
+
+@media(max-width: 767px){
+	.jumbotron h1
+	{
+		font-size: 31px;
+	}
+
+	.jumbotron h2
+	{
+		font-size: 28px;
+	}
+
+	.jumbotron h3
+	{
+		font-size: 25px;
+	}
+}
+
+@media(max-width: 400px){
+	.navbar-brand
+	{
+		font-size: 18px;
+	}
+}
+
+.navbar a
+{
+	font-family: 'Ubuntu', sans-serif;
+	font-weight: normal;
+}
+
+
+.teamnews
+{
+	text-align: center;
+	background-color: #34495e;
+	color: #f3f3f3;
+}
+
+
+.teamnews h4
+{
+	color: #3ACFAA;
+}
+.teamnews p
+{
+	font-size: 100%;
+}
+
+.text-centered
+{
+	text-align: center;
+}
+
+.full-width
+{
+	width: 100%;
+}
+
+.jumbotron textarea
+{
+	height: 150px;
+}
+
+#contact-div
+{
+	background-color: #34495e;
+	color: #fff;
+}
