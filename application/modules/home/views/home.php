@@ -60,6 +60,11 @@
 					<?php echo form_close(); ?>
 					</div>
 				</div>
+
+				<div class = "col-md-6 col-md-offset-3 alert alert-warning alert-dismissible" role="alert" style="text-align: center;">
+					<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<p><span id = "success-message"></span></p>
+				</div>
 			</div>
 		</div>
 		</section>
@@ -115,13 +120,14 @@
 					<p>Drop us a line and say hello</p>
 					<div id = "contact-form" class = "contact-form col-md-6 col-md-offset-3">
 					<?php echo validation_errors(); ?>
-					<?php echo form_open('addContact'); ?>
+					<?php echo form_open('home/addContact'); ?>
 					<?php $attributes = array('class' => 'su-contact-form', 'id' => 'slasa-contact'); ?>
+					<!-- <form class="su-contact-form" id="slasa-contact"> -->
 					<div class = "form-group"><input type="text" id="fullname" name="contact_name" required placeholder = "Please Enter your name" class = "form-control" /></div>
 					<div class = "form-group"><input type="email" required placeholder = "Please Enter your Email"  id="c-email" name="contact_email" class = "form-control"/></div>
 					<div class = "form-group"><input type="phone" placeholder = "Enter your phone number" name = "contact_phonenumber" class="form-control" /></div>
-					<div class = "form-group"><textarea class = "form-control" placeholder = "Add a comment"></textarea></div>
-					<button class = "btn btn-info btn-lg btn-embossed pull-right full-width" type="submit">Submit Comment</button>
+					<div class = "form-group"><textarea class = "form-control" placeholder = "Add a comment" name = "contact_comment"></textarea></div>
+					<button class = "btn btn-info btn-lg btn-embossed pull-right full-width" id = "submit-comment" type="submit">Submit Comment</button>
 					<?php echo form_close(); ?>
 					</div>
 				</div>
