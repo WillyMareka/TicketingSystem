@@ -1,16 +1,19 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class M_default extends CI_Model {
+class M_home extends MY_Model {
 
-    function __construct()
+	function __construct()
     {
         // Call the Model constructor
         parent::__construct();
         date_default_timezone_set('Africa/Nairobi');
     }
 
-    function defaultfunction($param1, $param2)
+    function addContactDetails($data)
     {
-        
+		$asman = $this->db->insert('home_comments', $data);
+
+		return $asman;
     }
+
 }
