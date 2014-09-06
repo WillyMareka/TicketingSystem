@@ -46,11 +46,9 @@ $(document).ready(function()
 	  });
 	});
 
-	$("#submit-comment").click(function(){
-		var data = $('#slasa-contact :input :textarea').serializeArray();
-
-		$.post($('#slasa-contact').attr("action"), data, function(info){$('#success-message').html(info)});
-
-	$('#slasa-contact').submit(function(){return false;});
+	$('#submit-comment').click(function(){
+		$('#slasa-contact').submit(function (){
+			alert('Form Submitted');
+		});
 	});
 });

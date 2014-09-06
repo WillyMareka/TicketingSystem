@@ -17,6 +17,7 @@ class Home extends MY_Controller
 
 	function addContact()
     {
+    	// print_r($this->input->post());die;
     	$data = array(
 	              'name'=>$this->input->post('contact_name'),
 	              'email'=>$this->input->post('contact_email'),
@@ -24,5 +25,7 @@ class Home extends MY_Controller
 	              'comment'=>$this->input->post('contact_comment')
 	            );
     	$result = $this->m_home->addContactDetails($data);
+
+    	echo 'Posted';
     }
 }
