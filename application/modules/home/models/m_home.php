@@ -16,4 +16,6 @@ class M_home extends MY_Model {
 		return $asman;
     }
 
+    
+
 }

@@ -24,6 +24,8 @@ class Home extends MY_Controller
 	              'phonenumber'=>$this->input->post('contact_phonenumber'),
 	              'comment'=>$this->input->post('contact_comment')
 	            );
+
+    	// echo json_encode($data);
     	$result = $this->m_home->addContactDetails($data);
 
     	echo 'Posted';

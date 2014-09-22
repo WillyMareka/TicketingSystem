@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans|Roboto|Oswald|Lato|Droid+Sans|PT+Sans|Source+Sans+Pro|Open+Sans+Condensed:300|Roboto+Condensed|Droid+Serif|Ubuntu|Raleway|Montserrat|PT+Sans+Narrow|Roboto+Slab|Lobster|Arimo|Yanone+Kaffeesatz|Lora|Bitter);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro|Lato|PT+Sans|Roboto);
 body
 {
 	overflow-x: auto; 
@@ -6,9 +7,10 @@ body
 .navbar
 {
 	border-radius: 0;
-	background-color: rgba(0, 0, 0, 0.1) !important;
+	background-color: rgba(0, 0, 0, 0.7) !important;
+	height: 50px !important;
+	margin-bottom: 0;
 }
-
 .navbar ul li a
 {
 	color: #fff !important;
@@ -89,7 +91,7 @@ body
 .about-jumbotron
 {
 	width: 100%;
-	background-image: url('../images/home.jpg');
+	background-image: url('../images/about.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-attachment: fixed;
@@ -174,4 +176,32 @@ body
 {
 	background-color: #34495e;
 	color: #fff;
+}
+
+.modal-header
+{
+	background-color: #1abc9c;
+	color: #bdc3c7;
+}
+
+.loginbutton
+{
+	border: 2px solid #fff;
+	background-color: rgba(255,255,255,0);
+	width: 120px;
+	border-radius: 0;
+	font-weight: bold;
+	transition: all 0.5s ease;
+
+}
+
+.loginbutton:hover
+{
+	background-color: rgba(255,255,255,0.2);
+	color: #000;
+}
+.modal-body, .login-form
+{
+	background-color: #ECF0F1;
+	margin-bottom: 0;
 }

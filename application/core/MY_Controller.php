@@ -8,8 +8,8 @@ class MY_Controller extends MX_Controller
         parent::__construct();
     }
 
-	function index()
+	function hash_pass($upass)
 	{
-		
+		return md5($upass);
 	}
 }
