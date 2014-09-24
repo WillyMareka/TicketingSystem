@@ -17,12 +17,17 @@ class Home extends MY_Controller
 
 	function addContact()
     {
+    	// print_r($this->input->post());die;
     	$data = array(
 	              'name'=>$this->input->post('contact_name'),
 	              'email'=>$this->input->post('contact_email'),
 	              'phonenumber'=>$this->input->post('contact_phonenumber'),
 	              'comment'=>$this->input->post('contact_comment')
 	            );
+
+    	// echo json_encode($data);
     	$result = $this->m_home->addContactDetails($data);
+
+    	echo 'Posted';
     }
 }

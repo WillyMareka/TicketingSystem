@@ -1,0 +1,75 @@
+<!-- If you don't use any of these blocks just remove unnecessary CSS files -->
+        <!-- blog -->
+        <!-- <link rel="stylesheet" href="<?php echo base_url(). 'assets/startup/ui-kit/ui-kit-blog/css/style.css'?>"> -->
+        <!-- contacts -->
+        <!-- <link rel="stylesheet" href="<?php echo base_url(). 'assets/startup/ui-kit/ui-kit-contacts/css/style.css'?>"> -->
+        <!-- content -->
+        <!-- <link rel="stylesheet" href="<?php echo base_url(). 'assets/startup/ui-kit/ui-kit-content/css/style.css'?>"> -->
+        <!-- crew -->
+        <!-- <link rel="stylesheet" href="<?php echo base_url(). 'assets/startup/ui-kit/ui-kit-crew/css/style.css'?>"> -->
+        <!-- footer -->
+        <!-- <link rel="stylesheet" href="<?php echo base_url(). 'assets/startup/ui-kit/ui-kit-footer/css/style.css'?>"> -->
+        <!-- header -->
+        <!-- <link rel="stylesheet" href="<?php echo base_url(). 'assets/startup/ui-kit/ui-kit-header/css/style.css'?>"> -->
+        <!-- price -->
+        <!-- <link rel="stylesheet" href="<?php echo base_url(). 'assets/startup/ui-kit/ui-kit-price/css/style.css'?>"> -->
+        <!-- projects -->
+        <!-- <link rel="stylesheet" href="<?php echo base_url(). 'assets/startup/ui-kit/ui-kit-projects/css/style.css'?>"> -->
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                  <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand animated" href="#">SU Notification Portal</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+                      <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#home-div">Home</a></li>
+                        <li><a href="#about-div" id = "about" onclick="toggleAbout();">About</a></li>
+                        <li><a href="#team-div">Team</a></li>
+                        <li><a href="#contact-div">Contact</a></li>
+                        <li><a href="#home-div" id = "login-button" >Login</a></li>
+                      </ul>
+                    </div><!-- /.navbar-collapse -->
+                  </div><!-- /.container-fluid -->
+                </nav>
+                <section class = "section-panel">
+                <div class="jumbotron jumbotron-back" id = "home-div">
+                        <div class = "row">
+                                <div id = "jumbo-instruction" class = "col-md-7">
+                                        <h3>Welcome to Strathmore Notification System</h3>
+                                        <p>
+                                                This is a system that enables both students and lecturers have a good notification system. Login to experience this
+                                        </p>
+                                        <p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
+                                </div>
+
+                                <div id = "login" class = "col-md-4 not-active">
+                                        <div class = "login-header"></div>
+                                        <div class = "login-form">
+                                        <div id = "close-button"><i class = "glyphicon glyphicon-remove"></i></div>
+                                        <?php echo validation_errors(); ?>
+                                        <?php echo form_open('verifylogin'); ?>
+                                        <?php $attributes = array('class' => 'su-notification-login', 'id' => 'slasa-login', 'style' => 'background: '); ?>
+                                        <div class = "form-group"><div class = "input-group"><input type="text" id="username" name="username" required placeholder = "Enter Username" class = "form-control" /><span class="input-group-addon"><i class = "fui-user"></i></span></div></div>
+                                        <div class = "form-group"><div class = "input-group"><input type="password" required placeholder = "Enter Password"  id="passowrd" name="password" class = "form-control"/><span class="input-group-addon"><i class = "fui-lock"></i></span></div></div>
+                                        <button class = "btn btn-primary" type="submit">Login</button>
+                                        <?php echo form_close(); ?>
+                                        </div>
+                                </div>
+
+                                <div class = "col-md-6 col-md-offset-3 alert alert-warning alert-dismissible" role="alert" style="text-align: center;">
+                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                        <p><span id = "success-message"></span></p>
+                                </div>
+                        </div>
+                </div>
+                </section>

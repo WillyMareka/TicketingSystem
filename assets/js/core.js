@@ -47,10 +47,27 @@ $(document).ready(function()
 	});
 
 	$("#submit-comment").click(function(){
-		var data = $('#slasa-contact :input :textarea').serializeArray();
+		var form = document.getElementById('slasa-contact');
+		var r = document.getElementById('result');
+		form.onsubmit = function(event){
+			event.preventDefault();
 
-		$.post($('#slasa-contact').attr("action"), data, function(info){$('#success-message').html(info)});
+			r.innerHTML = '<i class = "fa fa-spinner fa-spin"></i> Working...';
 
-	$('#slasa-contact').submit(function(){return false;});
+			var data = $('#slasa-contact').serializeArray();
+
+			$.post($('#slasa-contact').attr('action'), data, function(info){
+				$('#result').html('Posted Successfully');
+			
+	    });
+
+		}
 	});
+
+
+	$("#login-button").click(function(){
+		$('#myModal').modal('show');
+	});
+	
 });
+
