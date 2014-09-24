@@ -35,7 +35,11 @@ class Users extends MY_Controller
 				$data['firstname'] = $student[0]['firstname'];
 				$data['lastname'] = $student[0]['lastname'];
 				$data['email'] = $student[0]['student_email'];
+				$data['logged_in'] = TRUE;
+				$data['user_type'] = $user_type;
 				$this->session->set_userdata($data);
+
+				$this->m_users->register_session();
 				redirect(base_url() .'student');
 			}
 		}

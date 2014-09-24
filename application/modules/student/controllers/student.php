@@ -10,8 +10,16 @@ class Student extends MY_Controller
     }
 	function index()
 	{
-		$data['student'] = $this->getStudentDetails();
-		$this->load->view('student', $data);
+		$logged_in = $this->check_login();
+		if($logged_in == TRUE)
+		{
+			$data['student'] = $this->getStudentDetails();
+			$this->load->view('student', $data);
+		}
+		else
+		{
+			redirect(base_url() .'home');
+		}
 	}
 
 	function getStudentDetails()

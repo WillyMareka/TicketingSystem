@@ -40,6 +40,11 @@ class M_users extends MY_Model {
         return $spec_user;
     }
 
+    function register_session()
+    {
+        print_r($this->session->userdata());
+    }
+
     
 
 }

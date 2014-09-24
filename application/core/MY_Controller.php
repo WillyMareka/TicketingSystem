@@ -8,6 +8,19 @@ class MY_Controller extends MX_Controller
         parent::__construct();
     }
 
+
+    function check_login()
+    {
+    	// print_r($this->session->userdata);die;
+    	if($this->session->userdata('logged_in') == TRUE)
+    	{
+    		return TRUE;
+    	}
+    	else
+    	{
+    		return FALSE;
+    	}
+    }
 	function hash_pass($upass)
 	{
 		return md5($upass);
