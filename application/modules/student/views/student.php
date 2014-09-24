@@ -41,7 +41,6 @@
 </head>
 
 <body>
-
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -254,10 +253,10 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                     <div class = "user-profile" style = "text-align: center; width: 250px;">
-                    	<img src="<?php echo base_url() .'assets/images/chris.jpg'?>" class = "img-circle" style = "width: 100px; height: 100px;">
+                    	<img src="<?php echo $student['photo']; ?>" class = "img-circle" style = "width: 100px; height: 100px;">
                     	<div class = "row">
                     		<div class = "col-lg-12">
-                    			<p><?php echo $this->session->userdata('firstname'); ?> <?php echo $this->session->userdata('lastname'); ?></p>
+                    			<p><?php echo $student['firstname'];?> <?php echo $student['lastname'];?> <?php echo $student['othernames'];?></p>
                     		</div>
 
                     		<div class = "col-lg-12">
@@ -296,7 +295,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a class="active" href="index.html"><i class="fa fa-home fa-fw"></i> Home</a>
+                            <a class="active" href="<?php echo base_url() .'student'?>"><i class="fa fa-home fa-fw"></i> Home</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Progress Report</a>
@@ -342,17 +341,18 @@
             </div>
 
             <div class = "row">
+            	<div class = "col-lg-9">
                     <div class="panel panel-green">
                         <div class="panel-heading">
-                        	<h3><?php echo $this->session->userdata('firstname'); ?> <?php echo $this->session->userdata('lastname'); ?></h3>
+                        	<h3><?php echo $student['firstname'];?> <?php echo $student['lastname'];?> <?php echo $student['othernames'];?></h3>
                         </div>
                         <div class = "panel-body">
 	                        <div class = "row">
-	                        	<div class="col-xs-3">
-	                        		<img src="<?php echo base_url() .'assets/images/chris.jpg'?>" style = "width: 175px !important; height: 175px !important; margin: 25px !important;">
+	                        	<div class="col-md-3">
+	                        		<img src="<?php echo $student['photo']; ?>" style = "width: 170px !important; height: 210px !important;">
 	                        	</div>
 
-	                        	<div class = "col-xs-9">
+	                        	<div class = "col-md-9">
 	                        		<table class = "table table-striped table-bordered table-hover">
 	                        			<tr>
 	                        				<th>ADMISSION NO:</th>
@@ -360,23 +360,23 @@
 	                        			</tr>
 		                        		<tr>
 		                        			<th>NAME:</th>
-		                        			<td><?php echo $this->session->userdata('firstname'); ?> <?php echo $this->session->userdata('lastname'); ?></td>
+		                        			<td><?php echo $student['firstname'];?> <?php echo $student['lastname'];?> <?php echo $student['othernames'];?></td>
 	                        			</tr>
 	                        			<tr>
 		                        			<th>CURRENT COURSE:</th>
-		                        			<td>Bachelor of Science Informatics</td>
+		                        			<td><?php echo $student['course_name']; ?></td>
 	                        			</tr>
 	                        			<tr>
 		                        			<th>EMAIL:</th>
-		                        			<td><?php echo $this->session->userdata('email'); ?></td>
+		                        			<td><?php echo $student['student_email'];?></td>
 	                        			</tr>
 	                        			<tr>
 		                        			<th>PHONE NUMBER:</th>
-		                        			<td>+254725160399</td>
+		                        			<td><?php echo $student['student_phone'];?></td>
 	                        			</tr>
 	                        			<tr>
 		                        			<th>LOCATION:</th>
-		                        			<td>NAIROBI</td>
+		                        			<td><?php echo $student['location'];?></td>
 	                        			</tr>
 	                        		</table>
 	                        	</div>
@@ -391,11 +391,55 @@
                             </div>
                         </a> -->
                     </div>
+				</div>
+
+				<div class = "col-lg-3">
+					<div class="panel panel-green">
+                        <div class="panel-heading">
+                            <h4><i class="fa fa-bell fa-fw"></i> Notifications Panel</h4>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-comment fa-fw"></i> Notes uploaded
+                                    <span class="pull-right text-muted small">
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-twitter fa-fw"></i> 2 New messages
+                                    <span class="pull-right text-muted small">
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-envelope fa-fw"></i> 1 Message in the Forum
+                                    <span class="pull-right text-muted small">
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-tasks fa-fw"></i> 10 tasks yet to complete
+                                    <span class="pull-right text-muted small">
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-upload fa-fw"></i> 4 Assignments
+                                    <span class="pull-right text-muted small">
+                                    </span>
+                                </a>
+                            </div>
+                            <!-- /.list-group -->
+                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+			</div>
+			</div>
 
             <!-- /.row -->
             <div class = "row">
             	<div class="col-lg-3 col-md-6">
-                    <div class="panel panel-default">
+                    <div class="panel panel-green">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
@@ -417,7 +461,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
@@ -440,7 +484,7 @@
                 </div>
 
                 <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-default">
+                    <div class="panel panel-yellow">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
@@ -462,7 +506,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-default">
+                    <div class="panel panel-red">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">

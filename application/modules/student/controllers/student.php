@@ -10,6 +10,15 @@ class Student extends MY_Controller
     }
 	function index()
 	{
-		$this->load->view('student');
+		$data['student'] = $this->getStudentDetails();
+		$this->load->view('student', $data);
+	}
+
+	function getStudentDetails()
+	{
+		$student = $this->m_student->getStudentDetails($this->session->userdata('username'));
+
+		return $student;
+
 	}
 }
