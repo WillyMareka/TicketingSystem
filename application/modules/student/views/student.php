@@ -12,7 +12,7 @@
     <title>SU Notification</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="<?php echo base_url() .'assets/bootstrap/css/bootstrap.min.css'?>" rel="stylesheet">
+    <link href="<?php echo base_url() .'assets/bootstrap/css/bootstrap.css'?>" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="<?php echo base_url() .'assets/css/plugins/metisMenu/metisMenu.min.css'?>" rel="stylesheet">
