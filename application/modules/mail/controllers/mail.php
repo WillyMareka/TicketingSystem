@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Mail extends MX_Controller
+class Mail extends MY_Controller
 {
 
 	function __construct()
