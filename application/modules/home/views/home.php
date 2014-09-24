@@ -1,13 +1,14 @@
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Strathmore Notification System</title>
-		<link rel="stylesheet" type="text/css" href= "<?php echo base_url(). 'assets/Flat-UI/bootstrap/css/bootstrap.css'?>">
-		<link href="<?php echo base_url(). 'assets/Flat-UI/css/flat-ui.css'?>" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url(). 'assets/kickstart/css/fonts/font-awesome/css/font-awesome.min.css'?>">
-		<link rel="stylesheet" type="text/css" href= "<?php echo base_url(). 'assets/stylesheets/style.css'?>">
-		<link rel="stylesheet" href="<?php echo base_url(). 'assets/stylesheets/animate.css'?>">
+		<link rel="stylesheet" type="text/css" href= "<?php echo base_url();?>assets/Flat-UI/bootstrap/css/bootstrap.css">
+		<link href="<?php echo base_url();?>assets/Flat-UI/css/flat-ui.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/kickstart/css/fonts/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href= "<?php echo base_url();?>assets/stylesheets/style.css">
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/stylesheets/animate.css">
 
 	</head>
 	<body>
