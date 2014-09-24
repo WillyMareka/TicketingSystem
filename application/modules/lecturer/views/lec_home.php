@@ -16,7 +16,7 @@
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                        <i class="icon-reorder shaded"></i></a><a class="brand" href="index.php">Edmin </a>
+                        <i class="icon-reorder shaded"></i></a><a class="brand" href="index.html">Edmin </a>
                     <div class="nav-collapse collapse navbar-inverse-collapse">
                         <ul class="nav nav-icons">
                             <li class="active"><a href="#"><i class="icon-envelope"></i></a></li>
@@ -42,7 +42,7 @@
                             </li>
                             <li><a href="#">Support </a></li>
                             <li class="nav-user dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="<?php echo base_url().'assets/images/lec_images/user.png';?>" class="nav-avatar" />
+                                <img src="images/user.png" class="nav-avatar" />
                                 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Your Profile</a></li>
@@ -66,34 +66,28 @@
                     <div class="span3">
                         <div class="sidebar">
                             <ul class="widget widget-menu unstyled">
-                                <li class="active"><a href="index.php"><i class="menu-icon icon-dashboard"></i>Dashboard
+                                <li class="active"><a href="index.html"><i class="menu-icon icon-dashboard"></i>Dashboard
                                 </a></li>
-                                <li><a href="activity.php"><i class="menu-icon icon-bullhorn"></i>News Feed </a>
+                                <li><a href="activity.html"><i class="menu-icon icon-bullhorn"></i>News Feed </a>
                                 </li>
-                                <li><a href="message.php"><i class="menu-icon icon-inbox"></i>Inbox <b class="label green pull-right">
+                                <li><a href="message.html"><i class="menu-icon icon-inbox"></i>Inbox <b class="label green pull-right">
                                     11</b> </a></li>
-                                <li><a href="task.php"><i class="menu-icon icon-tasks"></i>Tasks <b class="label orange pull-right">
+                                <li><a href="task.html"><i class="menu-icon icon-tasks"></i>Tasks <b class="label orange pull-right">
                                     19</b> </a></li>
-                            </ul>
-                            <!--/.widget-nav-->
-                            
-                            
-                            <ul class="widget widget-menu unstyled">
-                                <li><a href="ui-button-icon.php"><i class="menu-icon icon-bold"></i> Buttons </a></li>
-                                <li><a href="ui-typography.php"><i class="menu-icon icon-book"></i>Typography </a></li>
-                                <li><a href="form.php"><i class="menu-icon icon-paste"></i>Forms </a></li>
-                                <li><a href="table.php"><i class="menu-icon icon-table"></i>Tables </a></li>
-                                <li><a href="charts.php"><i class="menu-icon icon-bar-chart"></i>Charts </a></li>
-                            </ul>
-                            <!--/.widget-nav-->
-                            <ul class="widget widget-menu unstyled">
+
+                                <li><a href="ui-button-icon.html"><i class="menu-icon icon-bold"></i> Buttons </a></li>
+                                <li><a href="ui-typography.html"><i class="menu-icon icon-book"></i>Typography </a></li>
+                                <li><a href="form.html"><i class="menu-icon icon-paste"></i>Forms </a></li>
+                                <li><a href="table.html"><i class="menu-icon icon-table"></i>Tables </a></li>
+                                <li><a href="charts.html"><i class="menu-icon icon-bar-chart"></i>Charts </a></li>
+
                                 <li><a class="collapsed" data-toggle="collapse" href="#togglePages"><i class="menu-icon icon-cog">
                                 </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>More Pages </a>
                                     <ul id="togglePages" class="collapse unstyled">
-                                        <li><a href="other-login.php"><i class="icon-inbox"></i>Login </a></li>
-                                        <li><a href="other-user-profile.php"><i class="icon-inbox"></i>Profile </a></li>
-                                        <li><a href="other-user-listing.php"><i class="icon-inbox"></i>All Users </a></li>
+                                        <li><a href="other-login.html"><i class="icon-inbox"></i>Login </a></li>
+                                        <li><a href="other-user-profile.html"><i class="icon-inbox"></i>Profile </a></li>
+                                        <li><a href="other-user-listing.html"><i class="icon-inbox"></i>All Users </a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#"><i class="menu-icon icon-signout"></i>Logout </a></li>
@@ -103,80 +97,21 @@
                     </div>
                     <!--/.span3-->
                     <div class="span9">
+
                         <div class="content">
                             <div class="btn-controls">
-                                <div class="btn-box-row row-fluid">
-                                    <a href="#" class="btn-box big span4">
-                                    <!-- <i class=" icon-random"></i> -->
-                                    <b><p class="text-muted">Notifications</p></b>
-                                    <table class="table">
-                                        <tr><td>
-                                        <p class="text-primary">Notification One</p>
-                                        <p class="details"><?php echo $notification_1; ?></p>
-                                        </td></tr>
-                                        <tr><td>
-                                        <p class="text-primary">Notification Two</p>
-                                        <p class="details"><?php echo $notification_2; ?></p>
-                                        </td></tr>
-                                        <tr><td>
-                                        <p class="text-primary">Notification Three</p>
-                                        <p class="details"><?php echo $notification_3; ?></p>
-                                        </td></tr>
-                                        <tr><td>
-                                        <p class="text-primary">Notification Four</p>
-                                        <p class="details"><?php echo $notification_4; ?></p>
-                                        </td></tr>
-                                        <tr><td>
-                                        <p class="text-primary">Notification Five</p>
-                                        <p class="details"><?php echo $notification_5; ?></p>
-                                        </td></tr>
-                                    </table>
-                                        <!-- <p class="text-muted">
-                                            Growth</p> -->
-                                            
-                                    </a>
-                                    <ul class="widget widget-usage unstyled span4">
-                                    
-                                        <li>
-                                            <p>Absentism Levels in %</br></br>
-                                                <strong>Development Studies</strong> <span class="pull-right small muted">78%</span>
-                                            </p>
-                                            <div class="progress tight">
-                                                <div class="bar" style="width: 78%;">
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p>
-                                                <strong>Business Mathematics</strong> <span class="pull-right small muted">56%</span>
-                                            </p>
-                                            <div class="progress tight">
-                                            <!-- #FF6347 -->
-                                                <div class="bar bar-success" style="width: 56%;">
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p>
-                                                <strong>Internet Technologies</strong> <span class="pull-right small muted">44%</span>
-                                            </p>
-                                            <div class="progress tight">
-                                                <div class="bar bar-warning" style="width: 44%;">
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <p>
-                                                <strong>Advanced C++ Programming</strong> <span class="pull-right small muted">67%</span>
-                                            </p>
-                                            <div class="progress tight">
-                                                <div class="bar bar-danger" style="width: 67%;">
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
 
-                                    <a href="#" class="btn-box big span4"><i class="icon-user"></i><b>15</b>
+                            <!--/.module-->
+                                <div class="btn-box-row row-fluid">
+                                    <!-- <a href="#" class="btn-box big span4"><i class=" icon-random"></i><b>65%</b>
+                                        <p class="text-muted">
+                                            Growth</p>
+                                    </a> -->
+                                    <a href="#" class="btn-box big span4"><i class=" icon-envelope"></i><b>65</b>
+                                        <p class="text-muted">
+                                            Messages</p>
+                                    </a>
+                                    <a href="#" class="btn-box big span4"><i class="icon-group"></i><b>15</b>
                                         <p class="text-muted">
                                             New Users</p>
                                     </a><a href="#" class="btn-box big span4"><i class="icon-money"></i><b>15,152</b>
@@ -184,6 +119,18 @@
                                             Profit</p>
                                     </a>
                                 </div>
+                           <div class="module">
+                                <div class="module-head">
+                                    <h3>
+                                        Profit Chart</h3>
+                                </div>
+                                <div class="module-body">
+                                    <div class="chart inline-legend grid">
+                                        <div id="placeholder2" class="graph" style="height: 250px">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                                 <div class="btn-box-row row-fluid">
                                     <div class="span8">
                                         <div class="row-fluid">
@@ -204,22 +151,48 @@
                                         </div>
                                     </div>
                                     
+                                    <ul class="widget widget-usage unstyled span4">
+                                        <li>
+                                            <p>
+                                                <strong>Windows 8</strong> <span class="pull-right small muted">78%</span>
+                                            </p>
+                                            <div class="progress tight">
+                                                <div class="bar" style="width: 78%;">
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                <strong>Mac</strong> <span class="pull-right small muted">56%</span>
+                                            </p>
+                                            <div class="progress tight">
+                                                <div class="bar bar-success" style="width: 56%;">
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                <strong>Linux</strong> <span class="pull-right small muted">44%</span>
+                                            </p>
+                                            <div class="progress tight">
+                                                <div class="bar bar-warning" style="width: 44%;">
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                <strong>iPhone</strong> <span class="pull-right small muted">67%</span>
+                                            </p>
+                                            <div class="progress tight">
+                                                <div class="bar bar-danger" style="width: 67%;">
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                             <!--/#btn-controls-->
-                            <div class="module">
-                                <div class="module-head">
-                                    <h3>
-                                        Profit Chart</h3>
-                                </div>
-                                <div class="module-body">
-                                    <div class="chart inline-legend grid">
-                                        <div id="placeholder2" class="graph" style="height: 500px">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/.module-->
+
                             <div class="module hide">
                                 <div class="module-head">
                                     <h3>
@@ -244,7 +217,7 @@
                                         DataTables</h3>
                                 </div>
                                 <div class="module-body table">
-                                    <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display"
+                                    <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped  display"
                                         width="100%">
                                         <thead>
                                             <tr>
