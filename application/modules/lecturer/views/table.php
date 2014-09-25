@@ -7,7 +7,7 @@
 	<link type="text/css" href="<?php echo base_url().'assets/bootstrap/css/bootstrap.min.css';?>" rel="stylesheet">
 	<link type="text/css" href="<?php echo base_url().'assets/bootstrap/css/bootstrap-responsive.min.css';?>" rel="stylesheet">
 	<link type="text/css" href="<?php echo base_url().'assets/css/lecturer_theme.css';?>" rel="stylesheet">
-	<link type="text/css" href="<?php echo base_url().'assets/images/lec_images/icons/css/font-awesome.css'; ?>" rel="stylesheet">
+	<link type="text/css" href="<?php echo base_url().'assets/font-awesome-4.1.0/css/font-awesome.css'; ?>" rel="stylesheet">
 	<link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet'>
 </head>
 <body>
@@ -16,7 +16,7 @@
 		<div class="navbar-inner">
 			<div class="container">
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-					<i class="icon-reorder shaded"></i>
+					<i class="fa fa-reorder shaded"></i>
 				</a>
 
 			  	<a class="brand" href="index.php">
@@ -26,20 +26,20 @@
 				<div class="nav-collapse collapse navbar-inverse-collapse">
 					<ul class="nav nav-icons">
 						<li class="active"><a href="#">
-							<i class="icon-envelope"></i>
+							<i class="fa fa-envelope"></i>
 						</a></li>
 						<li><a href="#">
-							<i class="icon-eye-open"></i>
+							<i class="fa fa-eye-open"></i>
 						</a></li>
 						<li><a href="#">
-							<i class="icon-bar-chart"></i>
+							<i class="fa fa-bar-chart"></i>
 						</a></li>
 					</ul>
 
 					<form class="navbar-search pull-left input-append" action="#">
 						<input type="text" class="span3">
 						<button class="btn" type="button">
-							<i class="icon-search"></i>
+							<i class="fa fa-search"></i>
 						</button>
 					</form>
 				
@@ -89,19 +89,19 @@
 						<ul class="widget widget-menu unstyled">
 							<li class="active">
 								<a href="index.php">
-									<i class="menu-icon icon-dashboard"></i>
+									<i class="menu-icon fa fa-dashboard"></i>
 									Dashboard
 								</a>
 							</li>
 							<li>
 								<a href="activity.php">
-									<i class="menu-icon icon-bullhorn"></i>
+									<i class="menu-icon fa fa-bullhorn"></i>
 									News Feed
 								</a>
 							</li>
 							<li>
 								<a href="message.php">
-									<i class="menu-icon icon-inbox"></i>
+									<i class="menu-icon fa fa-inbox"></i>
 									Inbox
 									<b class="label green pull-right">11</b>
 								</a>
@@ -109,7 +109,7 @@
 							
 							<li>
 								<a href="task.php">
-									<i class="menu-icon icon-tasks"></i>
+									<i class="menu-icon fa fa-tasks"></i>
 									Tasks
 									<b class="label orange pull-right">19</b>
 								</a>
@@ -117,36 +117,36 @@
 						</ul><!--/.widget-nav-->
 
 						<ul class="widget widget-menu unstyled">
-                                <li><a href="ui-button-icon.php"><i class="menu-icon icon-bold"></i> Buttons </a></li>
-                                <li><a href="ui-typography.php"><i class="menu-icon icon-book"></i>Typography </a></li>
-                                <li><a href="form.php"><i class="menu-icon icon-paste"></i>Forms </a></li>
-                                <li><a href="table.php"><i class="menu-icon icon-table"></i>Tables </a></li>
-                                <li><a href="charts.php"><i class="menu-icon icon-bar-chart"></i>Charts </a></li>
+                                <li><a href="ui-button-icon.php"><i class="menu-icon fa fa-bold"></i> Buttons </a></li>
+                                <li><a href="ui-typography.php"><i class="menu-icon fa fa-book"></i>Typography </a></li>
+                                <li><a href="form.php"><i class="menu-icon fa fa-paste"></i>Forms </a></li>
+                                <li><a href="table.php"><i class="menu-icon fa fa-table"></i>Tables </a></li>
+                                <li><a href="charts.php"><i class="menu-icon fa fa-bar-chart"></i>Charts </a></li>
                             </ul><!--/.widget-nav-->
 
 						<ul class="widget widget-menu unstyled">
 							<li>
 								<a class="collapsed" data-toggle="collapse" href="#togglePages">
-									<i class="menu-icon icon-cog"></i>
-									<i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right"></i>
+									<i class="menu-icon fa fa-cog"></i>
+									<i class="fa fa-chevron-down pull-right"></i><i class="fa fa-chevron-up pull-right"></i>
 									More Pages
 								</a>
 								<ul id="togglePages" class="collapse unstyled">
 									<li>
 										<a href="other-login.php">
-											<i class="icon-inbox"></i>
+											<i class="fa fa-inbox"></i>
 											Login
 										</a>
 									</li>
 									<li>
 										<a href="other-user-profile.php">
-											<i class="icon-inbox"></i>
+											<i class="fa fa-inbox"></i>
 											Profile
 										</a>
 									</li>
 									<li>
 										<a href="other-user-listing.php">
-											<i class="icon-inbox"></i>
+											<i class="fa fa-inbox"></i>
 											All Users
 										</a>
 									</li>
@@ -155,7 +155,7 @@
 							
 							<li>
 								<a href="#">
-									<i class="menu-icon icon-signout"></i>
+									<i class="menu-icon fa fa-signout"></i>
 									Logout
 								</a>
 							</li>
@@ -830,8 +830,8 @@
 			$('.datatable-1').dataTable();
 			$('.dataTables_paginate').addClass("btn-group datatable-pagination");
 			$('.dataTables_paginate > a').wrapInner('<span />');
-			$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
-			$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
+			$('.dataTables_paginate > a:first-child').append('<i class="fa fa-chevron-left shaded"></i>');
+			$('.dataTables_paginate > a:last-child').append('<i class="fa fa-chevron-right shaded"></i>');
 		} );
 	</script>
 </body>
