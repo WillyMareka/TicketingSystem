@@ -1,0 +1,207 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans|Roboto|Oswald|Lato|Droid+Sans|PT+Sans|Source+Sans+Pro|Open+Sans+Condensed:300|Roboto+Condensed|Droid+Serif|Ubuntu|Raleway|Montserrat|PT+Sans+Narrow|Roboto+Slab|Lobster|Arimo|Yanone+Kaffeesatz|Lora|Bitter);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro|Lato|PT+Sans|Roboto);
+body
+{
+	overflow-x: auto; 
+}
+.navbar
+{
+	border-radius: 0;
+	background-color: rgba(0, 0, 0, 0.7) !important;
+	height: 50px !important;
+	margin-bottom: 0;
+}
+.navbar ul li a
+{
+	color: #fff !important;
+}
+
+.navbar ul li a:hover
+{
+	border-bottom: 1px solid white;
+}
+
+.navbar-brand
+{
+	color: #f3f3f3 !important;
+}
+.jumbotron
+{
+	height: 700px;
+	width: 100% !important;
+	bottom: 0;
+	z-index: -2;
+	margin: 0;
+	font-family: 'Ubuntu', sans-serif;
+	overflow: auto;
+}
+
+.jumbotron-back
+{
+	background-image: url('../images/home.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+#jumbo-instruction
+{
+	margin-top: 70px !important;
+	background-color: rgba(255, 255, 255, 0.8);
+	z-index: 1;
+	margin-left: 0;
+}
+
+#login
+{
+	margin-top: 70px !important;
+	position: relative;
+	float: right;
+	height: 250px;
+	z-index: 1;
+}
+
+.not-active
+{
+	display: none;
+}
+
+#close-button
+{
+	position: absolute;
+	top: -13px;
+	right: -5px;
+}
+
+.login-header
+{
+	padding: 20px;
+}
+
+#close-button
+{
+	cursor: pointer;
+}
+
+.blur-me {
+  filter: blur(20px);
+}
+
+.about-jumbotron
+{
+	width: 100%;
+	background-image: url('../images/about.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+.about-description
+{
+	background-color: #000000;
+	opacity: 0.8;
+	margin-top: 150px;
+	position: absolute;
+	padding: 10px;
+	color: #fff;
+	font-weight: normal;
+}
+
+@media(max-width: 767px){
+	.jumbotron h1
+	{
+		font-size: 31px;
+	}
+
+	.jumbotron h2
+	{
+		font-size: 28px;
+	}
+
+	.jumbotron h3
+	{
+		font-size: 25px;
+	}
+}
+
+@media(max-width: 400px){
+	.navbar-brand
+	{
+		font-size: 18px;
+	}
+}
+
+.navbar a
+{
+	font-family: 'Ubuntu', sans-serif;
+	font-weight: normal;
+}
+
+
+.teamnews
+{
+	text-align: center;
+	background-color: #34495e;
+	color: #f3f3f3;
+}
+
+
+.teamnews h4
+{
+	color: #3ACFAA;
+}
+.teamnews p
+{
+	font-size: 100%;
+}
+
+.text-centered
+{
+	text-align: center;
+}
+
+.full-width
+{
+	width: 100%;
+}
+
+.jumbotron textarea
+{
+	height: 150px;
+}
+
+#contact-div
+{
+	background-color: #34495e;
+	color: #fff;
+}
+
+.modal-header
+{
+	background-color: #1abc9c;
+	color: #bdc3c7;
+}
+
+.loginbutton
+{
+	border: 2px solid #fff;
+	background-color: rgba(255,255,255,0);
+	width: 120px;
+	border-radius: 0;
+	font-weight: bold;
+	transition: all 0.5s ease;
+
+}
+
+.loginbutton:hover
+{
+	background-color: rgba(255,255,255,0.2);
+	color: #000;
+}
+.modal-body, .login-form
+{
+	background-color: #ECF0F1;
+	margin-bottom: 0;
+}
