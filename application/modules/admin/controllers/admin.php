@@ -43,13 +43,18 @@ class Admin extends MY_Controller
 		$this->load->view('admin_template_view', $data);
 	}
 
-	function units()
+	function register_programs()
 	{
-		$data['content_view'] = "units_view";
+		$data['content_view'] = "registerPrograms_view";
 		$data['title'] = 'Administrators Section: Units';
 		$data['courses'] = $this->admin_model->get_courses();
 
 		$this->load->view('admin_template_view', $data);
+	}
+
+	public function units()
+	{
+		# code...
 	}
 
 	function add()
@@ -85,6 +90,26 @@ class Admin extends MY_Controller
 		// $this->m_admin->addStudent();
 	}
 
+	public function addCourse()
+	{
+		$this->form_validation->set_rules('course_name', 'Course Name', 'trim|required');
+		$this->form_validation->set_rules('course_code', 'Unit Name', 'trim|required');
+		$this->form_validation->set_rules('Decription', 'Unit Code', 'trim|required');	
+
+		if ($this->form_validation->run() == FALSE) 
+		{
+			echo "The form validation process was failed!!!";
+            $this->register_programs();
+		} else 
+		{
+			// echo "The form validation was very successfull";
+           	$this->admin_model->addCourses();
+			
+			$this->units();
+				
+		}
+	}
+
 	function register_units()
 	{
 		$this->form_validation->set_rules('course', 'Course Name', 'trim|required');
@@ -95,7 +120,7 @@ class Admin extends MY_Controller
         if ($this->form_validation->run() == FALSE) 
 		{
 			echo "The form validation process was failed!!!";
-            $this->units();
+            $this->register_programs();
 		} else 
 		{
 			// echo "The form validation was very successfull";
