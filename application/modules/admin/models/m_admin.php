@@ -33,4 +33,21 @@ class M_admin extends MY_Model {
 
     	echo "Successfully Inserted " . $student_no;die;
     }
+
+    function addTimetable($path, $filetype)
+    {
+        $filename = $_POST['file_name'];
+        $course_id = $_POST['course'];
+
+        $query = "INSERT INTO timetables VALUES (NULL, '$filename', '$path', '$filetype', $course_id, NULL, 1)";
+        $result = $this->db->query($query);
+
+        if ($result) {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

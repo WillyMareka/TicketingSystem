@@ -7,19 +7,21 @@ class Student extends MY_Controller
         // Call the Model constructor
         parent::__construct();
         $this->load->model('m_student');
-    }
-	function index()
-	{
-		$logged_in = $this->check_login();
+        $logged_in = $this->check_login();
 		if($logged_in == TRUE)
 		{
 			$data['student'] = $this->getStudentDetails();
-			$this->load->view('student', $data);
 		}
 		else
 		{
 			redirect(base_url() .'home');
 		}
+
+    }
+	function index()
+	{
+		$data['student'] = $this->getStudentDetails();
+		$this->load->view('student', $data);
 	}
 
 	function getStudentDetails()
@@ -27,6 +29,33 @@ class Student extends MY_Controller
 		$student = $this->m_student->getStudentDetails($this->session->userdata('username'));
 
 		return $student;
+	}
 
+	function load_progress()
+	{
+		$data['student'] = $this->getStudentDetails();
+		$this->load->view('progress', $data);
+	}
+	function attendance()
+	{
+		$data['student'] = $this->getStudentDetails();
+		$this->load->view('attendance', $data);
+	}
+	function timetables()
+	{
+		$data['student'] = $this->getStudentDetails();
+		$this->load->view('timetables', $data);
+	}
+	function notes()
+	{
+		$data['student'] = $this->getStudentDetails();
+		$this->load->view('notes', $data);
+	}
+
+	function inbox()
+	{
+		$data['student'] = $this->getStudentDetails();
+		print_r($data);die;
+		$this->load->view('inbox', $data);
 	}
 }

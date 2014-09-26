@@ -6,6 +6,7 @@ class MY_Controller extends MX_Controller
     {
         // Call the Model constructor
         parent::__construct();
+        $this->load->model('admin/m_admin');
     }
 
 
@@ -25,7 +26,12 @@ class MY_Controller extends MX_Controller
 	{
 		return md5($upass);
 	}
+	function logout()
+	{
+		$this->session->sess_destroy();
 
+		redirect(base_url());
+	}
 	function send_sms($numbers, $message)
 	{
 		$username = "john.otaalo@strathmore.edu";
@@ -48,5 +54,18 @@ class MY_Controller extends MX_Controller
 	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	    $result = curl_exec($ch); // This is the result from the API
 	    curl_close($ch);
+	}
+
+	function createCourseDropdown()
+	{
+		$select_dropdown = '';
+		$courses = $this->m_admin->getAllCourses();
+		$select_dropdown .= "<select name = 'course'>";
+		foreach ($courses as $key => $value) {
+			$select_dropdown .= '<option value = "'.$value['course_id'].'">'.$value['course_name'].'</option>';
+		}
+		$select_dropdown .= "</select>";
+
+		return $select_dropdown;
 	}
 }
