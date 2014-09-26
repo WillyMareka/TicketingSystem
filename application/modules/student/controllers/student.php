@@ -20,6 +20,7 @@ class Student extends MY_Controller
     }
 	function index()
 	{
+		$data['student'] = $this->getStudentDetails();
 		$this->load->view('student', $data);
 	}
 
