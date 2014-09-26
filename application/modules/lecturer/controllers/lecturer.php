@@ -2,6 +2,13 @@
 
 class Lecturer extends MX_Controller
 {
+	function __construct()
+    {
+        // Call the Model constructor
+        parent::__construct();
+        $this->load->model('m_lecturers');
+    }
+
 	function index()
 	{
 		$data = array();
@@ -12,6 +19,23 @@ class Lecturer extends MX_Controller
 		$data['notification_4'] = "This is the fourth notification";
 		$data['notification_4'] = "This is the fourth notification";
 		$data['notification_5'] = "This is the fifth notification";
+
+		$data['messages_no'] = 35;
+		$total_students= $this->m_lecturers->total_students();
+		$data['total_students'] = $total_students[0]['total_students'];
 		$this->load->view('lec_home.php',$data);
+	}
+	function page_to_load($selection = null){
+		if ($selection == "messages") {
+			$this ->load->view('message.php');
+		}elseif ($selection == "charts") {
+			$this ->load->view('charts.php');
+		}elseif ($selection == "tasks") {
+			$this ->load->view('task.php');
+		}elseif ($selection == "forms") {
+			$this ->load->view('form.php');
+		}elseif ($selection == "activity") {
+			$this ->load->view('activity.php');
+		}
 	}
 }

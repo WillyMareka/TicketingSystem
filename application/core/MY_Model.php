@@ -15,4 +15,19 @@ class MY_Model extends CI_Model {
     	$courses = $result->result_array();
     	return $courses;
     }
+
+    public function getCourse($course_id = null)
+    {
+        $result = $this->db->query('SELECT * FROM courses WHERE course_id = '.$course_id);
+        $courses = $result->result_array();
+
+        return $courses;
+    }
+
+    public function total_students(){
+         $result = $this->db->query('SELECT COUNT(*) as total_students FROM  students ');
+        $total_students = $result->result_array();
+
+        return $total_students;
+    }
 }
