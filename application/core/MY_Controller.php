@@ -9,7 +9,10 @@ class MY_Controller extends MX_Controller
         $this->load->model('admin/m_admin');
     }
 
-
+    function index()
+    {
+    	$this->check_login();
+    }
     function check_login()
     {
     	// print_r($this->session->userdata);die;

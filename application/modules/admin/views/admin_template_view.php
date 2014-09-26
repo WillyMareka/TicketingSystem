@@ -33,7 +33,7 @@
     <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
         <header class="header">
-            <a href="index.html" class="logo">
+            <a href="" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
                 Administrator
             </a>
@@ -46,6 +46,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
+                
+                <a href="" class="logo">
+                    <!-- Add the class icon to your logo image or logo icon to add the margining -->
+                    Strathmore Notification
+                </a>
+                
                 <div class="navbar-right">
                     <ul class="nav navbar-nav">
                         <!-- Messages: style can be found in dropdown.less-->
@@ -277,11 +283,12 @@
                     </ul>
                 </div>
             </nav>
+
         </header>
         <div class="wrapper row-offcanvas row-offcanvas-left">
             <!-- Left side column. contains the logo and sidebar -->
             <?php
-                $this->load->view('admin_sidebar');
+               $this->load->view('admin_sidebar');
             ?>
 
             <!-- Right side column. Contains the navbar and content of the page -->
