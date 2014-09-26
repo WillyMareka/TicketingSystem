@@ -45,6 +45,7 @@ class Users extends MY_Controller
 		}
 		else
 		{
+			redirect(base_url(). 'home/error');
 		}
 	}
 }

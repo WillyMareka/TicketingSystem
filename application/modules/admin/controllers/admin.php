@@ -120,6 +120,45 @@ class Admin extends MY_Controller
 
 		echo $course_section;die;
 	}
+
+	public function uploadTimetable()
+	{
+		$data['courses'] = $this->createCourseDropdown();
+		$this->load->view('addTimetable', $data);
+	}
+
+	function uploadtime()
+	{
+		// var_dump($_FILES);die;
+		$data['courses'] = $this->createCourseDropdown();
+		$path = '';
+		$config['upload_path'] = './upload/timetables/';
+		$config['allowed_types'] = 'docx|xlsx|pdf|xls|ppt|pptx';
+		$this->load->library('upload', $config);
+		// print_r($this->upload->do_upload('photos'));die;
+		if ( ! $this->upload->do_upload('upload_file'))
+		{
+			$error = array('error' => $this->upload->display_errors());
+			print_r($error);die;
+		}
+		else
+		{
+			$data = array('upload_data' => $this->upload->data());
+			foreach ($data as $key => $value) {
+				$path = base_url().'upload/timetables/'.$value['file_name'];
+				$file_type = $value['file_type'];
+				$arr = explode(".", $value['file_name'], 2);
+				$file_type = $arr[1];
+			}
+
+			$result = $this->m_admin->addTimetable($path, $file_type);
+
+			if ($result) {
+				$this->uploadTimetable();
+			}
+			// echo "Success!";die;
+		}
+	}
 }
 
 

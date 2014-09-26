@@ -30,4 +30,10 @@ class Home extends MY_Controller
 
     	echo 'Posted';
     }
+
+    function error()
+    {
+    	$data['error'] = "Login Error. Username or Password is wrong";
+    	$this->load->view('home', $data);
+    }
 }

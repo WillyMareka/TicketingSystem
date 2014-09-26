@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -253,25 +253,25 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                     <div class = "user-profile" style = "text-align: center; width: 250px;">
-                    	<img src="<?php echo $student['photo']; ?>" class = "img-circle" style = "width: 100px; height: 100px;">
-                    	<div class = "row">
-                    		<div class = "col-lg-12">
-                    			<p><?php echo $student['firstname'];?> <?php echo $student['lastname'];?> <?php echo $student['othernames'];?></p>
-                    		</div>
+                        <img src="<?php echo $student['photo']; ?>" class = "img-circle" style = "width: 100px; height: 100px;">
+                        <div class = "row">
+                            <div class = "col-lg-12">
+                                <p><?php echo $student['firstname'];?> <?php echo $student['lastname'];?> <?php echo $student['othernames'];?></p>
+                            </div>
 
-                    		<div class = "col-lg-12">
-                    			<p><?php echo $this->session->userdata('email'); ?></p>
-                    		</div>
-                    	</div>
-                    	<li class="divider"></li>
-                    	<div class = "row">
-                    		<div class = "col-xs-6">
-                    			<a href = "<?php echo base_url() .'student/logout'?>" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                    		</div>
-                    		<div class = "col-xs-6">
-                    			<a href = "" ><i class="fa fa-user fa-fw"></i> Profile</a>
-                    		</div>
-                    	</div>
+                            <div class = "col-lg-12">
+                                <p><?php echo $this->session->userdata('email'); ?></p>
+                            </div>
+                        </div>
+                        <li class="divider"></li>
+                        <div class = "row">
+                            <div class = "col-xs-6">
+                                <a href = "<?php echo base_url() .'student/logout'?>" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            </div>
+                            <div class = "col-xs-6">
+                                <a href = "" ><i class="fa fa-user fa-fw"></i> Profile</a>
+                            </div>
+                        </div>
                     </div>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -295,7 +295,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a class="active" href="<?php echo base_url() .'student'?>"><i class="fa fa-home fa-fw"></i> Home</a>
+                            <a href="<?php echo base_url() .'student'?>"><i class="fa fa-home fa-fw"></i> Home</a>
                         </li>
                         <li>
                             <a href="<?php echo base_url() .'student/load_progress'?>"><i class="fa fa-bar-chart-o fa-fw"></i> Progress Report</a>
@@ -305,7 +305,7 @@
                             <a href="<?php echo base_url() .'student/attendance'?>"><i class="fa fa-users fa-fw"></i> Attendance</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url() .'student/timetables'?>"><i class="fa fa-table fa-fw"></i> Time Tables</a>
+                            <a class="active" href="<?php echo base_url() .'student/timetables'?>"><i class="fa fa-table fa-fw"></i> Time Tables</a>
                         </li>
                         <li>
                             <a href="<?php echo base_url() .'student/notes'?>"><i class="fa fa-book fa-fw"></i> Notes</a>
@@ -319,11 +319,11 @@
                             <a href="#"><i class="fa fa-tasks fa-fw"></i> Tasks<span class="badge pull-right">New</span></a>
                         </li>
                         <li>
-                        	<a href="#"><i class = "fa fa-magic fa-fw"></i> Forum</a>
+                            <a href="#"><i class = "fa fa-magic fa-fw"></i> Forum</a>
                         </li>
 
                         <li>
-                        	<a href="#"><i class = "fa fa-sign-out fa-fw"></i> Log Out</a>
+                            <a href="#"><i class = "fa fa-sign-out fa-fw"></i> Log Out</a>
                         </li>
                     </ul>
                 </div>
@@ -335,199 +335,9 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><i class = "fa fa-home"></i> Student Home</h1>
+                    <h1 class="page-header"><i class = "fa fa-table fa-fw"></i> Timetables</h1>
                 </div>
                 <!-- /.col-lg-12 -->
-            </div>
-
-            <div class = "row">
-            	<div class = "col-lg-9">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                        	<h3><?php echo $student['firstname'];?> <?php echo $student['lastname'];?> <?php echo $student['othernames'];?></h3>
-                        </div>
-                        <div class = "panel-body">
-	                        <div class = "row">
-	                        	<div class="col-md-3">
-	                        		<img src="<?php echo $student['photo']; ?>" style = "width: 170px !important; height: 210px !important;">
-	                        	</div>
-
-	                        	<div class = "col-md-9">
-	                        		<table class = "table table-striped table-bordered table-hover">
-	                        			<tr>
-	                        				<th>ADMISSION NO:</th>
-	                        				<td><?php echo $this->session->userdata('username'); ?></td>
-	                        			</tr>
-		                        		<tr>
-		                        			<th>NAME:</th>
-		                        			<td><?php echo $student['firstname'];?> <?php echo $student['lastname'];?> <?php echo $student['othernames'];?></td>
-	                        			</tr>
-	                        			<tr>
-		                        			<th>CURRENT COURSE:</th>
-		                        			<td><?php echo $student['course_name']; ?></td>
-	                        			</tr>
-	                        			<tr>
-		                        			<th>EMAIL:</th>
-		                        			<td><?php echo $student['student_email'];?></td>
-	                        			</tr>
-	                        			<tr>
-		                        			<th>PHONE NUMBER:</th>
-		                        			<td><?php echo $student['student_phone'];?></td>
-	                        			</tr>
-	                        			<tr>
-		                        			<th>LOCATION:</th>
-		                        			<td><?php echo $student['location'];?></td>
-	                        			</tr>
-	                        		</table>
-	                        	</div>
-                        	</div>
-                        </div>
-                       <!--  <a href="#">
-                            <div class="panel-footer">
-                            	<span class="pull-left"><?php echo $this->session->userdata('firstname') . ' ' . $this->session->userdata('lastname');?></span>
-                                <span class="pull-left"><small> <?php echo $this->session->userdata('email');?> </small></span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a> -->
-                    </div>
-				</div>
-
-				<div class = "col-lg-3">
-					<div class="panel panel-green">
-                        <div class="panel-heading">
-                            <h4><i class="fa fa-bell fa-fw"></i> Notifications Panel</h4>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> Notes uploaded
-                                    <span class="pull-right text-muted small">
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-twitter fa-fw"></i> 2 New messages
-                                    <span class="pull-right text-muted small">
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-envelope fa-fw"></i> 1 Message in the Forum
-                                    <span class="pull-right text-muted small">
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-tasks fa-fw"></i> 10 tasks yet to complete
-                                    <span class="pull-right text-muted small">
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-upload fa-fw"></i> 4 Assignments
-                                    <span class="pull-right text-muted small">
-                                    </span>
-                                </a>
-                            </div>
-                            <!-- /.list-group -->
-                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-			</div>
-			</div>
-
-            <!-- /.row -->
-            <div class = "row">
-            	<div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-inbox fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Notifications!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-envelope fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Messages!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-file fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Uploads!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-warning fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">Report</div>
-                                    <div>Problems</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
             </div>
             <!-- /.row -->
         </div>

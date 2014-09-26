@@ -13,7 +13,6 @@ class MY_Model extends CI_Model {
     {
     	$result = $this->db->query('SELECT * FROM courses');
     	$courses = $result->result_array();
-
     	return $courses;
     }
 }
