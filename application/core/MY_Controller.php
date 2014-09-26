@@ -63,7 +63,7 @@ class MY_Controller extends MX_Controller
 	{
 		$select_dropdown = '';
 		$courses = $this->m_admin->getAllCourses();
-		$select_dropdown .= "<select name = 'course'>";
+		$select_dropdown .= "<select name = 'course' class='form-control'>";
 		foreach ($courses as $key => $value) {
 			$select_dropdown .= '<option value = "'.$value['course_id'].'">'.$value['course_name'].'</option>';
 		}

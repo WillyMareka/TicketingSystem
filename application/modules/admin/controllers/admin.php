@@ -178,10 +178,13 @@ class Admin extends MY_Controller
 		echo $course_section;die;
 	}
 
-	public function uploadTimetable()
+	public function Timetable()
 	{
 		$data['courses'] = $this->createCourseDropdown();
-		$this->load->view('addTimetable', $data);
+		$data['content_view'] = "addTimetable";
+		$data['title'] = 'Administrators Section: Timetables';
+
+		$this->load->view('admin_template_view', $data);
 	}
 
 	function uploadtime()
