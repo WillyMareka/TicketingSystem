@@ -1,9 +1,24 @@
-﻿<?php //echo $nyangundi;exit; ?>
+﻿<?php 
+//echo "<pre>";print_r($this->session->all_userdata());echo "</pre>"; exit; 
+$fname = $this->session->userdata('firstname');
+$sname = $this->session->userdata('secondname');
+$onames = $this->session->userdata('othernames');
+$dob = $this->session->userdata('dob');
+$photo = $this->session->userdata('photo');
+$email = $this->session->userdata('email');
+$course = $this->session->userdata('course');
+$status = $this->session->userdata('firstname');
+$user_type = $this->session->userdata('user_type');
+
+$full_name = $fname.' '.$sname.' '.$onames;
+
+?>
 <html>
     <head>
         <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Lecturer Dashboard</title>
+        <link type="text/css" href="<?php echo base_url().'assets/bootstrap/css/bootstrap.css';?>" rel="stylesheet">
         <link type="text/css" href="<?php echo base_url().'assets/bootstrap/css/bootstrap.min.css';?>" rel="stylesheet">
         <link type="text/css" href="<?php echo base_url().'assets/bootstrap/css/bootstrap-responsive.min.css';?>" rel="stylesheet">
         <link type="text/css" href="<?php echo base_url().'assets/font-awesome-4.1.0/css/font-awesome.css'; ?>" rel="stylesheet">
@@ -42,7 +57,7 @@
                             </li>
                             <li><a href="#">Support </a></li>
                             <li class="nav-user dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="images/user.png" class="nav-avatar" />
+                                <img src="<?php echo $photo ?>" class="nav-avatar" />
                                 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Your Profile</a></li>
@@ -60,7 +75,7 @@
             <!-- /navbar-inner -->
         </div>
         <!-- /navbar -->
-                        <div class="sidebar">
+                <div class="sidebar">
                             <ul class="widget widget-menu unstyled">
                                 <li class="active"><a href="<?php echo base_url()."lecturer"?>"><i class="menu-icon fa fa-dashboard"></i>Dashboard
                                 </a></li>
@@ -88,16 +103,75 @@
                                 </li>
                                 <li><a href="#"><i class="menu-icon fa fa-signout"></i>Logout </a></li>
                             </ul>
-                        </div>
+                </div>
         <div class="wrapper">
             <div class="container">
                 <div class="row">
-                    <div class="span3">
-                        <!--/.sidebar-->
-                    </div>
+                        <div class="span3">
+                            <!--/.sidebar-->
+                        </div>
                     <!--/.span3-->
                     <div class="span9">
+                        <div class="span9 lec_info row">
+                            <span class="topdeck_1">Your Information</span>
+                            <span class="topdeck_2"></span>
+                            <table class="table table-condensed half_width no_margin float_left fixed_height">
+                                <tr>
+                                <th colspan="2">
+                                    <center><img src="<?php echo $photo ?>"></center>
+                                </th>
+                                </tr>
+                                <tr>
+                                    <td>Name(s): </td>
+                                    <td><?php echo $full_name; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Email: 
+                                    </td>
+                                    <td><?php echo $email ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Date Of Birth: </td>
+                                    <td><?php echo $dob; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Course: </td>
+                                    <td><?php echo $course; ?></td>
+                                </tr>
 
+                            </table>
+
+                            <table class="table table-condensed half_width no_margin float_left fixed_height">
+                                <tr>
+                                    <td>
+                                    <div class="message_height">
+                                        <div id="messages">
+                                             <a href="<?php echo base_url()."lecturer/page_to_load/messages"?>" class="btn-box big span4"><i class=" fa fa-envelope"></i><b>65</b>
+                                            <p class="text-muted">
+                                                Messages</p>
+                                        </a>
+                                        <a href="#" class="instant_message">Compose Message</a></br></br>
+                                        </div>
+                                    <?php $attributes=array('id'=>'instant_message'); echo form_open('lecturer/instant_msg',$attributes) ?>
+                                    <input class="inputs" type="text" placeholder="Enter email">
+                                    <textarea class="inputs" placeholder = "Enter message"></textarea>
+                                    <button class="button" type="button" class="btn"><span class = "glyphicon glyphicon-send"></span>Send</button>
+                                    <?php echo form_close(); ?>
+                                    <center><i class = "fa fa-arrow-circle-down instantup"></i></center>
+                                    </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <a href="#" class="btn-box big span4"><i class="fa fa-group"></i><b><?php echo $total_students; ?></b>
+                                        <p class="text-muted">
+                                            Total Students</p>
+                                    </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                         <div class="content">
                             <div class="btn-controls">
 
@@ -107,17 +181,11 @@
                                         <p class="text-muted">
                                             Growth</p>
                                     </a> -->
-                                    <a href="#" class="btn-box big span4"><i class=" fa fa-envelope"></i><b>65</b>
-                                        <p class="text-muted">
-                                            Messages</p>
-                                    </a>
-                                    <a href="#" class="btn-box big span4"><i class="fa fa-group"></i><b>15</b>
-                                        <p class="text-muted">
-                                            New Users</p>
-                                    </a><a href="#" class="btn-box big span4"><i class="fa fa-money"></i><b>15,152</b>
+                                   
+                                   <!--  <a href="#" class="btn-box big span4"><i class="fa fa-money"></i><b>15,152</b>
                                         <p class="text-muted">
                                             Profit</p>
-                                    </a>
+                                    </a> -->
                                 </div>
                            <div class="module">
                                 <div class="module-head">
@@ -1242,18 +1310,20 @@
         </div>
         <!--/.wrapper-->
         <div class="footer">
-            <div class="container">
-                <b class="copyright">&copy; 2014 Edmin - EGrappler.com </b>All rights reserved.
+        <div class="span3"></div>
+            <div class="span9">
+                <b class="copyright">&copy; 2014 Richard Seth Karsan|Otaalo John Chrispine|Bakasa Joshua  </b>  All rights reserved.
             </div>
         </div>
         <script src="<?php echo base_url().'assets/js/jquery-1.9.1.min.js';?>" type="text/javascript"></script>
         <script src="<?php echo base_url().'assets/js/jquery-ui-1.10.1.custom.min.js';?>" type="text/javascript"></script>
-        <script src="<?php echo base_url().'assets/bootstrap/js/bootstrap.min.js';?>" type="text/javascript"></script>
+        <script src="<?php echo base_url().'assets/bootstrap/js/bootstrap.js';?>" type="text/javascript"></script>
         <script src="<?php echo base_url().'assets/bootstrap/js/bootstrap.min.js';?>" type="text/javascript"></script>
         <script src="<?php echo base_url().'assets/js/jquery.flot.js';?>" type="text/javascript"></script>
         <script src="<?php echo base_url().'assets/js/jquery.flot.resize.js';?>" type="text/javascript"></script>
         <script src="<?php echo base_url().'assets/js/jquery.dataTables.js';?>" type="text/javascript"></script>
         <script src="<?php echo base_url().'assets/js/common.js';?>" type="text/javascript"></script>
+        <script src="<?php echo base_url().'assets/js/custom_lecturer.js';?>" type="text/javascript"></script>
       
     </body>
     </html>

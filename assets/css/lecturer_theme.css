@@ -1734,3 +1734,87 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', end
 	border-radius: 0 0 3px 0
 }
 @media(max-width:767px){body{padding:0!important}.wrapper{padding:20px 15px}}
+
+/*CUSTOM CSS*/
+.lec_info{
+	background: #ffffff;
+	width: 90%;
+	height: auto;
+	padding: 2%;
+	margin: 0 0 20px 0;
+}
+
+.lec_info table img{
+	height: 250px;
+	width: 200px;
+	margin: auto;
+
+}
+.topdeck_1,.topdeck_2{
+	width: 50%;
+	height: 30px;
+	margin: 0;
+	padding: 10px 0;
+	float: left;
+	display: block;
+	font-weight: bold;
+	font-size: 1.5em;
+	text-align: center;
+}
+.topdeck_1{
+	background: #2d2b32;
+	color: #ECECEC;
+}
+.topdeck_2{
+	background: #59ABE3;
+	color:#2d2b32;
+}
+
+.no_margin{
+	margin: 0;
+	box-sizing: none;
+}
+
+.half_width{
+	width: 48%;
+	margin: 0 1%;
+}
+
+.float_left{
+	float: left;
+}
+
+.fixed_height{
+	height:420px;
+}
+
+.message_height{
+	height: 218px;
+	overflow: hidden;
+}
+.btn-box.big i{
+	height:40px;
+}
+.inputs{
+	border:0!important;
+	background-color: #E6E6E6!important;
+	width: 100%;
+}
+.instantup{
+	height: 5px;
+	width: 5px;
+}
+#instant_message textarea{
+	height: 100px;
+}
+
+/*END OF CUSTOM CSS*/
+
+/*OVERRIDDEN BOOTSTRAP AND OTHER CSS*/
+.table{
+	border-radius: 0;
+}
+.btn-box{
+	box-shadow: none;
+}
+/*END OF OVERRIDDEN BOOTSTRAP*/
