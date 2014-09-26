@@ -11,13 +11,25 @@ class Admin_model extends MY_Model {
 
     function get_lectures()
     {
+        $sql = "SELECT
+                    `id`,
+                    `firstname`,
+                    `lastname`,
+                    `othernames`,
+                    `lecturer_phone`,
+                    `lecturer_email`
+                FROM 
+                    `lecturers`";
 
+        $lecturers = $this->db->query($sql);
+
+        return $lecturers->result_array();
     }
 
     function get_students()
     {
     	$sql = "SELECT
-    				`student_id`,
+    				`id`,
     				`firstname`,
     				`lastname`,
     				`othernames`,
@@ -30,6 +42,22 @@ class Admin_model extends MY_Model {
     	$students = $this->db->query($sql);
 
     	return $students->result_array();
+    }
+
+    function get_courses()
+    {
+        $sql = "SELECT
+                    `course_id`,
+                    `course_name`,
+                    `couse_short_code`,
+                    `Description`
+                FROM
+                    `courses`";
+
+        $courses = $this->db->query($sql);
+
+        return $courses->result_array();
+
     }
 
     function addStudent($path)
@@ -56,6 +84,20 @@ class Admin_model extends MY_Model {
         $course_query = $this->db->query("INSERT INTO student_course VALUES (NULL, '$student_no', 1, NULL)");
 
         echo "Successfully Inserted " . $student_no;die;
+    }
+
+    public function addUnits()
+    {
+        $unit_name = $this->input->post('unit_name');
+        $course_id = $this->input->post('course');
+        $unit_code = $this->input->post('unit_code');
+
+        $sql = "INSERT INTO 
+                            `units`
+                    VALUES
+                        (NULL, '$unit_name', '$unit_code', '$course_id')";
+
+        $result = $this->db->query($sql);
     }
     
 

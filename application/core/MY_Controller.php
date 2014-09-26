@@ -8,7 +8,10 @@ class MY_Controller extends MX_Controller
         parent::__construct();
     }
 
-
+    function index()
+    {
+    	$this->check_login();
+    }
     function check_login()
     {
     	// print_r($this->session->userdata);die;

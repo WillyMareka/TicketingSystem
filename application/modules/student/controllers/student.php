@@ -7,19 +7,20 @@ class Student extends MY_Controller
         // Call the Model constructor
         parent::__construct();
         $this->load->model('m_student');
-    }
-	function index()
-	{
-		$logged_in = $this->check_login();
+        $logged_in = $this->check_login();
 		if($logged_in == TRUE)
 		{
 			$data['student'] = $this->getStudentDetails();
-			$this->load->view('student', $data);
+			
 		}
 		else
 		{
 			redirect(base_url() .'home');
 		}
+    }
+	function index()
+	{
+		$this->load->view('student', $data);
 	}
 
 	function getStudentDetails()
