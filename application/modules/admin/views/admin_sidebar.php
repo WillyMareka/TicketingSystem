@@ -29,11 +29,7 @@
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="pages/widgets.html">
-                                <i class="fa fa-th"></i> <span>Widgets</span> <small class="badge pull-right bg-green">new</small>
-                            </a>
-                        </li>
+                        
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-group"></i>
@@ -60,29 +56,29 @@
                                 <li>
                                     <li class="treeview">
                                         <a href="#">
-                                            <i class="fa fa-folder"></i> <span>Courses</span>
+                                            <i class="fa fa-folder"></i> <span>View Programs</span>
                                             <i class="fa fa-angle-left pull-right"></i>
                                         </a>
                                         <ul class="treeview-menu">
-                                            <li><a href=""><i class="fa fa-angle-double-right"></i> Register Units</a></li>
-                                            <li><a href=""><i class="fa fa-angle-double-right"></i> Assign Units</a></li>
+                                            <li><a href=""><i class="fa fa-angle-double-right"></i> View Courses</a></li>
+                                            <li><a href=""><i class="fa fa-angle-double-right"></i> View Units</a></li>
                                         </ul>
                                     </li>
                                 </li>
                                 <li>
-                                    <li class="treeview">
-                                        <a href="#">
-                                            <i class="fa fa-folder"></i> <span>Units</span>
-                                            <i class="fa fa-angle-left pull-right"></i>
+                                    <li>
+                                        <a href="<?php echo base_url().'admin/register_programs'?>">
+                                            <i class="fa fa-folder"></i> <span>Register Programs</span>
                                         </a>
-                                        <ul class="treeview-menu">
-                                            <li><a href="<?php echo base_url().'admin/units'?>"><i class="fa fa-angle-double-right"></i> Register Units</a></li>
-                                            <li><a href=""><i class="fa fa-angle-double-right"></i> Assign Units</a></li>
-                                        </ul>
                                     </li>
                                 </li>
                                 
                             </ul>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url().'admin/Timetable'?>">
+                                <i class="fa fa-th"></i> <span>Timetables</span> <small class="badge pull-right bg-green">new</small>
+                            </a>
                         </li>
                     </ul>
                 </section>

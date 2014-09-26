@@ -16,10 +16,11 @@
         <section class="content">
 
         	<div style="float:right; margin-right: 30px; margin-bottom: 30px">
-        		<a class="">
-                	<button class="btn btn-primary btn-lg">Add Students</button> 
-                </a>
+        		
+                	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addstudent">Add Students</button>
+               
         	</div>
+
         	<br />
 			<?php
 				if ($stude != NULL)
@@ -127,3 +128,66 @@
 		</section>
 	</aside>
 </div>
+
+<div class="modal fade" id="addstudent">
+	    <div class="modal-dialog" style="width:60%;margin-bottom:2px;">
+	        <div class="modal-content" >
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                <h5 class="modal-title">Add Instructor</h5>
+	            </div>
+	            <div class="modal-body" style="padding-bottom:0px;">    
+
+	                <?php echo form_open(base_url().'admin/addStudent') ?>
+	                    <div>
+	                        <div class="input-group" style="width: 100%;padding:4px;">
+	                            <span class="input-group-addon" style="width: 40%;" >First Name:</span>
+	                            <input class="textfield form-control" type="text" name="firstname" id="firstname" required/>
+	                        </div>
+	                        <div class="input-group" style="width: 100%;padding:4px;">
+	                            <span class="input-group-addon" style="width: 40%;">Second Name: </span>
+	                            <input class="textfield form-control" type="text" name="lastname" id="lastname" required/>
+	                        </div>
+	                        <div class="input-group" style="width: 100%;padding:4px;">
+	                            <span class="input-group-addon" style="width: 40%;">Other Name: </span>
+	                            <input class="textfield form-control" type="text" name="othername" id="othername" required/>
+	                        </div>
+	                         <div class="input-group" style="width: 100%;padding:4px;">
+	                            <span class="input-group-addon" style="width: 40%;">Phone Number: </span>
+	                            <input class="textfield form-control" type="text" name="phonenumber" id="phonenumber" required/>
+	                        </div>
+	                         <div class="input-group" style="width: 100%;padding:4px;">
+	                            <span class="input-group-addon" style="width: 40%;">Student Email@: </span>
+	                            <input class="textfield form-control" type="text" name="student_email" id="student_email" required/>
+	                        </div>
+	                        <div class="input-group" style="width: 100%;padding:4px;">
+	                            <span class="input-group-addon" style="width: 40%;">Parent phone: </span>
+	                            <input class="textfield form-control" type="text" name="parent_phone" id="parent_phone" required/>
+	                        </div>
+	                        <div class="input-group" style="width: 100%;padding:4px;">
+	                            <span class="input-group-addon" style="width: 40%;">Parent Email: </span>
+	                            <input class="textfield form-control" type="text" name="parent_email" id="parent_email" required/>
+	                        </div>
+	                        <div class="input-group" style="width: 100%;padding:4px;">
+	                            <span class="input-group-addon" style="width: 40%;">Location: </span>
+	                            <input class="textfield form-control" type="text" name="location" id="location" required/>
+	                        </div>
+	                       <div class="input-group" style="width: 100%;padding:4px;">
+	                       		<span class="input-group-addon" style="width: 40%;">Photo: </span>
+	                       		<input type = "file" name = "photos" />
+	                       </div>
+	                       
+	                        <div style="">
+	                            <button type="submit" class="btn btn-default"> Save User</button>
+	                        </div>
+	                                
+	                    </div>
+	                </form>
+	                <div class="modal-footer" style="height:11px;padding-top:11px;">
+	                    <?php echo $this->config->item("copyrights");?>
+	                </div> 
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
