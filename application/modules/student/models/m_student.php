@@ -17,6 +17,19 @@ class M_student extends MY_Model {
     		$student = $value;
     	}
     	return $student;
-    }    
+    }
+
+    public function getTimetables($course)
+    {
+        $timetable = '';
+        $query = $this->db->query("SELECT * FROM timetables WHERE course_id = $course");
+        $result = $query->result_array();
+
+        foreach ($result as $key => $value) {
+            $timetable[$value['id']] = $value;
+        }
+
+        return $timetable;
+    }   
 
 }

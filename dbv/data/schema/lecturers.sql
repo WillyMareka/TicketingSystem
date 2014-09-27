@@ -12,4 +12,6 @@ CREATE TABLE `lecturers` (
   `status` int(11) NOT NULL DEFAULT '1',
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE 'lecturers' AUTO_INCREMENT = 1000;

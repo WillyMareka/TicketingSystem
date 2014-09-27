@@ -104,7 +104,7 @@ class Admin extends MY_Controller
 		$config['upload_path'] = './upload/';
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 		$this->load->library('upload', $config);
-		// print_r($this->upload->do_upload('photos'));die;
+		//print_r($this->upload->do_upload('photos'));die;
 		if ( ! $this->upload->do_upload('photos'))
 		{
 			$error = array('error' => $this->upload->display_errors());
@@ -215,7 +215,7 @@ class Admin extends MY_Controller
 			$result = $this->m_admin->addTimetable($path, $file_type);
 
 			if ($result) {
-				$this->uploadTimetable();
+				$this->Timetable();
 			}
 			// echo "Success!";die;
 		}

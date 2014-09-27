@@ -25,7 +25,7 @@
 		                                <button class="btn btn-default btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
 		                            </div>
 		                        </div>
-		                        <?php echo form_open('admin/uploadtime');?>
+		                        <?php echo form_open_multipart('admin/uploadtime');?>
 		                            <div class="box-body">
 		                            	<div class="input-group" style="width: 100%;padding:4px;">
 		                                    <span class="input-group-addon" style="width: 40%;">Descriptoin: </span>

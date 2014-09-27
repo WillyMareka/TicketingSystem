@@ -44,6 +44,43 @@ class Student extends MY_Controller
 	function timetables()
 	{
 		$data['student'] = $this->getStudentDetails();
+		$timetable_row = '';
+		$timetable = $this->m_student->getTimetables($data['student']['course_id']);
+		$timetable_row = '<div class = "row">';
+		if($timetable)
+		{
+			foreach ($timetable as $key => $value) {
+
+				if($value['type'] == 'xlsx')
+				{
+					$timetable_row .= '<div class="col-sm-6 col-md-3"><a href="'.$value['path'].'" class="thumbnail" download><img src="'.base_url().'assets/icons/excel.png" alt="'.$value['file_name'].'"></a>';
+					$timetable_row .= '<div class="caption"><h3>'.$value['file_name'].'</h3><p>Uploaded on: '.$value['upload_date'].'</p><p><a href="'.$value['path'].'" class="btn btn-default" role="button" download><i class = "fa fa-download"></i></a></p></div></div>';
+				}
+				else if($value['type'] == 'pdf')
+				{
+					$timetable_row .= '<div class="col-sm-6 col-md-3"><a href="'.$value['path'].'" class="thumbnail" download><img src="'.base_url().'assets/icons/pdf.png" alt="'.$value['file_name'].'"></a>';
+					$timetable_row .= '<div class="caption"><h3>'.$value['file_name'].'</h3><p>Uploaded on: '.$value['upload_date'].'</p><p><a href="'.$value['path'].'" class="btn btn-default" role="button" download><i class = "fa fa-download"></i></a></p></div></div>';				
+				}
+
+				else if($value['type'] == 'pptx')
+				{
+					$timetable_row .= '<div class="col-sm-6 col-md-3"><a href="'.$value['path'].'" class="thumbnail" download><img src="'.base_url().'assets/icons/ppt.png" alt="'.$value['file_name'].'"></a>';
+					$timetable_row .= '<div class="caption"><h3>'.$value['file_name'].'</h3><p>Uploaded on: '.$value['upload_date'].'</p><p><a href="'.$value['path'].'" class="btn btn-default" role="button" download><i class = "fa fa-download"></i></a></p></div></div>';
+				}
+				else if($value['type'] == 'docx')
+				{
+					$timetable_row .= '<div class="col-sm-6 col-md-3"><a href="'.$value['path'].'" class="thumbnail" download><img src="'.base_url().'assets/icons/word.png" alt="'.$value['file_name'].'"></a>';
+					$timetable_row .= '<div class="caption"><h3>'.$value['file_name'].'</h3><p>Uploaded on: '.$value['upload_date'].'</p><p><a href="'.$value['path'].'" class="btn btn-default" role="button" download><i class = "fa fa-download"></i></a></p></div></div>';					
+				}
+			}
+		}
+		else
+		{
+			$timetable_row = "NO TIMETABLE FOUND FOR YOU";
+		}
+
+		$timetable_row .= "</div>";
+		$data['timetable_row'] = $timetable_row;
 		$this->load->view('timetables', $data);
 	}
 	function notes()
@@ -55,7 +92,6 @@ class Student extends MY_Controller
 	function inbox()
 	{
 		$data['student'] = $this->getStudentDetails();
-		print_r($data);die;
 		$this->load->view('inbox', $data);
 	}
 }
