@@ -27,6 +27,7 @@ class Admin extends MY_Controller
 	{
 		$data['content_view'] = "lecture_view";
 		$data['title'] = 'Administrators Section: Lecturers';
+		$data['courses'] = $this->createCourseDropdown();
 		$data['lecture'] = $this->admin_model->get_lectures(); 
 
 		$this->load->view('admin_template_view', $data);
@@ -52,20 +53,20 @@ class Admin extends MY_Controller
 
 	public function units()
 	{
-		# code...
+		
 	}
 
-	function add()
-	{
-		// $this->createCoursesSection();
+	// function add()
+	// {
+	// 	// $this->createCoursesSection();
 		
-		$this->load->view('admin');
-	}
+	// 	$this->load->view('admin');
+	// }
 
 		function add_lecturer()
 	{
 		// $this->createCoursesSection();
-		$data['courses'] = $this ->m_admin->get_courses();
+		$data['courses'] = $this ->m_admin->getAllCourses();
 		$this->load->view('add_lecturer',$data);
 	}
 
@@ -89,7 +90,7 @@ class Admin extends MY_Controller
 				$path = base_url().'upload/'.$value['file_name'];
 			}
 
-			$this->m_admin->add_lec($path);
+			$this->admin_model->add_lec($path);
 			// echo "Success!";die;
 		}
 		// $this->m_admin->addStudent();
@@ -218,6 +219,41 @@ class Admin extends MY_Controller
 			}
 			// echo "Success!";die;
 		}
+	}
+
+	function admin_reg()
+	{
+		$data['content_view'] = "admin_view";
+		$data['title'] = 'Administrators Section: Administrator';
+		
+
+		$this->load->view('admin_template_view', $data);
+	}
+
+	function addAdmin()
+	{
+		// print_r($this->input->post());die;
+		$path = '';
+		$config['upload_path'] = './upload/';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$this->load->library('upload', $config);
+		// print_r($this->upload->do_upload('photos'));die;
+		if ( ! $this->upload->do_upload('lec_photo'))
+		{
+			$error = array('error' => $this->upload->display_errors());
+			print_r($error);die;
+		}
+		else
+		{
+			$data = array('upload_data' => $this->upload->data());
+			foreach ($data as $key => $value) {
+				$path = base_url().'upload/'.$value['file_name'];
+			}
+
+			$this->admin_model->add_admin($path);
+			// echo "Success!";die;
+		}
+		// $this->m_admin->addStudent();
 	}
 }
 

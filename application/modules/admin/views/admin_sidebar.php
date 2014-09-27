@@ -47,6 +47,12 @@
                                 <small class="badge pull-right bg-yellow">12</small>
                             </a>
                         </li>
+                        <li>
+                            <a href="<?php echo base_url().'admin/admin_reg'?>">
+                                <i class="fa fa-envelope"></i> <span>Administrators</span>
+                                <small class="badge pull-right bg-yellow">12</small>
+                            </a>
+                        </li>
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-folder"></i> <span>Programs</span>

@@ -12,14 +12,23 @@ class Admin_model extends MY_Model {
     function get_lectures()
     {
         $sql = "SELECT
-                    `id`,
-                    `firstname`,
-                    `lastname`,
-                    `othernames`,
-                    `lecturer_phone`,
-                    `lecturer_email`
+                    `lecturers`.`id`,
+                    `lecturers`.`f_name`,
+                    `lecturers`.`s_name`,
+                    `lecturers`.`o_names`,
+                    `lecturers`.`course_code`,
+                    `courses`.`course_id`,
+                    `courses`.`course_name`,
+                    `lecturers`.`phone_no`,
+                    `lecturers`.`email`,
+                    `lecturers`.`registration_date`,
+                    `lecturers`.`status`
                 FROM 
-                    `lecturers`";
+                    `lecturers`
+                LEFT JOIN
+                        `courses`
+                    ON
+                        `lecturers`.`course_code` = `courses`.`course_id`";
 
         $lecturers = $this->db->query($sql);
 
@@ -98,6 +107,56 @@ class Admin_model extends MY_Model {
                         (NULL, '$unit_name', '$unit_code', '$course_id')";
 
         $result = $this->db->query($sql);
+    }
+
+    function add_lec($path)
+    {
+        $firstname = strtoupper($this->input->post('firstname'));
+        $lastname = strtoupper($this->input->post('surname'));
+        $others = strtoupper($this->input->post('othername'));
+        $dob = $this->input->post('dob');
+        $phone = $this->input->post('phonenumber');
+        $email = $this->input->post('lec_email');
+        $location = strtoupper($this->input->post('location'));
+        $course = $this->input->post('course');
+
+        $query = "INSERT INTO lecturers VALUES(NULL,'$course' , '$firstname', '$lastname', '$others', '$dob', '$email', '$phone', '$path', NULL, 1, '$location')";
+        $result = $this->db->query($query);
+
+        $lecturer_no = mysql_insert_id();
+        $password = md5("12345");
+
+        $user_query = "INSERT INTO users VALUES (NULL, '$lecturer_no', '$password', 'lecturer', NULL, 0)";
+        $result = $this->db->query($user_query);
+
+       
+
+        echo "Successfully Inserted " . $lecturer_no;die;
+    }
+
+    function add_admin($path)
+    {
+        $firstname = strtoupper($this->input->post('firstname'));
+        $lastname = strtoupper($this->input->post('surname'));
+        $others = strtoupper($this->input->post('othername'));
+        $dob = $this->input->post('dob');
+        $phone = $this->input->post('phonenumber');
+        $email = $this->input->post('lec_email');
+        $location = strtoupper($this->input->post('location'));
+        
+
+        $query = "INSERT INTO administrator VALUES(NULL, '$firstname', '$lastname', '$others', '$dob', '$email', '$phone', '$path', NULL, 1, '$location')";
+        $result = $this->db->query($query);
+
+        $admin_no = mysql_insert_id();
+        $password = md5("12345");
+
+        $user_query = "INSERT INTO users VALUES (NULL, '$admin_no', '$password', 'administrator', NULL, 0)";
+        $result = $this->db->query($user_query);
+
+       
+
+        echo "Successfully Inserted " . $admin_no;die;
     }
     
 
