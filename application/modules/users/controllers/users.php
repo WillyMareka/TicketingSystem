@@ -42,6 +42,20 @@ class Users extends MY_Controller
 				$this->m_users->register_session();
 				redirect(base_url() .'student');
 			}
+			if ($usertype == 'administrator') {
+				$admin = $this->m_users->getUser('administrator', $username);
+				// print_r($student);die;
+				$data['username'] = $admin[0]['id'];
+				$data['firstname'] = $admin[0]['firstname'];
+				$data['lastname'] = $admin[0]['lastname'];
+				$data['email'] = $admin[0]['student_email'];
+				$data['logged_in'] = TRUE;
+				$data['user_type'] = $user_type;
+				$this->session->set_userdata($data);
+
+				$this->m_users->register_session();
+				redirect(base_url() .'admin');
+			}
 		}
 		else
 		{
