@@ -138,7 +138,7 @@
 	            </div>
 	            <div class="modal-body" style="padding-bottom:0px;">    
 
-	                <?php echo form_open(base_url().'admin/addStudent') ?>
+	                <?php echo form_open_multipart(base_url().'admin/addStudent'); ?>
 	                    <div>
 	                        <div class="input-group" style="width: 100%;padding:4px;">
 	                            <span class="input-group-addon" style="width: 40%;" >First Name:</span>

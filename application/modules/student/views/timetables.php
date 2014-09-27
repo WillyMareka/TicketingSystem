@@ -339,6 +339,8 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+
+            <?php echo $timetable_row; ?>
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->

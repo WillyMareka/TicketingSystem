@@ -6,7 +6,6 @@ class Admin_model extends MY_Model {
     {
         // Call the Model constructor
         parent::__construct();
-        date_default_timezone_set('Africa/Nairobi');
     }
 
     function get_lectures()
