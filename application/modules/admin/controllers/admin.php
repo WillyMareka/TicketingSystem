@@ -214,7 +214,7 @@ class Admin extends MY_Controller
 			$result = $this->m_admin->addTimetable($path, $file_type);
 
 			if ($result) {
-				$this->uploadTimetable();
+				$this->Timetable();
 			}
 			// echo "Success!";die;
 		}
