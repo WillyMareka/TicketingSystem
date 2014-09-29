@@ -33,7 +33,7 @@ class MY_Controller extends MX_Controller
 	{
 		$this->session->sess_destroy();
 
-		redirect(base_url());
+		redirect(base_url().'home');
 	}
 	function send_sms($numbers, $message)
 	{

@@ -13,6 +13,16 @@ class Admin extends MY_Controller
 		parent::__construct();
 		$this->load->model('admin_model');
 		$this->load->model('m_admin');
+		 $logged_in = $this->check_login();
+		if($logged_in == TRUE)
+		{
+			$data['content_view'] = "admin_dashboard";
+			$data['title'] = 'Administrators Section: Dashboard';
+		}
+		else
+		{
+			redirect(base_url() .'home');
+		}
 	}
 
 	public function index()
@@ -47,13 +57,28 @@ class Admin extends MY_Controller
 		$data['content_view'] = "registerPrograms_view";
 		$data['title'] = 'Administrators Section: Units';
 		$data['courses'] = $this->admin_model->get_courses();
+		$data['units'] = $this->admin_model->get_units();
+		$data['lecturers'] = $this->admin_model->get_lectures();
+
+		$this->load->view('admin_template_view', $data);
+	}
+
+	public function courses()
+	{
+		$data['content_view'] = "courses_view";
+		$data['title'] = 'Administrators Section: Courses';
+		$data['courses'] = $this->admin_model->get_courses();
 
 		$this->load->view('admin_template_view', $data);
 	}
 
 	public function units()
 	{
-		
+		$data['content_view'] = "units_view";
+		$data['title'] = 'Administrators Section: Units';
+		$data['units'] = $this->admin_model->get_units();
+
+		$this->load->view('admin_template_view', $data);
 	}
 
 	// function add()
@@ -254,6 +279,12 @@ class Admin extends MY_Controller
 			// echo "Success!";die;
 		}
 		// $this->m_admin->addStudent();
+	}
+
+	function assign()
+	{
+		$this->form_validation->set_rules('unit_id', 'Unit ID', 'trim|required');
+		$this->form_validation->set_rules('lect_id', 'Lecturer ID', 'trim|required');
 	}
 }
 

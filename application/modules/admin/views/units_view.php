@@ -3,19 +3,20 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Courses
+                Units
                 <small>Control panel</small>
             </h1>
                 <ol class="breadcrumb">
         	        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    	            <li class="active">Courses</li>
+    	            <li class="active">Units</li>
  	            </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
+
 			<?php
-				if ($courses != NULL)
+				if ($units != NULL)
 				{
 			?>
 			<div class="row">
@@ -23,7 +24,7 @@
 				<div class="col-xs-12">
                     <div class="box">
                     	<div class="box-header">
-                            <h3 class="box-title">Courses Details</h3>
+                            <h3 class="box-title">Units Details</h3>
                             <div class="box-tools">
                                 <div class="input-group">
                                     <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
@@ -38,24 +39,23 @@
 								<thead>
 									<tr>
 										<th>#</th>
+										<th>Unit Name</th>
+										<th>Unit Short Code</th>
 										<th>Course Name</th>
-										<th>Course Short Code</th>
-										<th>Description</th>
 										
 									</tr>
 								</thead>
 								<tbody>
 									<?php
 										$i=1; 
-										foreach ($courses as $value) {
+										foreach ($units as $value) {
 																
 									?>
 									<tr>
 										<td><?php echo $i; ?></td>
+										<td><?php echo $value['unit_name'];?></td>
+										<td><?php echo $value['unit_short_code'];?></td>
 										<td><?php echo $value['course_name'];?></td>
-										<td><?php echo $value['course_short_code'];?></td>
-										<td><?php echo $value['Description'];?></td>
-										
 									</tr>
 									<?php
 										$i++;
@@ -75,7 +75,7 @@
 					<div class="col-xs-12">
 	                    <div class="box">
 	                    	<div class="box-header">
-	                            <h3 class="box-title">Courses Details</h3>
+	                            <h3 class="box-title">Units Details</h3>
 	                            <div class="box-tools">
 	                                <div class="input-group">
 	                                    <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
@@ -91,9 +91,9 @@
 									<thead>
 										<tr>
 										<th>#</th>
+										<th>Unit Name</th>
+										<th>Unit Short Code</th>
 										<th>Course Name</th>
-										<th>Course Short Code</th>
-										<th>Description</th>
 										</tr>
 									</thead>
 									<tbody>

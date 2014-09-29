@@ -66,8 +66,8 @@
                                             <i class="fa fa-angle-left pull-right"></i>
                                         </a>
                                         <ul class="treeview-menu">
-                                            <li><a href=""><i class="fa fa-angle-double-right"></i> View Courses</a></li>
-                                            <li><a href=""><i class="fa fa-angle-double-right"></i> View Units</a></li>
+                                            <li><a href="<?php echo base_url().'admin/courses'?>"><i class="fa fa-angle-double-right"></i> View Courses</a></li>
+                                            <li><a href="<?php echo base_url().'admin/units'?>"><i class="fa fa-angle-double-right"></i> View Units</a></li>
                                         </ul>
                                     </li>
                                 </li>
