@@ -1,3 +1,7 @@
+*
+{
+	border-radius: 0 !important;
+}
 .dropdown-user
 {
 	background-color: #2ecc71;
@@ -15,4 +19,14 @@
 	color: #ecf0f1;
 }
 
+.test
+{
+	background-color: #f4f4f4;
+	padding: 5px;
+}
+
+.share
+{
+	margin-left: 5px;
+}
 
