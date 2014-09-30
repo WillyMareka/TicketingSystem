@@ -15,6 +15,7 @@ class Users extends MY_Controller
 
 	function login()
 	{
+				// $this ->session->sess_destroy();
 		$username = $this->input->post('username');
 		$upass = $this->input->post('password');
 
@@ -45,8 +46,11 @@ class Users extends MY_Controller
 				// $this ->session->sess_destroy();
 				$lecturer = $this->m_users->getUser('lecturers',$username);
 				$course_id = $lecturer[0]['course'];
+				$unit_id = $lecturer[0]['unit_code'];
 				$course = $this->m_users->getCourse($course_id);
-
+				$unit = $this->m_users->get_unit($unit_id);
+				
+				// echo"<pre>"; print_r($unit);echo"<pre>";die;
 				$data['username'] = $lecturer[0]['id'];
 				$data['firstname'] = $lecturer[0]['f_name'];
 				$data['secondname'] = $lecturer[0]['s_name'];
@@ -56,6 +60,8 @@ class Users extends MY_Controller
 				$data['photo'] = $lecturer[0]['profile_picture'];
 				$data['status'] = $lecturer[0]['status'];
 				$data['course'] = $course[0]['course_name'];
+				$data['unit_code'] = $lecturer[0]['unit_code'];
+				$data['unit'] = $unit[0]['unit_name'];
 				$data['logged_in'] = TRUE;
 				$data['user_type'] = $usertype;
 				$this->session->set_userdata($data);

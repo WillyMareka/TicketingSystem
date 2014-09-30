@@ -6,6 +6,7 @@ $onames = $this->session->userdata('othernames');
 $dob = $this->session->userdata('dob');
 $photo = $this->session->userdata('photo');
 $email = $this->session->userdata('email');
+$unit = $this->session->userdata('unit');
 $course = $this->session->userdata('course');
 $status = $this->session->userdata('firstname');
 $user_type = $this->session->userdata('user_type');
@@ -86,13 +87,9 @@ $full_name = $fname.' '.$sname.' '.$onames;
                                 <li><a href="<?php echo base_url()."lecturer/page_to_load/tasks"?>"><i class="menu-icon fa fa-tasks"></i>Tasks <b class="label orange pull-right">
                                     19</b> </a></li>
 
-                                <li><a href="ui-button-icon.html"><i class="menu-icon fa fa-bold"></i> Buttons </a></li>
-                                <li><a href="ui-typography.html"><i class="menu-icon fa fa-book"></i>Typography </a></li>
-                                <li><a href="form.html"><i class="menu-icon fa fa-paste"></i>Forms </a></li>
-                                <li><a href="table.html"><i class="menu-icon fa fa-table"></i>Tables </a></li>
-                                <li><a href="<?php echo base_url()."lecturer/page_to_load/charts"?>"><i class="menu-icon fa fa-area-chart"></i>Charts </a></li>
+                                <li><a href="<?php echo base_url()."lecturer/page_to_load/charts"?>"><i class="menu-icon fa fa-area-chart"></i>Statistics </a></li>
 
-                                <li><a class="collapsed" data-toggle="collapse" href="#togglePages"><i class="menu-icon fa fa-cog">
+                               <!--  <li><a class="collapsed" data-toggle="collapse" href="#togglePages"><i class="menu-icon fa fa-cog">
                                 </i><i class="fa fa-chevron-down pull-right"></i><i class="fa fa-chevron-up pull-right">
                                 </i>More Pages </a>
                                     <ul id="togglePages" class="collapse unstyled">
@@ -100,18 +97,15 @@ $full_name = $fname.' '.$sname.' '.$onames;
                                         <li><a href="other-user-profile.html"><i class="fa fa-inbox"></i>Profile </a></li>
                                         <li><a href="other-user-listing.html"><i class="fa fa-inbox"></i>All Users </a></li>
                                     </ul>
-                                </li>
+                                </li> -->
                                 <li><a href="#"><i class="menu-icon fa fa-signout"></i>Logout </a></li>
                             </ul>
                 </div>
         <div class="wrapper">
             <div class="container">
                 <div class="row">
-                        <div class="span3">
-                            <!--/.sidebar-->
-                        </div>
                     <!--/.span3-->
-                    <div class="span9">
+                    <div class="span9 content_span9">
                         <div class="span9 lec_info row">
                             <span class="topdeck_1">Your Information</span>
                             <span class="topdeck_2"></span>
@@ -139,6 +133,10 @@ $full_name = $fname.' '.$sname.' '.$onames;
                                     <td>Course: </td>
                                     <td><?php echo $course; ?></td>
                                 </tr>
+                                <tr>
+                                    <td>Unit: </td>
+                                    <td><?php echo $unit; ?></td>
+                                </tr>
 
                             </table>
 
@@ -151,14 +149,16 @@ $full_name = $fname.' '.$sname.' '.$onames;
                                             <p class="text-muted">
                                                 Messages</p>
                                         </a>
-                                        <a href="#" class="instant_message">Compose Message</a></br></br>
+                                        <a href="#" class="instant_message">Quick Message</a></br></br>
                                         </div>
-                                    <?php $attributes=array('id'=>'instant_message'); echo form_open('lecturer/instant_msg',$attributes) ?>
-                                    <input class="inputs" type="text" placeholder="Enter email">
-                                    <textarea class="inputs" placeholder = "Enter message"></textarea>
-                                    <button class="button" type="button" class="btn"><span class = "glyphicon glyphicon-send"></span>Send</button>
+                                    <?php $attributes=array('id'=>'instant_message'); echo form_open('lecturer/messages',$attributes) ?>
+                                    <h6>This message will be sent to all students in this unit</h6>
+                                    <input type="text" placeholder="Subject" required = "required" class="inputs sbj">
+                                    <textarea class="inputs msg" placeholder = "Enter message" required = "required"></textarea>
+                                    <button class="button instant_msg_button" id="submit_im" type="button"><div id="sub_button_animation"><span id="im_icon" class = "glyphicon glyphicon-send"></span>Send</div></button>
+                                    <i class = "fa fa-arrow-circle-down instantup"></i>
                                     <?php echo form_close(); ?>
-                                    <center><i class = "fa fa-arrow-circle-down instantup"></i></center>
+                                    <div class="empty_warn"></div>
                                     </div>
                                     </td>
                                 </tr>

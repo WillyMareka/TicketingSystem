@@ -62,24 +62,20 @@
         </div>
         <!-- /navbar -->
 
-        <div class="sidebar">
+                <div class="sidebar">
                             <ul class="widget widget-menu unstyled">
                                 <li class="active"><a href="<?php echo base_url()."lecturer"?>"><i class="menu-icon fa fa-dashboard"></i>Dashboard
                                 </a></li>
-                                <li><a href="activity.html"><i class="menu-icon fa fa-bullhorn"></i>News Feed </a>
+                                <li><a href="<?php echo base_url()."lecturer/page_to_load/activity"?>"><i class="menu-icon fa fa-bullhorn"></i>News Feed </a>
                                 </li>
                                 <li><a href="<?php echo base_url()."lecturer/page_to_load/messages"?>"><i class="menu-icon fa fa-inbox"></i>Inbox <b class="label green pull-right">
                                     11</b> </a></li>
-                                <li><a href="task.html"><i class="menu-icon fa fa-tasks"></i>Tasks <b class="label orange pull-right">
+                                <li><a href="<?php echo base_url()."lecturer/page_to_load/tasks"?>"><i class="menu-icon fa fa-tasks"></i>Tasks <b class="label orange pull-right">
                                     19</b> </a></li>
 
-                                <li><a href="ui-button-icon.html"><i class="menu-icon fa fa-bold"></i> Buttons </a></li>
-                                <li><a href="ui-typography.html"><i class="menu-icon fa fa-book"></i>Typography </a></li>
-                                <li><a href="form.html"><i class="menu-icon fa fa-paste"></i>Forms </a></li>
-                                <li><a href="table.html"><i class="menu-icon fa fa-table"></i>Tables </a></li>
-                                <li><a href="charts.html"><i class="menu-icon fa fa-bar-chart"></i>Charts </a></li>
+                                <li><a href="<?php echo base_url()."lecturer/page_to_load/charts"?>"><i class="menu-icon fa fa-area-chart"></i>Statistics </a></li>
 
-                                <li><a class="collapsed" data-toggle="collapse" href="#togglePages"><i class="menu-icon fa fa-cog">
+                               <!--  <li><a class="collapsed" data-toggle="collapse" href="#togglePages"><i class="menu-icon fa fa-cog">
                                 </i><i class="fa fa-chevron-down pull-right"></i><i class="fa fa-chevron-up pull-right">
                                 </i>More Pages </a>
                                     <ul id="togglePages" class="collapse unstyled">
@@ -87,20 +83,16 @@
                                         <li><a href="other-user-profile.html"><i class="fa fa-inbox"></i>Profile </a></li>
                                         <li><a href="other-user-listing.html"><i class="fa fa-inbox"></i>All Users </a></li>
                                     </ul>
-                                </li>
+                                </li> -->
                                 <li><a href="#"><i class="menu-icon fa fa-signout"></i>Logout </a></li>
                             </ul>
-        </div>
+                </div>
         
         <div class="wrapper">
         
-            <div class="container">
-                <div class="row">
-                    <div class="span3">
-                        <!--/.sidebar-->
-                    </div>
-                    <!--/.span3-->
-                    <div class="span9">
+            <div class="container ">
+                <div class="row ">
+                    <div class="span9 content_span9">
                         <div class="content">
                             <div class="module message">
                                 <div class="module-head">

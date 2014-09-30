@@ -48,7 +48,7 @@ class M_admin extends MY_Model {
         $dob = strtoupper($this->input->post('dob'));
         $phone = $this->input->post('phonenumber');
         $lecturer_email = $this->input->post('lec_email');
-        $location = strtoupper($this->input->post('location'));
+        // $location = strtoupper($this->input->post('location'));
         $course = $this->input->post('course');
 
         $lec_data = array();
@@ -77,7 +77,21 @@ class M_admin extends MY_Model {
             );
         array_push($user, $user_data);
         $this->db->insert_batch('users',$user);
+        $return = array(
+            'lec_id' => $lec_no,
+            'status' => 'SUCCESS',
+            'course_id' => $course
+            );
+        return  $return;
+    }
 
-        echo "Successfully Inserted " . $lec_no;die;
+    function add_lec_units(){
+        $unit_selection = $_POST['unit'];
+        $lecturer_id = $_POST['lecturer_id'];
+        $update_unit = "UPDATE lecturers SET unit_code = $unit_selection WHERE id = $lecturer_id";
+
+        $result = $this->db->query($update_unit);
+
+        echo "The lecturer has been registered to the unit";
     }
 }

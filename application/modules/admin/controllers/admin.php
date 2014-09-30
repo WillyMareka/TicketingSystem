@@ -52,6 +52,8 @@ class Admin extends MY_Controller
 	{
 		// $this->createCoursesSection();
 		$data['courses'] = $this ->m_admin->get_courses();
+		// $data['units'] = $this->m_admin->get_all_units();
+
 		$this->load->view('add_lecturer',$data);
 	}
 
@@ -75,13 +77,27 @@ class Admin extends MY_Controller
 				$path = base_url().'upload/'.$value['file_name'];
 			}
 
-			$this->m_admin->add_lec($path);
+			$returned = $this->m_admin->add_lec($path);
 			// echo "Success!";die;
+		}
+		//print_r($returned);
+		if ($returned['status']= 'SUCCESS') {
+			$data['units'] = $this->m_admin->get_all_units($returned['course_id']);
+			$data['lec_id'] = $returned['lec_id'];
+			$this->load->view('unit_select',$data);
 		}
 		// $this->m_admin->addStudent();
 	}
 
-
+	public function add_lecturer_units(){
+		$this->m_admin->add_lec_units();
+	}
+	public function get_all_units(){
+		$course = $_POST['course'];
+		$units = $this->m_admin->get_all_units($course);
+		echo "THIS WORKS";exit;
+		echo $units;
+	}
 	public function addStudent()
 	{
 		// print_r($this->input->post());die;
