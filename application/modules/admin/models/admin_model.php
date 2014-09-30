@@ -107,6 +107,7 @@ class Admin_model extends MY_Model {
         $student_no = mysql_insert_id();
         $password = md5("12345");
 
+       
         $user_query = "INSERT INTO users VALUES (NULL, '$student_no', '$password', 'student', NULL, 0)";
         $result = $this->db->query($user_query);
 

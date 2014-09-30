@@ -26,12 +26,21 @@ class M_admin extends MY_Model {
     	$student_no = mysql_insert_id();
     	$password = md5("12345");
 
+        // $phone[0] = '';
+        // $phone = '254'.$phone;
+        // $phone = str_replace(' ', '', $phone);
+        // echo $phone;die;
+
     	$user_query = "INSERT INTO users VALUES (NULL, '$student_no', '$password', 'student', NULL, 0)";
     	$result = $this->db->query($user_query);
 
     	$course_query = $this->db->query("INSERT INTO student_course VALUES (NULL, '$student_no', 1, NULL)");
+        $message = array();
+    	$message['text'] =  "Hello " . $firstname . ' ' . $lastname . ', Your admission no is: ' . $student_no . '. Default password is: 12345';
+        $message['phonenumber'] = $phone;
+        $message['email'] = $student_email;
 
-    	echo "Successfully Inserted " . $student_no;die;
+        return $message;
     }
 
     function addTimetable($path, $filetype)

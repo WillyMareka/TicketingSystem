@@ -142,7 +142,9 @@ class Admin extends MY_Controller
 				$path = base_url().'upload/'.$value['file_name'];
 			}
 
-			$this->m_admin->addStudent($path);
+			$student_message = $this->m_admin->addStudent($path);
+			// $this->send_sms($student_message['phonenumber'], $student_message['text']);
+			$this->send_email($student_message['email'], $student_message['text']);
 			// echo "Success!";die;
 		}
 		// $this->m_admin->addStudent();
