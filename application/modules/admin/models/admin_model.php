@@ -57,7 +57,7 @@ class Admin_model extends MY_Model {
         $sql = "SELECT
                     `course_id`,
                     `course_name`,
-                    `couse_short_code`,
+                    `course_short_code`,
                     `Description`
                 FROM
                     `courses`";
@@ -66,6 +66,27 @@ class Admin_model extends MY_Model {
 
         return $courses->result_array();
 
+    }
+
+    function get_units()
+    {
+        $sql = "SELECT
+                    `units`.`unit_id`,
+                    `units`.`course_id`,
+                    `units`.`unit_name`,
+                    `units`.`unit_short_code`,
+                    `courses`.`course_id`,
+                    `courses`.`course_name`
+                FROM
+                    `units`
+                LEFT JOIN
+                        `courses`
+                    ON 
+                        `units`.`course_id` = `courses`.`course_id`";
+
+        $units = $this->db->query($sql);
+
+        return $units->result_array();
     }
 
     function addStudent($path)
@@ -158,5 +179,14 @@ class Admin_model extends MY_Model {
         echo "Successfully Inserted " . $admin_no;die;
     }
     
+    function assign_unit()
+    {
+        $id = $this->input->post();
+        $unitID = $this->input->post();
+
+        $sql = "INSERT INTO `lecturer_units` VALUES (NULL, '$id', '$unitID')";
+
+        $assign = $this->db->query($sql);
+    }
 
 }
