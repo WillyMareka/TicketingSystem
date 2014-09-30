@@ -49,7 +49,7 @@
                         </li>
                         <li>
                             <a href="<?php echo base_url().'admin/admin_reg'?>">
-                                <i class="fa fa-envelope"></i> <span>Administrators</span>
+                                <i class="fa fa-user-md"></i> <span>Administrators</span>
                                 <small class="badge pull-right bg-yellow">12</small>
                             </a>
                         </li>
