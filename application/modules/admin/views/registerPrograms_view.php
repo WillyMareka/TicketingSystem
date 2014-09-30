@@ -65,17 +65,17 @@
                         </div>
                         <?php echo form_open('admin/addCourse'); ?>
                             <div class="box-body">
-                                
                                 <div class="input-group" style="width: 100%;padding:4px;">
-                                    <span class="input-group-addon" style="width: 40%;">Unit short code: </span>
+                                    <span class="input-group-addon" style="width: 40%;">Course name: </span>
                                     <input class="textfield form-control" type="text" name="course_name" id="course_name" required/>
                                 </div>
                                 <div class="input-group" style="width: 100%;padding:4px;">
-                                    <span class="input-group-addon" style="width: 40%;">Unit name: </span>
+                                    <span class="input-group-addon" style="width: 40%;">Course short code: </span>
                                     <input class="textfield form-control" type="text" name="course_code" id="course_code" required/>
                                 </div>
+                                
                                 <div class="input-group" style="width: 100%;padding:4px;">
-                                    <span class="input-group-addon" style="width: 40%;">Unit short code: </span>
+                                    <span class="input-group-addon" style="width: 40%;">Decription: </span>
                                     <input class="textfield form-control" type="text" name="Decription" id="Decription" required/>
                                 </div>
                             </div><!-- /.box-body -->
