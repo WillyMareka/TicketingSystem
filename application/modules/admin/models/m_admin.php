@@ -38,8 +38,9 @@ class M_admin extends MY_Model {
     {
         $filename = $_POST['file_name'];
         $course_id = $_POST['course'];
+        $category = $_POST['category'];
 
-        $query = "INSERT INTO timetables VALUES (NULL, '$filename', '$path', '$filetype', $course_id, NULL, 1)";
+        $query = "INSERT INTO timetables VALUES (NULL, '$filename', '$path', '$filetype', '$category', $course_id, NULL, 1)";
         $result = $this->db->query($query);
 
         if ($result) {

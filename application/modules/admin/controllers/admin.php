@@ -163,7 +163,7 @@ class Admin extends MY_Controller
 			// echo "The form validation was very successfull";
            	$this->admin_model->addCourses();
 			
-			$this->units();
+			$this->register_programs();
 				
 		}
 	}

@@ -82,7 +82,9 @@ class Admin_model extends MY_Model {
                 LEFT JOIN
                         `courses`
                     ON 
-                        `units`.`course_id` = `courses`.`course_id`";
+                        `units`.`course_id` = `courses`.`course_id`
+                ORDER BY 
+                        `courses`.`course_name`";
 
         $units = $this->db->query($sql);
 
@@ -95,13 +97,14 @@ class Admin_model extends MY_Model {
         $lastname = strtoupper($this->input->post('lastname'));
         $others = strtoupper($this->input->post('othername'));
         $phone = $this->input->post('phonenumber');
+        $gender = $this->input->post('gender');
         $student_email = $this->input->post('student_email');
         $parent_phone = $this->input->post('parent_phone');
         $parent_email= $this->input->post('parent_email');
         $location = strtoupper($this->input->post('location'));
         $course = $this->input->post('course');
 
-        $query = "INSERT INTO students VALUES(NULL, '$firstname', '$lastname', '$others', '$phone', '$parent_phone', '$student_email', '$parent_email', '$location', '$path', NULL)";
+        $query = "INSERT INTO students VALUES(NULL, '$firstname', '$lastname', '$others', '$phone', '$gender', '$parent_phone', '$student_email', '$parent_email', '$location', '$path', NULL)";
         $result = $this->db->query($query);
 
         $student_no = mysql_insert_id();
@@ -113,6 +116,20 @@ class Admin_model extends MY_Model {
         $course_query = $this->db->query("INSERT INTO student_course VALUES (NULL, '$student_no', 1, NULL)");
 
         echo "Successfully Inserted " . $student_no;die;
+    }
+
+    function addCourses()
+    {
+        $course = $this->input->post('course_name');
+        $code = $this->input->post('course_code');
+        $description = $this->input->post('Description');
+
+        $sql = "INSERT INTO
+                            `courses`
+                    VALUES
+                        (NULL, '$course','$code', '$description')";
+
+        $result = $this->db->query($sql);
     }
 
     public function addUnits()
@@ -135,12 +152,13 @@ class Admin_model extends MY_Model {
         $lastname = strtoupper($this->input->post('surname'));
         $others = strtoupper($this->input->post('othername'));
         $dob = $this->input->post('dob');
+        $gender = $this->input->post('gender');
         $phone = $this->input->post('phonenumber');
         $email = $this->input->post('lec_email');
         $location = strtoupper($this->input->post('location'));
         $course = $this->input->post('course');
 
-        $query = "INSERT INTO lecturers VALUES(NULL,'$course' , '$firstname', '$lastname', '$others', '$dob', '$email', '$phone', '$path', NULL, 1, '$location')";
+        $query = "INSERT INTO lecturers VALUES(NULL,'$course' , '$firstname', '$lastname', '$others', '$dob', '$gender', '$email', '$phone', '$path', NULL, 1, '$location')";
         $result = $this->db->query($query);
 
         $lecturer_no = mysql_insert_id();
@@ -188,5 +206,6 @@ class Admin_model extends MY_Model {
 
         $assign = $this->db->query($sql);
     }
+
 
 }

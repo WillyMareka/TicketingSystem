@@ -160,6 +160,14 @@
 	                            <span class="input-group-addon" style="width: 40%;">Student Email@: </span>
 	                            <input class="textfield form-control" type="text" name="student_email" id="student_email" required/>
 	                        </div>
+	                         <div class="input-group" style="width: 100%;padding:4px;">
+	                            <span class="input-group-addon" style="width: 40%;">Gender: </span>
+	                             <select class="textfield form-control"name="gender" id="gender">
+	                            	<option value="" selected="true" disabled="on">**Select a gender**</option>
+	                            	<option value="male">Male</option>
+	                            	<option value="female">Female</option>
+	                            </select>
+	                        </div>
 	                        <div class="input-group" style="width: 100%;padding:4px;">
 	                            <span class="input-group-addon" style="width: 40%;">Parent phone: </span>
 	                            <input class="textfield form-control" type="text" name="parent_phone" id="parent_phone" required/>
