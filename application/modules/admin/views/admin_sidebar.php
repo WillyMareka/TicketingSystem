@@ -43,7 +43,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="pages/mailbox.html">
+                            <a href="<?php echo base_url().'admin/sendmail' ?>">
                                 <i class="fa fa-envelope"></i> <span>Mailbox</span>
                                 <small class="badge pull-right bg-yellow">12</small>
                             </a>

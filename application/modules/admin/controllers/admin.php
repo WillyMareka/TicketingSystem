@@ -296,6 +296,7 @@ class Admin extends MY_Controller
 	{
 		$this->form_validation->set_rules('unit_id', 'Unit ID', 'trim|required');
 		$this->form_validation->set_rules('lect_id', 'Lecturer ID', 'trim|required');
+
 		 if ($this->form_validation->run() == FALSE) 
 		{
 			echo "The form validation process was failed!!!";
@@ -314,6 +315,21 @@ class Admin extends MY_Controller
 	function editStudent()
 	{
 
+	}
+
+	function deactivateStude($id)
+	{
+
+		$sql = "UPDATE
+						`students`
+					SET
+						`status` = 0
+					WHERE 
+						`id` = '$id'";
+
+		$this->db->query($sql);
+
+		$this->students();
 	}
 }
 

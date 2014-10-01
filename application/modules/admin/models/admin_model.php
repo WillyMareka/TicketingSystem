@@ -217,8 +217,8 @@ class Admin_model extends MY_Model {
     
     function assign_unit()
     {
-        $id = $this->input->post();
-        $unitID = $this->input->post();
+        $id = $this->input->post('lect_id');
+        $unitID = $this->input->post('unit_id');
 
         $sql = "INSERT INTO `lecturer_units` VALUES (NULL, '$id', '$unitID')";
 

@@ -100,7 +100,7 @@
                                 
                                 <div class="input-group" style="width: 100%;padding:4px;">
                                     <span class="input-group-addon" style="width: 40%;">Lecturer: </span>
-                                    <select class="form-control" name="course">
+                                    <select class="form-control" name="lect_id">
                                     <?php 
                                         foreach ($lecturers as $value) {
                                     ?>
@@ -112,7 +112,7 @@
                                 </div>
                                <div class="input-group" style="width: 100%;padding:4px;">
                                     <span class="input-group-addon" style="width: 40%;">Unit: </span>
-                                    <select class="form-control" name="course">
+                                    <select class="form-control" name="unit_id">
                                     <?php 
                                         foreach ($units as $value) {
                                     ?>
@@ -122,18 +122,7 @@
                                     ?>
                                     </select>
                                 </div>
-                                <div class="input-group" style="width: 100%;padding:4px;">
-                                    <span class="input-group-addon" style="width: 40%;">Course: </span>
-                                    <select class="form-control" name="course" readonly>
-                                    <?php 
-                                        foreach ($courses as $value) {
-                                    ?>
-                                        <option value="<?php echo $value['course_id'];?>"><?php echo $value['course_name']; ?></option>
-                                    <?php
-                                        }
-                                    ?>
-                                    </select>
-                                </div>
+                                
                             </div><!-- /.box-body -->
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-primary">Asssign</button>

@@ -64,7 +64,7 @@
 									<?php
 										$i=1; 
 										foreach ($stude as $value) {
-																
+										$id = $value['id'];
 									?>
 									<tr>
 										<td><?php echo $i; ?></td>
@@ -86,7 +86,7 @@
 									?>
 										
 										<td><center><?php echo $span;?></center></td>
-										<td><center><a href=""><span class="label label-danger">Deactivate</span></a></center></td>
+										<td><center><a href="admin/deactivateStude/<?php echo $id;?>"><span class="label label-danger">Deactivate</span></a></center></td>
 										<td><center><a href="" data-toggle="modal" data-target="#editstudent"><span style="color:#44D2F2;"><i class="fa fa-edit"></i></span></a></center></td>
 									</tr>
 									<?php
@@ -205,7 +205,7 @@
 	                       		<input type = "file" name = "photos" />
 	                       </div>
 	                       
-	                        <div style="">
+	                        <div style="margin-left:685px;">
 	                            <button type="submit" class="btn btn-default"> Save User</button>
 	                        </div>
 	                                
@@ -230,7 +230,22 @@
 
 	                <?php echo form_open_multipart(base_url().'admin/editStudent') ?>
 	                    <div>
-	                       
+	                       <div class="input-group" style="width: 100%;padding:4px;">
+	                            <span class="input-group-addon" style="width: 40%;" >First Name:</span>
+	                            <input class="textfield form-control" type="text" name="f_name" id="f_name" required/>
+	                        </div>
+	                        <div class="input-group" style="width: 100%;padding:4px;">
+	                            <span class="input-group-addon" style="width: 40%;" >First Name:</span>
+	                            <input class="textfield form-control" type="text" name="s_name" id="s_name" required/>
+	                        </div>
+	                        <div class="input-group" style="width: 100%;padding:4px;">
+	                            <span class="input-group-addon" style="width: 40%;" >First Name:</span>
+	                            <input class="textfield form-control" type="text" name="o_name" id="o_name" required/>
+	                        </div>
+
+	                        <div style="margin-left:685px;">
+	                            <button type="submit" class="btn btn-default"> Edit User</button>
+	                        </div>
 	                    </div>
 	                </form>
 	                <div class="modal-footer" style="height:11px;padding-top:11px;">
