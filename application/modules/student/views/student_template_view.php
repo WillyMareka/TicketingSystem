@@ -54,7 +54,7 @@
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#" style="color:white;">
                             <i class="fa fa-tasks"></i>
-                            <span class="badge bg-theme04">4</span>
+                            <span class="badge bg-green">4</span>
                         </a>
                         <ul class="dropdown-menu extended tasks-bar">
                             <div class="notify-arrow notify-arrow-green"></div>
@@ -123,7 +123,7 @@
                     <li id="header_inbox_bar" class="dropdown" >
                         <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#" style="color:white;">
                             <i class="fa fa-envelope-o"></i>
-                            <span class="badge bg-theme04">5</span>
+                            <span class="badge bg-yellow">5</span>
                         </a>
                         <ul class="dropdown-menu extended inbox">
                             <div class="notify-arrow notify-arrow-green"></div>
@@ -225,11 +225,11 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="<?php echo base_url() .'student/inbox'?>"><i class="fa fa-envelope fa-fw"></i> Messages</a>
+                            <a href="<?php echo base_url() .'student/inbox'?>"><i class="fa fa-envelope fa-fw"></i> Messages <small class = "pull-right badge bg-yellow">15</small></a>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-tasks fa-fw"></i> Tasks<span class="badge pull-right">New</span></a>
+                            <a href="#"><i class="fa fa-tasks fa-fw"></i> Tasks<span class="badge pull-right bg-green">New</span></a>
                         </li>
                         <li>
                           <a href="#"><i class = "fa fa-magic fa-fw"></i> Forum</a>

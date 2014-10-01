@@ -1,6 +1,5 @@
 <div class="row">
     <div class="col-lg-12">
-        <h3 class="page-header"><i class = "fa fa-envelope fa-fw"></i> Messages</h3>
         <div class="mailbox row">
                         <div class="col-xs-12">
                             <div class="box box-solid">
