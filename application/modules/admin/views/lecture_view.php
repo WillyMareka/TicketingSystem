@@ -61,7 +61,7 @@
                                     <?php
                                         $i=1; 
                                         foreach ($lecture as $value) {
-                                                                
+                                         $id = $value['id'];
                                     ?>
                                     <tr>
                                         <td><?php echo $i; ?></td>
@@ -84,7 +84,7 @@
                                          ?>
                                         
                                         <td><center><?php echo $span;?></center></td>
-                                        <td><center><span class="label label-danger">Deactivate</span></center></td>
+                                        <td><center><a href="admin/deactivate/lecturers/<?php echo $id;?>"><span class="label label-danger">Deactivate</span></a></center></td>
                                         <td><center><span style="color:#44D2F2;"><i class="fa fa-edit"></i></span></center></td>
                                     </tr>
                                     <?php
