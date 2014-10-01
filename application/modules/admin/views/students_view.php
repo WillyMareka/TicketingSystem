@@ -86,7 +86,7 @@
 									?>
 										
 										<td><center><?php echo $span;?></center></td>
-										<td><center><a href="admin/deactivateStude/<?php echo $id;?>"><span class="label label-danger">Deactivate</span></a></center></td>
+										<td><center><a href="admin/deactivate/students/<?php echo $id;?>"><span class="label label-danger">Deactivate</span></a></center></td>
 										<td><center><a href="" data-toggle="modal" data-target="#editstudent"><span style="color:#44D2F2;"><i class="fa fa-edit"></i></span></a></center></td>
 									</tr>
 									<?php

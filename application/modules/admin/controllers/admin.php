@@ -317,11 +317,11 @@ class Admin extends MY_Controller
 
 	}
 
-	function deactivateStude($id)
+	function deactivate($table, $id)
 	{
 
 		$sql = "UPDATE
-						`students`
+						`$table`
 					SET
 						`status` = 0
 					WHERE 
@@ -329,7 +329,13 @@ class Admin extends MY_Controller
 
 		$this->db->query($sql);
 
-		$this->students();
+		if ($table == "lecturers") {
+			$this->lectures();
+		}else if ($table == "students") {
+			$this->students();
+		}
+
+		
 	}
 }
 
