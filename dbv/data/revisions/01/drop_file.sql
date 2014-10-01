@@ -1,1 +1,0 @@
-ALTER TABLE `lecturers_courses` DROP `course_one`, DROP `course_two`, DROP `course_three`, DROP `course_four`, DROP `course_five`, DROP `course_six`;

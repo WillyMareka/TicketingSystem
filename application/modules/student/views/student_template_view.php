@@ -17,6 +17,14 @@
     <!-- Custom styles for this template -->
     <link href="<?php echo base_url() .'assets/css/style.css'?>" rel="stylesheet">
     <link href="<?php echo base_url() .'assets/css/style-responsive.css'?>" rel="stylesheet">
+     <!-- Ionicons -->
+    <link href="<?php echo base_url() .'assets/admin/css/ionicons.min.css'?>" rel="stylesheet" type="text/css" />
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link href="<?php echo base_url() .'assets/admin/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css'?>" rel="stylesheet" type="text/css" />
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link href="<?php echo base_url() .'assets/admin/css/iCheck/minimal/blue.css'?>" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="<?php echo base_url() .'assets/admin/css/AdminLTE.css" rel="stylesheet'?>" type="text/css" />
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -258,6 +266,13 @@
     <script class="include" type="text/javascript" src="<?php echo base_url() .'assets/js/dash/jquery.dcjqaccordion.2.7.js'?>"></script>
     <script src="<?php echo base_url() .'assets/js/dash/jquery.scrollTo.min.js'?>"></script>
     <script src="<?php echo base_url() .'assets/js/dash/jquery.nicescroll.js'?>" type="text/javascript"></script>
+    <script src="../js/AdminLTE/app.js" type="text/javascript"></script>
+    <!-- AdminLTE for demo purposes 
+    <script src="<?php echo base_url() .'assets/admin/js/AdminLTE/demo.js'?>" type="text/javascript"></script> -->       
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="<?php echo base_url() .'assets/admin/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js'?>" type="text/javascript"></script>
+    <!-- iCheck -->
+    <script src="<?php echo base_url() .'assets/admin/js/plugins/iCheck/icheck.min.js'?>" type="text/javascript"></script>
 
 
     <!--common script for all pages-->
@@ -265,14 +280,14 @@
 
     <!--script for this page-->
     
-  <script>
+ <!-- <script>
       //custom select box
 
       $(function(){
           $('select.styled').customSelect();
       });
 
-  </script>
+  </script> -->
 
   </body>
 </html>
