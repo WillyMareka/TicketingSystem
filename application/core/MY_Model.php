@@ -24,13 +24,26 @@ class MY_Model extends CI_Model {
         return $courses;
     }
 
+    public function get_all_units($course_id = null){
+        $result = $this->db->query('SELECT * FROM units WHERE course_id = '.$course_id);
+        $units = $result ->result_array();
+
+        return $units;
+    }
+
+    public function get_unit($unit_id = null){
+        $result = $this->db->query('SELECT * FROM units WHERE unit_id = '.$unit_id);
+        $unit = $result ->result_array();
+
+        return $unit;
+    }
+
     public function total_students(){
          $result = $this->db->query('SELECT COUNT(*) as total_students FROM  students ');
         $total_students = $result->result_array();
 
         return $total_students;
     }
-
     public function getUnits()
     {
         $query = $this->db->query("SELECT * FROM units");
@@ -47,5 +60,21 @@ class MY_Model extends CI_Model {
         $units = $query->result_array();
 
         return $units;
+    }
+    public function get_messages_no($table = null,$destination = null){
+        $result = $this->db->query("
+            SELECT COUNT(*) as total FROM $table
+            WHERE destination = '$destination'
+            ");
+        $msg_number = $result->result_array();
+        return $msg_number;
+    }
+    public function get_messages($table = null,$destination = null){
+        $result = $this->db->query("
+            SELECT * FROM $table WHERE destination = '$destination'
+            ");
+        
+        $msg_data = $result ->result_array();
+         return $msg_data;
     }
 }
