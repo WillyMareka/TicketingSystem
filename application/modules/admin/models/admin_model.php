@@ -8,6 +8,23 @@ class Admin_model extends MY_Model {
         parent::__construct();
     }
 
+    function admin_details($username)
+    {
+        $sql = "SELECT
+                        `f_name`,
+                        `s_name`,
+                        `profile_picture`,
+                        `location`
+                    FROM
+                        `administrator`
+                    WHERE
+                        `id` = '$username'";
+
+        $userdetails = $this->db->query($sql);
+
+        return $userdetails->result_array();
+    }
+
     function get_lectures()
     {
         $sql = "SELECT
@@ -43,7 +60,8 @@ class Admin_model extends MY_Model {
     				`othernames`,
     				`student_phone`,
     				`student_email`,
-    				`admission_date`
+    				`admission_date`,
+                    `status`
     			FROM 
     				`students`";
 
@@ -104,7 +122,7 @@ class Admin_model extends MY_Model {
         $location = strtoupper($this->input->post('location'));
         $course = $this->input->post('course');
 
-        $query = "INSERT INTO students VALUES(NULL, '$firstname', '$lastname', '$others', '$phone', '$gender', '$parent_phone', '$student_email', '$parent_email', '$location', '$path', NULL)";
+        $query = "INSERT INTO students VALUES(NULL, '$firstname', '$lastname', '$others', '$phone', '$gender', '$parent_phone', '$student_email', '$parent_email', '$location', '$path', NULL, 1)";
         $result = $this->db->query($query);
 
         $student_no = mysql_insert_id();
@@ -213,5 +231,14 @@ class Admin_model extends MY_Model {
         $assign = $this->db->query($sql);
     }
 
+    function update_student(){
+        $sql        =   "UPDATE  'students'
+                            SET 
+                                `status`        =   '$status'
+                            WHERE  
+                                `id`='$id'
+                        ";
 
+        $this->db->query($sql);
+    }
 }
