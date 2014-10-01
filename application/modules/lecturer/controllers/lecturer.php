@@ -21,6 +21,10 @@ class Lecturer extends MX_Controller
 		$data['notification_5'] = "This is the fifth notification";
 
 		$data['messages_no'] = 35;
+		$lecturer_id = $this->session->userdata('username');
+		$msg_no = $this->m_lecturers->get_messages_no('lecturer_messages',$lecturer_id);
+		$msg_data = $this->m_lecturers->get_messages('lecturer_messages',$lecturer_id);
+
 		$total_students= $this->m_lecturers->total_students();
 		$data['total_students'] = $total_students[0]['total_students'];
 		if($this->session->userdata('user_type') == 'lecturer')
@@ -31,6 +35,7 @@ class Lecturer extends MX_Controller
 		{
 			redirect(base_url() .'error/log_in');
 		}
+
 	}
 	function page_to_load($selection = null){
 		if ($selection == "messages") {
@@ -44,5 +49,21 @@ class Lecturer extends MX_Controller
 		}elseif ($selection == "activity") {
 			$this ->load->view('activity.php');
 		}
+	}
+	function messages(){
+		$lecturer_id = $this->session->userdata('username');
+		$message = $_POST['msg'];
+		$subject = $_POST['sbj'];
+		$unit = $this->session->userdata('unit_code');
+		
+		$response = $this->m_lecturers->lecturer_messages($lecturer_id,$subject,$message,$unit,'students');
+		echo $response;
+	}
+	function tester(){
+		$jibu = $this->m_lecturers->get_messages_no('lecturer_messages','students');
+		$jibu_ = $this->m_lecturers->get_messages('lecturer_messages','students');
+
+		echo "<pre>";print_r($jibu);echo "</pre></br>";
+		echo "<pre>";print_r($jibu_);echo "</pre>";
 	}
 }
