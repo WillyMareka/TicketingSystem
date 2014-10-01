@@ -29,9 +29,15 @@ class Admin extends MY_Controller
 	
 	public function index()
 	{
-		$data['userdetails'] = $this->admin_model->admin_details($this->session->userdata('username'));
-		$data['content_view'] = "admin_dashboard";
-		$data['title'] = 'Administrators Section: Dashboard';
+		if ($this->session->userdata('usertype') == 'administrator') {
+			$data['userdetails'] = $this->admin_model->admin_details($this->session->userdata('username'));
+			$data['content_view'] = "admin_dashboard";
+			$data['title'] = 'Administrators Section: Dashboard';
+		}
+		else
+		{
+			redirect(base_url() .'error/log_in');
+		}
 
 		$this->load->view('admin_template_view', $data);
 	}
