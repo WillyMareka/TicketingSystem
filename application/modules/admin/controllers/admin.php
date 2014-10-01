@@ -27,10 +27,18 @@ class Admin extends MY_Controller
 
 	public function index()
 	{
-		$data['content_view'] = "admin_dashboard";
-		$data['title'] = 'Administrators Section: Dashboard';
+		// print_r($this->session->userdata);die;
+		if($this->session->userdata('user_type') == 'administrator')
+		{
+			$data['content_view'] = "admin_dashboard";
+			$data['title'] = 'Administrators Section: Dashboard';
 
-		$this->load->view('admin_template_view', $data);
+			$this->load->view('admin_template_view', $data);
+		}
+		else
+		{
+			redirect(base_url() .'error/log_in');
+		}
 	}
 
 	public function lectures()
@@ -142,10 +150,12 @@ class Admin extends MY_Controller
 				$path = base_url().'upload/'.$value['file_name'];
 			}
 
-			$student_message = $this->m_admin->addStudent($path);
+			$student_message = $this->admin_model->addStudent($path);
 			// $this->send_sms($student_message['phonenumber'], $student_message['text']);
 			$this->send_email($student_message['email'], $student_message['text']);
 			// echo "Success!";die;
+			redirect(base_url().'admin/students');
+
 		}
 		// $this->m_admin->addStudent();
 	}

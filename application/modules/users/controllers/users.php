@@ -36,7 +36,7 @@ class Users extends MY_Controller
 				$data['lastname'] = $student[0]['lastname'];
 				$data['email'] = $student[0]['student_email'];
 				$data['logged_in'] = TRUE;
-				$data['user_type'] = $user_type;
+				$data['user_type'] = $usertype;
 				$this->session->set_userdata($data);
 
 				$this->m_users->register_session();
@@ -44,13 +44,13 @@ class Users extends MY_Controller
 			}
 			else if ($usertype == 'administrator') {
 				$admin = $this->m_users->getUser('administrator', $username);
-				// print_r($student);die;
+				// print_r($admin);die;
 				$data['username'] = $admin[0]['id'];
 				$data['firstname'] = $admin[0]['f_name'];
 				$data['lastname'] = $admin[0]['l_name'];
 				$data['email'] = $admin[0]['email'];
 				$data['logged_in'] = TRUE;
-				$data['user_type'] = $user_type;
+				$data['user_type'] = $usertype;
 				$this->session->set_userdata($data);
 
 				$this->m_users->register_session();

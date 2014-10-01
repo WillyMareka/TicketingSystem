@@ -116,7 +116,12 @@ class Admin_model extends MY_Model {
 
         $course_query = $this->db->query("INSERT INTO student_course VALUES (NULL, '$student_no', 1, NULL)");
 
-        echo "Successfully Inserted " . $student_no;die;
+        $message = array();
+        $message['text'] =  "Hello " . $firstname . ' ' . $lastname . ', Your admission no is: ' . $student_no . '. Default password is: 12345';
+        $message['phonenumber'] = $phone;
+        $message['email'] = $student_email;
+
+        return $message;
     }
 
     function addCourses()

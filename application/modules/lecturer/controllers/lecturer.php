@@ -23,7 +23,14 @@ class Lecturer extends MX_Controller
 		$data['messages_no'] = 35;
 		$total_students= $this->m_lecturers->total_students();
 		$data['total_students'] = $total_students[0]['total_students'];
-		$this->load->view('lec_home.php',$data);
+		if($this->session->userdata('user_type') == 'lecturer')
+		{
+			$this->load->view('lec_home.php',$data);
+		}
+		else
+		{
+			redirect(base_url() .'error/log_in');
+		}
 	}
 	function page_to_load($selection = null){
 		if ($selection == "messages") {

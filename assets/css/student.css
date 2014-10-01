@@ -1,32 +1,10 @@
-*
-{
-	border-radius: 0 !important;
-}
-.dropdown-user
-{
-	background-color: #2ecc71;
-}
-.user-profile
-{
-	height: 210px;
-	
-	color: #fff;
-	font-weight: bold;
-}
-
-.user-profile a
-{
-	color: #ecf0f1;
-}
-
-.test
-{
-	background-color: #f4f4f4;
-	padding: 5px;
-}
-
 .share
 {
 	margin-left: 5px;
+}
+
+.desc
+{
+	border-bottom: 1px solid #f3f3f3;
 }
 

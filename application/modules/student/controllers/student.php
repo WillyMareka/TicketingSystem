@@ -20,10 +20,17 @@ class Student extends MY_Controller
     }
 	function index()
 	{
-		$data['student'] = $this->getStudentDetails();
-		$data['title'] = "Student: Homepage";
-		$data['content_view'] = "student";
-		$this->load->view('student_template_view', $data);
+		if($this->session->userdata('user_type') == 'student')
+		{
+			$data['student'] = $this->getStudentDetails();
+			$data['title'] = "Student: Homepage";
+			$data['content_view'] = "student";
+			$this->load->view('student_template_view', $data);
+		}
+		else
+		{
+			redirect(base_url() .'error/log_in');
+		}
 	}
 
 	function getStudentDetails()

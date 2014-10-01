@@ -763,31 +763,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 
 /* Dash Side */
 
-.ds {
-	background: #ffffff;
-	padding-top: 20px;
-}
 
-.ds h4 {
-	font-size: 14px;
-	font-weight: 700;
-}
-
-.ds h3,h4 {
-	color: #ffffff;
-	font-size: 16px;
-	padding: 0 10px;
-	line-height: 60px;
-	height: 60px;
-	margin: 0;
-	background: #ff865c;
-	text-align: center;
-}
-
-.ds i {
-	font-size: 12px;
-	line-height: 16px;
-}
 
 .ds .desc {
 	border-bottom: 1px solid #eaeaea;
@@ -972,10 +948,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 	text-align: center;
 }
 
-.donut-main h4 {
-	font-weight: 700;
-	font-size: 16px;
-}
+
 
 /* *************************************************************************************
 PANELS CONFIGURATIONS

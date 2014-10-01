@@ -119,59 +119,102 @@
                     <div class = "box-body">                
                       <!-- First Action -->
                       <div class="desc">
-                        <div class="thumb">
-                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                            <p><muted>2 Minutes Ago</muted><br/>
-                               <a href="#">James Brown</a> subscribed to your newsletter.<br/>
-                            </p>
+                        <div class = "row">
+                          <div class = "col-md-4">
+                            <img src = "<?php echo base_url() .'upload/chris.jpg'?>"style = "width: 60px; height: 60px;"/>
+                          </div>
+                          <div class = "col-md-8">
+                            <div class = "row">
+                              <div class="thumb">
+                                <span class = "pull-left"><p><muted><i class="fa fa-clock-o"></i> 2 Minutes Ago</muted><br/></p></span>
+                              </div>
+                            </div>
+                            <div class = "row">
+                              <div class="details">
+                                   <p><a href="#">James Brown</a> subscribed to your newsletter.<br/></p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <!-- Second Action -->
                       <div class="desc">
-                        <div class="thumb">
-                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                            <p><muted>3 Hours Ago</muted><br/>
-                               <a href="#">Diana Kennedy</a> purchased a year subscription.<br/>
-                            </p>
+                        <div class = "row">
+                          <div class = "col-md-4">
+                            <img src = "<?php echo base_url() .'upload/profile-02.jpg'?>"style = "width: 60px; height: 60px;"/>
+                          </div>
+                          <div class = "col-md-8">
+                            <div class = "row">
+                              <div class="thumb">
+                                <span class = "pull-left"><p><muted><i class="fa fa-clock-o"></i> 2 Minutes Ago</muted><br/></p></span>
+                              </div>
+                            </div>
+                            <div class = "row">
+                              <div class="details">
+                                   <p><a href="#">James Brown</a> subscribed to your newsletter.<br/></p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <!-- Third Action -->
                       <div class="desc">
-                        <div class="thumb">
-                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                            <p><muted>7 Hours Ago</muted><br/>
-                               <a href="#">Brandon Page</a> purchased a year subscription.<br/>
-                            </p>
-                        </div>
-                      </div>
-                      <!-- Fourth Action -->
-                      <div class="desc">
-                        <div class="thumb">
-                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                            <p><muted>11 Hours Ago</muted><br/>
-                               <a href="#">Mark Twain</a> commented your post.<br/>
-                            </p>
+                        <div class = "row">
+                          <div class = "col-md-4">
+                            <img src = "<?php echo base_url() .'upload/profile-02.jpg'?>"style = "width: 60px; height: 60px;"/>
+                          </div>
+                          <div class = "col-md-8">
+                            <div class = "row">
+                              <div class="thumb">
+                                <span class = "pull-left"><p><muted><i class="fa fa-clock-o"></i> 2 Minutes Ago</muted><br/></p></span>
+                              </div>
+                            </div>
+                            <div class = "row">
+                              <div class="details">
+                                   <p><a href="#">James Brown</a> subscribed to your newsletter.<br/></p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      <!-- Fifth Action -->
                       <div class="desc">
-                        <div class="thumb">
-                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                        <div class = "row">
+                          <div class = "col-md-4">
+                            <img src = "<?php echo base_url() .'upload/profile-02.jpg'?>"style = "width: 60px; height: 60px;"/>
+                          </div>
+                          <div class = "col-md-8">
+                            <div class = "row">
+                              <div class="thumb">
+                                <span class = "pull-left"><p><muted><i class="fa fa-clock-o"></i> 2 Minutes Ago</muted><br/></p></span>
+                              </div>
+                            </div>
+                            <div class = "row">
+                              <div class="details">
+                                   <p><a href="#">James Brown</a> subscribed to your newsletter.<br/></p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <div class="details">
-                            <p><muted>18 Hours Ago</muted><br/>
-                               <a href="#">Daniel Pratt</a> purchased a wallet in your store.<br/>
-                            </p>
+                      </div>
+                      <div class="desc">
+                        <div class = "row">
+                          <div class = "col-md-4">
+                            <img src = "<?php echo base_url() .'upload/profile-06.jpg'?>"style = "width: 60px; height: 60px;"/>
+                          </div>
+                          <div class = "col-md-8">
+                            <div class = "row">
+                              <div class="thumb">
+                                <span class = "pull-left"><p><muted><i class="fa fa-clock-o"></i> 2 Minutes Ago</muted><br/></p></span>
+                              </div>
+                            </div>
+                            <div class = "row">
+                              <div class="details">
+                                   <p><a href="#">James Brown</a> subscribed to your newsletter.<br/></p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                    </div>
+                      </div>
                     </div>
                   </div>
                     </div>
