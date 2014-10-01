@@ -41,15 +41,20 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Other Names</th>
-                                        <th>Course</th>
-                                        <th>Lecture Phone</th>
-                                        <th>Lecture Email</th>
-                                        <th>Registration Date</th>
-                                        
+                                        <th rowspan="2">#</th>
+                                        <th rowspan="2">First Name</th>
+                                        <th rowspan="2">Last Name</th>
+                                        <th rowspan="2">Other Names</th>
+                                        <th rowspan="2">Course</th>
+                                        <th rowspan="2">Lecture Phone</th>
+                                        <th rowspan="2">Lecture Email</th>
+                                        <th rowspan="2">Registration Date</th>
+                                        <th rowspan="2">Status</th>
+                                        <th colspan="2">Actions</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Deactivate</th>
+                                        <th>Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -67,6 +72,20 @@
                                         <td><?php echo $value['phone_no'];?></td>
                                         <td><?php echo $value['email'];?></td>
                                         <td><?php echo $value['registration_date'];?></td>
+
+                                        <?php
+                                        if($value['status'] == 1)
+                                        {
+                                            $span = "<span class='label label-success'>Active</span>";
+                                        }else
+                                        {
+                                            $span = "<span class='label label-danger'>Deactivated</span>";
+                                        }
+                                         ?>
+                                        
+                                        <td><center><?php echo $span;?></center></td>
+                                        <td><center><span class="label label-danger">Deactivate</span></center></td>
+                                        <td><center><span style="color:#44D2F2;"><i class="fa fa-edit"></i></span></center></td>
                                     </tr>
                                     <?php
                                         $i++;

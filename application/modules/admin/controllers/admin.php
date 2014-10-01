@@ -16,6 +16,7 @@ class Admin extends MY_Controller
 		 $logged_in = $this->check_login();
 		if($logged_in == TRUE)
 		{
+			
 			$data['content_view'] = "admin_dashboard";
 			$data['title'] = 'Administrators Section: Dashboard';
 		}
@@ -25,8 +26,10 @@ class Admin extends MY_Controller
 		}
 	}
 
+	
 	public function index()
 	{
+		$data['userdetails'] = $this->admin_model->admin_details($this->session->userdata('username'));
 		$data['content_view'] = "admin_dashboard";
 		$data['title'] = 'Administrators Section: Dashboard';
 
@@ -35,6 +38,7 @@ class Admin extends MY_Controller
 
 	public function lectures()
 	{
+		$data['userdetails'] = $this->admin_model->admin_details($this->session->userdata('username'));
 		$data['content_view'] = "lecture_view";
 		$data['title'] = 'Administrators Section: Lecturers';
 		$data['courses'] = $this->createCourseDropdown();
@@ -45,6 +49,7 @@ class Admin extends MY_Controller
 
 	public function students()
 	{
+		$data['userdetails'] = $this->admin_model->admin_details($this->session->userdata('username'));
 		$data['content_view'] = "students_view";
 		$data['title'] = 'Administrators Section: Sudents';
 		$data['stude'] = $this->admin_model->get_students();
@@ -54,6 +59,7 @@ class Admin extends MY_Controller
 
 	function register_programs()
 	{
+		$data['userdetails'] = $this->admin_model->admin_details($this->session->userdata('username'));
 		$data['content_view'] = "registerPrograms_view";
 		$data['title'] = 'Administrators Section: Units';
 		$data['courses'] = $this->admin_model->get_courses();
@@ -65,6 +71,7 @@ class Admin extends MY_Controller
 
 	public function courses()
 	{
+		$data['userdetails'] = $this->admin_model->admin_details($this->session->userdata('username'));
 		$data['content_view'] = "courses_view";
 		$data['title'] = 'Administrators Section: Courses';
 		$data['courses'] = $this->admin_model->get_courses();
@@ -74,6 +81,7 @@ class Admin extends MY_Controller
 
 	public function units()
 	{
+		$data['userdetails'] = $this->admin_model->admin_details($this->session->userdata('username'));
 		$data['content_view'] = "units_view";
 		$data['title'] = 'Administrators Section: Units';
 		$data['units'] = $this->admin_model->get_units();
@@ -90,6 +98,7 @@ class Admin extends MY_Controller
 
 		function add_lecturer()
 	{
+		$data['userdetails'] = $this->admin_model->admin_details($this->session->userdata('username'));
 		// $this->createCoursesSection();
 		$data['courses'] = $this ->m_admin->getAllCourses();
 		$this->load->view('add_lecturer',$data);
@@ -206,6 +215,7 @@ class Admin extends MY_Controller
 
 	public function Timetable()
 	{
+		$data['userdetails'] = $this->admin_model->admin_details($this->session->userdata('username'));
 		$data['courses'] = $this->createCourseDropdown();
 		$data['content_view'] = "addTimetable";
 		$data['title'] = 'Administrators Section: Timetables';
@@ -248,6 +258,7 @@ class Admin extends MY_Controller
 
 	function admin_reg()
 	{
+		$data['userdetails'] = $this->admin_model->admin_details($this->session->userdata('username'));
 		$data['content_view'] = "admin_view";
 		$data['title'] = 'Administrators Section: Administrator';
 		
@@ -285,6 +296,24 @@ class Admin extends MY_Controller
 	{
 		$this->form_validation->set_rules('unit_id', 'Unit ID', 'trim|required');
 		$this->form_validation->set_rules('lect_id', 'Lecturer ID', 'trim|required');
+		 if ($this->form_validation->run() == FALSE) 
+		{
+			echo "The form validation process was failed!!!";
+            $this->register_programs();
+		} else 
+		{
+			// echo "The form validation was very successfull";
+           	$this->admin_model->assign_unit();
+			
+			$this->register_programs();
+				
+		}
+		
+	}
+
+	function editStudent()
+	{
+
 	}
 }
 
