@@ -101,7 +101,25 @@ class Student extends MY_Controller
 	}
 	function notes()
 	{
-		$data['student'] = $this->getStudentDetails();
+		$unit_list = '';
+		$student_details = $this->getStudentDetails();
+		$units = $this->m_student->getUnitsbyCourse($student_details['course_id']);
+		$unit_list = '<div class = "row">';
+		if ($units) {
+			$unit_list .= '<ul class = "list-group">';
+			foreach ($units as $key => $value) {
+				$unit_list .= '<li class = "list-group-item"><h5><a href = "'.base_url().'student/elearning/'.$value['unit_id'].'">'.$value['unit_name'].'</a></h5></li>';
+
+			}
+			$unit_list .= '</ul>';
+		}
+		else
+		{
+			$unit_list .= '<div class = "alert alert-info" role = "alert">You have no registered units</div>';
+		}
+		$unit_list .= '</div>';
+		$data['unit_list'] = $unit_list;
+		$data['student'] = $student_details;
 		$data['title'] = "Student: Notes";
 		$data['content_view'] = "notes";
 		$this->load->view('student_template_view', $data);

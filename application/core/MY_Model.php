@@ -30,4 +30,22 @@ class MY_Model extends CI_Model {
 
         return $total_students;
     }
+
+    public function getUnits()
+    {
+        $query = $this->db->query("SELECT * FROM units");
+
+        $units = $query->result_array();
+
+        return $units;
+    }
+
+    public function getUnitsbyCourse($c_id)
+    {
+        $query = $this->db->query("SELECT * FROM units WHERE course_id = " . $c_id);
+
+        $units = $query->result_array();
+
+        return $units;
+    }
 }
