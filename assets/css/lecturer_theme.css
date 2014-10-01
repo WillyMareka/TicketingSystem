@@ -1799,7 +1799,22 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', end
 	background-color: #E6E6E6!important;
 	width: 100%;
 }
-.instantup{
+
+.inputs_md{
+	border:0!important;
+	background-color: #ffffff!important;
+	width: 100%!important;
+	padding:2px!important;
+}
+
+.inputs_modal_sm{
+	border:0!important;
+	background-color: #ffffff!important;
+	width: auto!important;
+	padding:2px!important;
+}
+
+.instantup,.close_msg_modal,.close_msg_view_modal{
 	height: auto;
 	width: auto;
 	float:right;
@@ -1811,7 +1826,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', end
 .instant_message{
 	margin-left: 30px;
 }
-.instant_msg_button{
+.instant_msg_button,.msg_button{
 	background:#01A9DB;
 	border:none;
 	padding:5px 20px;
@@ -1820,9 +1835,56 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', end
 .glyphicon{
 	margin: 0 2px;
 }
+
+.msg_modal{
+	width: 60%!important;
+}
+
+.msg_button{
+	width: 100px!important;
+	padding: 5px;
+}
+
+.display-none{
+	display: none;
+}
+#message_compose,#message_view{
+	width: 50%;
+	z-index: 1005;
+	position: fixed;
+	background: rgba(83, 85, 91, 0.9);
+	margin: 5% 20%;
+	padding:5% 5%;
+	color: #ffffff!important;
+}
+#message_view{
+	padding:2% 5%;
+}
+#message_view h5{
+	margin: 0;
+}
+
+.margin_right{
+	margin-right: 10px!important;
+}
 /*END OF CUSTOM CSS*/
 
 /*OVERRIDDEN BOOTSTRAP AND OTHER CSS*/
+.navbar-fixed-top, .navbar-fixed-bottom{
+	z-index: 1000;
+}
+
+.ui,.modal{
+	top: 45%;
+	border-radius: 0!important;
+}
+.modal{
+}
+
+.button{
+	
+}
+
 .table{
 	border-radius: 0;
 }

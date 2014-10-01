@@ -10,5 +10,6 @@ CREATE TABLE `students` (
   `location` varchar(250) NOT NULL,
   `photo` varchar(255) NOT NULL,
   `admission_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `group_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1

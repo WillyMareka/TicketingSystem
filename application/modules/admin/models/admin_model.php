@@ -23,7 +23,8 @@ class Admin_model extends MY_Model {
     				`othernames`,
     				`student_phone`,
     				`student_email`,
-    				`admission_date`
+    				`admission_date`,
+                    'group_id'
     			FROM 
     				`students`";
 
@@ -43,8 +44,8 @@ class Admin_model extends MY_Model {
         $parent_email= $this->input->post('parent_email');
         $location = strtoupper($this->input->post('location'));
         $course = $this->input->post('course');
-
-        $query = "INSERT INTO students VALUES(NULL, '$firstname', '$lastname', '$others', '$phone', '$parent_phone', '$student_email', '$parent_email', '$location', '$path', NULL)";
+        $group = '0';
+        $query = "INSERT INTO students VALUES(NULL, '$firstname', '$lastname', '$others', '$phone', '$parent_phone', '$student_email', '$parent_email', '$location', '$path', 'NULL','$group')";
         $result = $this->db->query($query);
 
         $student_no = mysql_insert_id();
@@ -52,6 +53,8 @@ class Admin_model extends MY_Model {
 
         $user_query = "INSERT INTO users VALUES (NULL, '$student_no', '$password', 'student', NULL, 0)";
         $result = $this->db->query($user_query);
+
+        $attendance_query = $this->db->query("INSERT INTO attendance VALUES (NULL, NULL, '$student_no', 0, 0,NULL,0,0)");                           
 
         $course_query = $this->db->query("INSERT INTO student_course VALUES (NULL, '$student_no', 1, NULL)");
 

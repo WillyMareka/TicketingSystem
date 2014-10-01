@@ -46,14 +46,29 @@ class MY_Model extends CI_Model {
         return $total_students;
     }
 
-    public function get_messages_no($table = null,$destination = null){
-        $result = $this->db->query("
-            SELECT COUNT(*) as total FROM $table
-            WHERE destination = '$destination'
+    //  THE FUNCTION BELOW(get_students):
+    // gathers student information based on parameters.
+    // if all are wanted,pass nothing into parameters.
+    // if all in a course,pass only course_id
+    // if specific student,pass both or only student id
+    // refer to SETH for any queries
+    public function get_students($course_id = null,$student_id = null){
+        $filter = isset($course_id)? "AND s_c.course_id = $course_id":NULL;
+        $filter .= isset($student_id)? "AND s.id = $student_id":NULL;
+         $result = $this->db->query("
+            SELECT
+             s.id as student_id,s.firstname,s.lastname,s.othernames,s.student_phone,s.student_email,s.photo,s.admission_date,
+             s_c.course_id,c.course_name,c.course_short_code
+            FROM  students s,student_course s_c,courses c WHERE c.course_id = s_c.course_id AND s.id = s_c.student_id $filter
             ");
-        $msg_number = $result->result_array();
-        return $msg_number;
+        $total_students = $result->result_array();
+
+        return $total_students;
     }
+
+
+
+
     public function get_messages($table = null,$destination = null){
         $result = $this->db->query("
             SELECT * FROM $table WHERE destination = '$destination'

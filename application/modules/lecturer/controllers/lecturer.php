@@ -22,9 +22,10 @@ class Lecturer extends MX_Controller
 
 		$data['messages_no'] = 35;
 		$lecturer_id = $this->session->userdata('username');
-		$msg_no = $this->m_lecturers->get_messages_no('lecturer_messages',$lecturer_id);
-		$msg_data = $this->m_lecturers->get_messages('lecturer_messages',$lecturer_id);
-
+		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no('lecturer_messages',$lecturer_id);
+		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages('lecturer_messages',$lecturer_id);
+		//$data['sender_info'] = $this->m_lecturers->get_sender_info();
+		
 		$total_students= $this->m_lecturers->total_students();
 		$data['total_students'] = $total_students[0]['total_students'];
 
@@ -32,16 +33,31 @@ class Lecturer extends MX_Controller
 		$this->load->view('lec_home.php',$data);
 	}
 	function page_to_load($selection = null){
+		$lecturer_id = $this->session->userdata('username');
+		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no('lecturer_messages',$lecturer_id);
+		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages('lecturer_messages',$lecturer_id);
+		//$data['sender_info'] = $this->m_lecturers->get_sender_info();
+		
+		$total_students= $this->m_lecturers->total_students();
+		$data['total_students'] = $total_students[0]['total_students'];
+		$data['students'] = $this->m_lecturers->get_students();
+
+
 		if ($selection == "messages") {
-			$this ->load->view('message.php');
+			$this ->load->view('message.php',$data);
 		}elseif ($selection == "charts") {
-			$this ->load->view('charts.php');
+			$this ->load->view('charts.php',$data);
 		}elseif ($selection == "tasks") {
-			$this ->load->view('task.php');
+			$this ->load->view('task.php',$data);
 		}elseif ($selection == "forms") {
-			$this ->load->view('form.php');
+			$this ->load->view('form.php',$data);
 		}elseif ($selection == "activity") {
-			$this ->load->view('activity.php');
+			$this ->load->view('activity.php',$data);
+		}elseif ($selection == "students") {
+			$this ->load->view('students.php',$data);
+		}elseif ($selection == "attendance") {
+			//$data['students'] = $this->m_lecturers->get_students();
+			$this ->load->view('attendance.php',$data);
 		}
 	}
 	function messages(){
@@ -54,10 +70,28 @@ class Lecturer extends MX_Controller
 		echo $response;
 	}
 	function tester(){
-		$jibu = $this->m_lecturers->get_messages_no('lecturer_messages','students');
-		$jibu_ = $this->m_lecturers->get_messages('lecturer_messages','students');
+		// $jibu = $this->m_lecturers->get_messages_no('lecturer_messages',1);
+		// $jibu_ = $this->m_lecturers->get_messages('lecturer_messages',1);
 
+		// echo "<pre>";print_r($jibu);echo "</pre></br>";
+		// echo "<pre>";print_r($jibu_);echo "</pre>";
+
+		$jibu = $this->m_lecturers->get_students();
 		echo "<pre>";print_r($jibu);echo "</pre></br>";
-		echo "<pre>";print_r($jibu_);echo "</pre>";
+	}
+
+	function reply(){
+		$reply = $this->m_lecturers->reply_message();
+	}
+	function log_out(){
+		$this->session->sess_destroy();
+		redirect('home');
+	}
+
+	function attendance(){
+	
+		$result = $this->m_lecturers->set_absentism();
+		echo $result;
+
 	}
 }
