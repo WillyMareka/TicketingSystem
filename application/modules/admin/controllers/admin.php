@@ -6,6 +6,7 @@
 */
 class Admin extends MY_Controller
 {
+	public $ud = '';
 	
 	public $data = array();
 	public function __construct()
@@ -13,6 +14,7 @@ class Admin extends MY_Controller
 		parent::__construct();
 		$this->load->model('admin_model');
 		$this->load->model('m_admin');
+		$this->ud = $this->admin_model->admin_details($this->session->userdata('username'));
 		 $logged_in = $this->check_login();
 		if($logged_in == TRUE)
 		{
@@ -30,6 +32,7 @@ class Admin extends MY_Controller
 		// print_r($this->session->userdata);die;
 		if($this->session->userdata('user_type') == 'administrator')
 		{
+			$data['userdetails'] = $this->ud;
 			$data['content_view'] = "admin_dashboard";
 			$data['title'] = 'Administrators Section: Dashboard';
 
@@ -43,6 +46,7 @@ class Admin extends MY_Controller
 
 	public function lectures()
 	{
+		$data['userdetails'] = $this->ud;
 		$data['content_view'] = "lecture_view";
 		$data['title'] = 'Administrators Section: Lecturers';
 		$data['courses'] = $this->createCourseDropdown();
@@ -53,6 +57,7 @@ class Admin extends MY_Controller
 
 	public function students()
 	{
+		$data['userdetails'] = $this->ud;
 		$data['content_view'] = "students_view";
 		$data['title'] = 'Administrators Section: Sudents';
 		$data['stude'] = $this->admin_model->get_students();
@@ -62,6 +67,7 @@ class Admin extends MY_Controller
 
 	function register_programs()
 	{
+		$data['userdetails'] = $this->ud;
 		$data['content_view'] = "registerPrograms_view";
 		$data['title'] = 'Administrators Section: Units';
 		$data['courses'] = $this->admin_model->get_courses();
@@ -73,6 +79,7 @@ class Admin extends MY_Controller
 
 	public function courses()
 	{
+		$data['userdetails'] = $this->ud;
 		$data['content_view'] = "courses_view";
 		$data['title'] = 'Administrators Section: Courses';
 		$data['courses'] = $this->admin_model->get_courses();
@@ -82,6 +89,7 @@ class Admin extends MY_Controller
 
 	public function units()
 	{
+		$data['userdetails'] = $this->ud;
 		$data['content_view'] = "units_view";
 		$data['title'] = 'Administrators Section: Units';
 		$data['units'] = $this->admin_model->get_units();
@@ -98,6 +106,7 @@ class Admin extends MY_Controller
 
 		function add_lecturer()
 	{
+		$data['userdetails'] = $this->ud;
 		// $this->createCoursesSection();
 		$data['courses'] = $this ->m_admin->getAllCourses();
 		$this->load->view('add_lecturer',$data);
@@ -218,6 +227,7 @@ class Admin extends MY_Controller
 
 	public function Timetable()
 	{
+		$data['userdetails'] = $this->ud;
 		$data['courses'] = $this->createCourseDropdown();
 		$data['content_view'] = "addTimetable";
 		$data['title'] = 'Administrators Section: Timetables';
@@ -260,6 +270,7 @@ class Admin extends MY_Controller
 
 	function admin_reg()
 	{
+		$data['userdetails'] = $this->ud;
 		$data['content_view'] = "admin_view";
 		$data['title'] = 'Administrators Section: Administrator';
 		

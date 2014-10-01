@@ -30,6 +30,26 @@ class M_student extends MY_Model {
         }
 
         return $timetable;
-    }   
+    } 
+
+    public function getUnitLecturer($unit)
+    {
+        $lecturer_name = '';
+
+        $query = $this->db->query('SELECT l.f_name, l.s_name FROM lecturers l, lecturer_units u WHERE u.lecturer_id = l.id AND u.unit_id = '.$unit.' LIMIT 1');
+        $result = $query->result_array();
+
+        if($result)
+        {
+            $lecturer_name = $result[0]['f_name'] . ' ' . $result[0]['s_name'];
+        }
+        else
+        {
+            $lecturer_name = 'No lecturer yet';
+        }
+
+        return $lecturer_name;
+
+    }  
 
 }

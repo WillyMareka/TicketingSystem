@@ -106,12 +106,13 @@ class Student extends MY_Controller
 		$units = $this->m_student->getUnitsbyCourse($student_details['course_id']);
 		$unit_list = '<div class = "row">';
 		if ($units) {
-			$unit_list .= '<ul class = "list-group">';
+			$unit_list .= '<div class = "list-group">';
 			foreach ($units as $key => $value) {
-				$unit_list .= '<li class = "list-group-item"><h5><a href = "'.base_url().'student/elearning/'.$value['unit_id'].'">'.$value['unit_name'].'</a></h5></li>';
-
+				$unit_list .= '<a class = "list-group-item" href = "'.base_url().'student/elearning/'.$value['unit_id'].'">';
+				$unit_list .= '<h4 class="list-group-item-heading">'.$value['unit_name'].'</h4>';
+				$unit_list .= '<p>'.$this->m_student->getUnitLecturer($value['unit_id']).'</p></a>';
 			}
-			$unit_list .= '</ul>';
+			$unit_list .= '</div>';
 		}
 		else
 		{

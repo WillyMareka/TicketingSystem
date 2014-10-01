@@ -31,30 +31,44 @@ class Users extends MY_Controller
 			if ($usertype == 'student') {
 				$student = $this->m_users->getUser('students', $username);
 				// print_r($student);die;
-				$data['username'] = $student[0]['id'];
-				$data['firstname'] = $student[0]['firstname'];
-				$data['lastname'] = $student[0]['lastname'];
-				$data['email'] = $student[0]['student_email'];
-				$data['logged_in'] = TRUE;
-				$data['user_type'] = $usertype;
-				$this->session->set_userdata($data);
+				if($student)
+				{
+					$data['username'] = $student[0]['id'];
+					$data['firstname'] = $student[0]['firstname'];
+					$data['lastname'] = $student[0]['lastname'];
+					$data['email'] = $student[0]['student_email'];
+					$data['logged_in'] = TRUE;
+					$data['user_type'] = $usertype;
+					$this->session->set_userdata($data);
 
-				$this->m_users->register_session();
-				redirect(base_url() .'student');
+					$this->m_users->register_session();
+					redirect(base_url() .'student');
+				}
+				else
+				{
+					redirect(base_url(). 'home/error');
+				}
 			}
 			else if ($usertype == 'administrator') {
 				$admin = $this->m_users->getUser('administrator', $username);
 				// print_r($admin);die;
-				$data['username'] = $admin[0]['id'];
-				$data['firstname'] = $admin[0]['f_name'];
-				$data['lastname'] = $admin[0]['l_name'];
-				$data['email'] = $admin[0]['email'];
-				$data['logged_in'] = TRUE;
-				$data['user_type'] = $usertype;
-				$this->session->set_userdata($data);
-
-				$this->m_users->register_session();
-				redirect(base_url() .'admin');
+				if($admin)
+				{
+					$data['username'] = $admin[0]['id'];
+					$data['firstname'] = $admin[0]['f_name'];
+					$data['lastname'] = $admin[0]['l_name'];
+					$data['email'] = $admin[0]['email'];
+					$data['logged_in'] = TRUE;
+					$data['user_type'] = $usertype;
+					$this->session->set_userdata($data);
+	
+					$this->m_users->register_session();
+					redirect(base_url() .'admin');
+				}
+				else
+				{
+					redirect(base_url(). 'home/error');
+				}
 			}
 		}
 		else
