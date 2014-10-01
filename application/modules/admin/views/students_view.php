@@ -162,7 +162,7 @@
 	                        </div>
 	                         <div class="input-group" style="width: 100%;padding:4px;">
 	                            <span class="input-group-addon" style="width: 40%;">Gender: </span>
-	                             <select class="textfield form-control"name="gender" id="gender">
+	                            <select class="textfield form-control"name="gender" id="gender">
 	                            	<option value="" selected="true" disabled="on">**Select a gender**</option>
 	                            	<option value="male">Male</option>
 	                            	<option value="female">Female</option>
