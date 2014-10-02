@@ -75,7 +75,7 @@
                                 <li>
                                     <li>
                                         <a href="<?php echo base_url().'admin/register_programs'?>">
-                                            <i class="fa fa-folder"></i> <span>Register Programs</span>
+                                            <i class="fa fa-angle-double-right"></i> <span>Register Programs</span>
                                         </a>
                                     </li>
                                 </li>

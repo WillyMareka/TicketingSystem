@@ -201,11 +201,15 @@
 	                            <input class="textfield form-control" type="text" name="location" id="location" required/>
 	                        </div>
 	                       <div class="input-group" style="width: 100%;padding:4px;">
+	                       		<span class="input-group-addon" style="width: 40%;">Course: </span>
+	                       		<?php echo $courses; ?>
+	                       </div>
+	                       <div class="input-group" style="width: 100%;padding:4px;">
 	                       		<span class="input-group-addon" style="width: 40%;">Photo: </span>
 	                       		<input type = "file" name = "photos" />
 	                       </div>
 	                       
-	                        <div style="margin-left:685px;">
+	                        <div style="margin-left:600px;">
 	                            <button type="submit" class="btn btn-default"> Save User</button>
 	                        </div>
 	                                
