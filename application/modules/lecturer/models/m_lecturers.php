@@ -89,6 +89,7 @@ class M_lecturers extends MY_Model {
         	s_m.subject,s_m.message,s_m.sent_on,s_m.unit as destination_unit
         	FROM lecturers l,lecturer_units l_u,units u,student_messages s_m
         	WHERE l.course = u.course_id AND l.unit_code = u.unit_id AND l_u.lecturer_id = l_u.lecturer_id
+        	 GROUP BY s_m.id
         ");
 
         $msg_data = $result->result_array();
@@ -97,13 +98,18 @@ class M_lecturers extends MY_Model {
 
     public function reply_message(){
     	$message = array();
-    	$message_data = array(
-
-    		);
-    	
     	$reply = $_POST['reply'];
     	$msg_id = $_POST['msg_id'];
 
+    	$lecturer_id = $this->session->userdata('lecturer_id');
+    	
+    	$message_data = array(
+    		'lecturer_id' => $lecturer_id,
+    		'message'=>$msg,
+    		'subject'=>$sbj,
+    		'destination'=>'students',
+    		'unit'
+    		);
 
     	$query = "
     		UPDATE student_messages SET reply = '$reply',status = 1 WHERE id = $msg_id
@@ -111,6 +117,12 @@ class M_lecturers extends MY_Model {
     		// echo $query;exit;
     	$reply_query = $this->db->query($query);
     	echo "Your reply has been sent";
+    }
+
+ public function get_lecturer_units($lecturer_id = null){
+    	$result = $this->db->query("SELECT l_u.id,l_u.lecturer_id,u.unit_name FROM lecturer_units l_u,units u WHERE u.unit_id = l_u.unit_id AND lecturer_id = $lecturer_id");
+    	$results = $result ->result_array();
+    	return $results;
     }
 
     function defaultfunction($param1, $param2)

@@ -24,6 +24,7 @@ class Lecturer extends MX_Controller
 		$lecturer_id = $this->session->userdata('username');
 		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no('lecturer_messages',$lecturer_id);
 		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages('lecturer_messages',$lecturer_id);
+		$data['units'] = $this->m_lecturers->get_lecturer_units($lecturer_id);
 		//$data['sender_info'] = $this->m_lecturers->get_sender_info();
 		
 		$total_students= $this->m_lecturers->total_students();
@@ -39,15 +40,17 @@ class Lecturer extends MX_Controller
 
 	}
 	function page_to_load($selection = null){
+		$unit_data = array();
 		$lecturer_id = $this->session->userdata('username');
 		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no('lecturer_messages',$lecturer_id);
 		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages('lecturer_messages',$lecturer_id);
 		//$data['sender_info'] = $this->m_lecturers->get_sender_info();
-		//echo "<pre>";print_r($data['msg_data']);echo "</pre>";exit;
 		$total_students= $this->m_lecturers->total_students();
 		$data['total_students'] = $total_students[0]['total_students'];
 		$data['students'] = $this->m_lecturers->get_students();
+		$data['units'] = $this->m_lecturers->get_lecturer_units($lecturer_id);
 
+		//echo "<pre>";print_r($data['units']);echo "</pre>";exit;
 
 		if ($selection == "messages") {
 			$this ->load->view('message.php',$data);
@@ -70,7 +73,7 @@ class Lecturer extends MX_Controller
 		$lecturer_id = $this->session->userdata('username');
 		$message = $_POST['msg'];
 		$subject = $_POST['sbj'];
-		$unit = $this->session->userdata('unit_code');
+		$unit = $_POST['unit'];
 		
 		$response = $this->m_lecturers->lecturer_messages($lecturer_id,$subject,$message,$unit,'students');
 		echo $response;

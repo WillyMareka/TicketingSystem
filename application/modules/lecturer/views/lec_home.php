@@ -154,7 +154,19 @@ $full_name = $fname.' '.$sname.' '.$onames;
                                         <a href="#" class="instant_message">Quick Message</a></br></br>
                                         </div>
                                     <?php $attributes=array('id'=>'instant_message'); echo form_open('lecturer/messages',$attributes) ?>
-                                    <h6>This message will be sent to all students in this unit</h6>
+                                                    <select class="clear unit_selection">
+                                                        <option>--Select Units--</option>
+                                                        <?php 
+                                                        foreach ($units as $unit) {
+                                                            echo '
+
+                                                        <option value = "'.$unit['id'
+                                                        ].'" data-lecturer_id = "'.$unit['lecturer_id'].'">'.$unit['unit_name'] .'</option>
+
+                                                            ';
+                                                        }
+                                                         ?>
+                                                </select>
                                     <input type="text" placeholder="Subject" required = "required" class="inputs sbj">
                                     <textarea class="inputs msg" placeholder = "Enter message" required = "required"></textarea>
                                     <button class="button instant_msg_button" id="submit_im" type="button"><div id="sub_button_animation"><i class = "fa fa-paper-plane"></i>Send</div></button>

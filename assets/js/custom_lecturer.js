@@ -22,6 +22,7 @@ $(document).ready(function(){
 		event.preventDefault();
 		var msg = $('.msg').val();
 		var sbj = $('.sbj').val();
+		var unit = $('.unit_selection').val();
 		var path = base_url.concat(msg_path);
 		if (msg == '' || sbj == '') {
 			$('#sub_button_animation').replaceWith('<div id="sub_button_animation"><i id="im_icon" class = "fa fa-exclamation"></i> Please Enter Message/Subject before sending</div>');
@@ -32,7 +33,8 @@ $(document).ready(function(){
 			url:path,
 			data:{
 				'msg':msg,
-				'sbj':sbj
+				'sbj':sbj,
+				'unit':unit
 			},
 			success:function(success_im){
 				$('.msg').val('');

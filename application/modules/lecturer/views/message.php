@@ -1,4 +1,4 @@
-﻿ <?php //echo "<pre>"; print_r($msg_data);echo "</pre>"; exit; ?>
+﻿ <?php //echo "<pre>"; print_r($units);echo "</pre>"; exit; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,6 +94,20 @@
         <div class="animated display-none" id = "message_compose">
                 <?php $attributes=array('id'=>'compose_message'); echo form_open(base_url().'lecturer/messages',$attributes) ?>
                 <h6 style="color:#ffffff;">Compose New</h6>
+                <h5 style="color:#ffffff;" class="float_left margin_right">Select Units:</h5>
+                <select class="clear unit_selection">
+                    <option>--Select Units--</option>
+                    <?php 
+                    foreach ($units as $unit) {
+                        echo '
+
+                    <option value = "'.$unit['id'
+                    ].'" data-lecturer_id = "'.$unit['lecturer_id'].'">'.$unit['unit_name'] .'</option>
+
+                        ';
+                    }
+                     ?>
+                </select>
                 <h5 style="color:#ffffff;">Subject:</h5></br>
                 <input type="text" placeholder="Subject" required = "required" class="inputs_md sbj">
                 <h5 style="color:#ffffff;">Message:</h5></br>
@@ -113,13 +127,13 @@
                 
                 <h5 style="color:#ffffff;" class="clear">Subject:</h5></br>
                 <input type="text" placeholder="Subject" required = "required" disabled="disabled" class="inputs_md view_msg_sbj">
-                <h5 style="color:#ffffff;">Message:</h5></br>
+                <h5 style="color:#ffffff;">Message (Sent):</h5></br>
                 <textarea rows="3" class="inputs_md msg msg_view_content" placeholder = "Enter message" disabled="disabled"></textarea></br>
                 <!-- 
                 <h5 style="color:#ffffff;">Reply:</h5></br>
                 <textarea rows="5" class="inputs_md msg_reply" placeholder = "Enter message" required = "required"></textarea></br>
                  -->
-                 <button class="button instant_msg_button" id="submit_reply" type="button"><div id="sub_button_animation_reply"><i class = "fa fa-paper-plane"></i></span>Re-Send/Re-Use Msg</div></button>
+                 <!-- <button class="button instant_msg_button" id="submit_reply" type="button"><div id="sub_button_animation_reply"><i class = "fa fa-paper-plane"></i></span>Re-Send/Re-Use Msg</div></button> -->
                 <i class = "fa fa-close close_msg_view_modal"></i>
                 <?php echo form_close(); ?>
                 <div class="empty_warn"></div>
