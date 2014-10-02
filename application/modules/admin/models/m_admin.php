@@ -8,12 +8,6 @@ class M_admin extends MY_Model {
         parent::__construct();
     }
 
-    function get_courses(){
-        $all_courses = $this ->db->get('courses');
-        $all_courses = $all_courses->result_array();
-        return $all_courses;
-    }
-
     function addStudent($path)
     {
     	$firstname = strtoupper($this->input->post('firstname'));
@@ -32,67 +26,39 @@ class M_admin extends MY_Model {
     	$student_no = mysql_insert_id();
     	$password = md5("12345");
 
+        // $phone[0] = '';
+        // $phone = '254'.$phone;
+        // $phone = str_replace(' ', '', $phone);
+        // echo $phone;die;
+
     	$user_query = "INSERT INTO users VALUES (NULL, '$student_no', '$password', 'student', NULL, 0)";
     	$result = $this->db->query($user_query);
 
     	$course_query = $this->db->query("INSERT INTO student_course VALUES (NULL, '$student_no', 1, NULL)");
-        $attendance_query = $this->db->query("INSERT INTO attendance VALUES (NULL, NULL, '$student_no', 0, 0,0,0,0)");     
+        $attendance_query = $this->db->query("INSERT INTO attendance VALUES (NULL, NULL, '$student_no', 0, 0,0,0,0)");   
+        $message = array();
+    	$message['text'] =  "Hello " . $firstname . ' ' . $lastname . ', Your admission no is: ' . $student_no . '. Default password is: 12345';
+        $message['phonenumber'] = $phone;
+        $message['email'] = $student_email;
 
-    	echo "Successfully Inserted " . $student_no;die;
+        return $message;
     }
 
-    function add_lec($path)
+    function addTimetable($path, $filetype)
     {
-        $firstname = strtoupper($this->input->post('firstname'));
-        $surname = strtoupper($this->input->post('surname'));
-        $others = strtoupper($this->input->post('othername'));
-        $dob = strtoupper($this->input->post('dob'));
-        $phone = $this->input->post('phonenumber');
-        $lecturer_email = $this->input->post('lec_email');
-        // $location = strtoupper($this->input->post('location'));
-        $course = $this->input->post('course');
+        $filename = $_POST['file_name'];
+        $course_id = $_POST['course'];
+        $category = $_POST['category'];
 
-        $lec_data = array();
-        $user = array();
-        $lecturer_data = array(
-            'f_name' => $firstname,
-            's_name' => $surname,
-            'o_names' =>$others,
-            'dob' =>$dob,
-            'email'=>$lecturer_email,
-            'course' =>$course,
-            'phone_no'=>$phone,
-            'profile_picture'=>$path 
-            );
-        array_push($lec_data, $lecturer_data);
-        $this->db ->insert_batch('lecturers',$lec_data);
+        $query = "INSERT INTO timetables VALUES (NULL, '$filename', '$path', '$filetype', '$category', $course_id, NULL, 1)";
+        $result = $this->db->query($query);
 
-        $lec_no = mysql_insert_id();
-        $password = md5("12345");
-
-        $user_data = array(
-            'username' =>$lec_no,
-            'password' =>$password,
-            'user_type' => 'lecturer',
-            'is_active' => 0
-            );
-        array_push($user, $user_data);
-        $this->db->insert_batch('users',$user);
-        $return = array(
-            'lec_id' => $lec_no,
-            'status' => 'SUCCESS',
-            'course_id' => $course
-            );
-        return  $return;
-    }
-
-    function add_lec_units(){
-        $unit_selection = $_POST['unit'];
-        $lecturer_id = $_POST['lecturer_id'];
-        $update_unit = "UPDATE lecturers SET unit_code = $unit_selection WHERE id = $lecturer_id";
-
-        $result = $this->db->query($update_unit);
-
-        echo "The lecturer has been registered to the unit";
+        if ($result) {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

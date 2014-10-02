@@ -28,9 +28,15 @@ class Lecturer extends MX_Controller
 		
 		$total_students= $this->m_lecturers->total_students();
 		$data['total_students'] = $total_students[0]['total_students'];
+		if($this->session->userdata('user_type') == 'lecturer')
+		{
+			$this->load->view('lec_home.php',$data);
+		}
+		else
+		{
+			redirect(base_url() .'error/log_in');
+		}
 
-
-		$this->load->view('lec_home.php',$data);
 	}
 	function page_to_load($selection = null){
 		$lecturer_id = $this->session->userdata('username');

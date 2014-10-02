@@ -16,6 +16,8 @@
         <link href="<?php echo base_url().'assets/admin/css/jvectormap/jquery-jvectormap-1.2.2.css' ?>" rel="stylesheet" type="text/css" />
         <!-- Date Picker -->
         <link href="<?php echo base_url().'assets/admin/css/datepicker/datepicker3.css' ?>" rel="stylesheet" type="text/css" />
+        <!-- iCheck for checkboxes and radio inputs -->
+        <link href="<?php echo base_url().'assets/admin/css/iCheck/all.css' ?>" rel="stylesheet" type="text/css" />
         <!-- Daterange picker -->
         <link href="<?php echo base_url().'assets/admin/css/daterangepicker/daterangepicker-bs3.css' ?>" rel="stylesheet" type="text/css" />
         <!-- bootstrap wysihtml5 - text editor -->
@@ -23,6 +25,7 @@
         <!-- Theme style -->
         <link href="<?php echo base_url().'assets/admin/css/AdminLTE.css' ?>" rel="stylesheet" type="text/css" />
 
+               
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -33,7 +36,7 @@
     <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
         <header class="header">
-            <a href="index.html" class="logo">
+            <a href="" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
                 Administrator
             </a>
@@ -46,6 +49,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
+                
+                <a href="" class="logo">
+                    <!-- Add the class icon to your logo image or logo icon to add the margining -->
+                    Strathmore Notification
+                </a>
+                
                 <div class="navbar-right">
                     <ul class="nav navbar-nav">
                         <!-- Messages: style can be found in dropdown.less-->
@@ -62,7 +71,7 @@
                                         <li><!-- start message -->
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="img/avatar3.png" class="img-circle" alt="User Image"/>
+                                                    <img src="<?php echo $userdetails[0]['profile_picture']?>" class="img-circle" alt="User Image"/>
                                                 </div>
                                                 <h4>
                                                     Support Team
@@ -74,7 +83,7 @@
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="img/avatar2.png" class="img-circle" alt="user image"/>
+                                                    <img src="<?php echo $userdetails[0]['profile_picture']?>" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     AdminLTE Design Team
@@ -86,7 +95,7 @@
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="img/avatar.png" class="img-circle" alt="user image"/>
+                                                    <img src="<?php echo $userdetails[0]['profile_picture']?>" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     Developers
@@ -98,7 +107,7 @@
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="img/avatar2.png" class="img-circle" alt="user image"/>
+                                                    <img src="<?php echo $userdetails[0]['profile_picture']?>" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     Sales Department
@@ -110,7 +119,7 @@
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="img/avatar.png" class="img-circle" alt="user image"/>
+                                                    <img src="<?php echo $userdetails[0]['profile_picture']?>" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     Reviewers
@@ -240,36 +249,26 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span>Jane Doe <i class="caret"></i></span>
+                                <span><?php echo $userdetails[0]['f_name']." ".$userdetails[0]['s_name']?> <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
-                                    <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                                    <img src="<?php echo $userdetails[0]['profile_picture']?>" class="img-circle" alt="User Image" />
                                     <p>
-                                        Jane Doe - Web Developer
-                                        <small>Member since Nov. 2012</small>
+                                        <?php echo $userdetails[0]['f_name']." ".$userdetails[0]['s_name']?>
+                                        <small>Administrator</small>
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
-                                <li class="user-body">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
-                                    </div>
-                                </li>
+                               
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
                                         <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                        <a href="<?php echo base_url().'admin/logout'?>" class="btn btn-default btn-flat">Sign out</a>
                                     </div>
                                 </li>
                             </ul>
@@ -277,11 +276,12 @@
                     </ul>
                 </div>
             </nav>
+
         </header>
         <div class="wrapper row-offcanvas row-offcanvas-left">
             <!-- Left side column. contains the logo and sidebar -->
             <?php
-                $this->load->view('admin_sidebar');
+               $this->load->view('admin_sidebar');
             ?>
 
             <!-- Right side column. Contains the navbar and content of the page -->
@@ -318,6 +318,10 @@
         <script src="<?php echo base_url().'assets/admin/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js' ?>" type="text/javascript"></script>
         <!-- iCheck -->
         <script src="js/plugins/iCheck/icheck.min.js' ?>" type="text/javascript"></script>
+         <!-- InputMask -->
+        <script src="<?php echo base_url().'assets/admin/js/plugins/input-mask/jquery.inputmask.js' ?>" type="text/javascript"></script>
+        <script src="<?php echo base_url().'assets/admin/js/plugins/input-mask/jquery.inputmask.date.extensions.js' ?>" type="text/javascript"></script>
+        <script src="<?php echo base_url().'assets/admin/js/plugins/input-mask/jquery.inputmask.extensions.js' ?>" type="text/javascript"></script>
 
         <!-- AdminLTE App -->
         <script src="<?php echo base_url().'assets/admin/js/AdminLTE/app.js' ?>" type="text/javascript"></script>
@@ -327,6 +331,66 @@
 
         <!-- AdminLTE for demo purposes -->
         <script src="<?php echo base_url().'assets/admin/js/AdminLTE/demo.js' ?>" type="text/javascript"></script>
+        <script type="text/javascript">
+     $(function() {
+                //Datemask dd/mm/yyyy
+                $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+                //Datemask2 mm/dd/yyyy
+                $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
+                //Money Euro
+                $("[data-mask]").inputmask();
+
+                //Date range picker
+                $('#reservation').daterangepicker();
+                //Date range picker with time picker
+                $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
+                //Date range as a button
+                $('#daterange-btn').daterangepicker(
+                        {
+                            ranges: {
+                                'Today': [moment(), moment()],
+                                'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+                                'Last 7 Days': [moment().subtract('days', 6), moment()],
+                                'Last 30 Days': [moment().subtract('days', 29), moment()],
+                                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                                'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+                            },
+                            startDate: moment().subtract('days', 29),
+                            endDate: moment()
+                        },
+                function(start, end) {
+                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                }
+                );
+
+                //iCheck for checkbox and radio inputs
+                $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                    checkboxClass: 'icheckbox_minimal',
+                    radioClass: 'iradio_minimal'
+                });
+                //Red color scheme for iCheck
+                $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+                    checkboxClass: 'icheckbox_minimal-red',
+                    radioClass: 'iradio_minimal-red'
+                });
+                //Flat red color scheme for iCheck
+                $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                    checkboxClass: 'icheckbox_flat-red',
+                    radioClass: 'iradio_flat-red'
+                });
+
+                //Colorpicker
+                $(".my-colorpicker1").colorpicker();
+                //color picker with addon
+                $(".my-colorpicker2").colorpicker();
+
+                //Timepicker
+                $(".timepicker").timepicker({
+                    showInputs: false
+                });
+            });
+</script>
+
 
     </body>
 </html>

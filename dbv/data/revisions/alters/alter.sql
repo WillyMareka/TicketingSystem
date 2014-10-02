@@ -1,0 +1,1 @@
+ALTER TABLE  `students` ADD  `status` INT NOT NULL ;

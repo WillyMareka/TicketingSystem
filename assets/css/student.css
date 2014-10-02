@@ -1,16 +1,10 @@
-.dropdown-user
+.share
 {
-	background-color: #2ecc71;
-}
-.user-profile
-{
-	height: 210px;
-	
-	color: #fff;
-	font-weight: bold;
+	margin-left: 5px;
 }
 
-.user-profile a
+.desc
 {
-	color: #ecf0f1;
+	border-bottom: 1px solid #f3f3f3;
 }
+

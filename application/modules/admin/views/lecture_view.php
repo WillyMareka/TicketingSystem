@@ -14,21 +14,25 @@
         <!-- Main content -->
         <section class="content">
             <div style="float:right; margin-right: 30px; margin-bottom: 30px">
-                <a class="">
-                    <button class="btn btn-primary btn-lg">Add Lecturer</button> 
-                </a>
+                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addlecturer">Add Lecturer</button>
             </div>
 
+            <br />
+            <?php
+                if ($lecture != NULL)
+                {
+            ?>
             <div class="row">
+
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Lecturers` Details</h3>
+                            <h3 class="box-title">Lecturers Details</h3>
                             <div class="box-tools">
                                 <div class="input-group">
                                     <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                                       <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -37,49 +41,181 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>User</th>
-                                        <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Reason</th>
+                                        <th rowspan="2">#</th>
+                                        <th rowspan="2">First Name</th>
+                                        <th rowspan="2">Last Name</th>
+                                        <th rowspan="2">Other Names</th>
+                                        <th rowspan="2">Course</th>
+                                        <th rowspan="2">Lecture Phone</th>
+                                        <th rowspan="2">Lecture Email</th>
+                                        <th rowspan="2">Registration Date</th>
+                                        <th rowspan="2">Status</th>
+                                        <th colspan="2">Actions</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Deactivate</th>
+                                        <th>Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php
+                                        $i=1; 
+                                        foreach ($lecture as $value) {
+                                         $id = $value['id'];
+                                    ?>
                                     <tr>
-                                        <td>183</td>
-                                        <td>John Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="label label-success">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                        <td><?php echo $i; ?></td>
+                                        <td><?php echo $value['f_name'];?></td>
+                                        <td><?php echo $value['s_name'];?></td>
+                                        <td><?php echo $value['o_names'];?></td>
+                                        <td><?php echo $value['course_name'];?></td>
+                                        <td><?php echo $value['phone_no'];?></td>
+                                        <td><?php echo $value['email'];?></td>
+                                        <td><?php echo $value['registration_date'];?></td>
+
+                                        <?php
+                                        if($value['status'] == 1)
+                                        {
+                                            $span = "<span class='label label-success'>Active</span>";
+                                        }else
+                                        {
+                                            $span = "<span class='label label-danger'>Deactivated</span>";
+                                        }
+                                         ?>
+                                        
+                                        <td><center><?php echo $span;?></center></td>
+                                        <td><center><a href="admin/deactivate/lecturers/<?php echo $id;?>"><span class="label label-danger">Deactivate</span></a></center></td>
+                                        <td><center><span style="color:#44D2F2;"><i class="fa fa-edit"></i></span></center></td>
                                     </tr>
-                                    <tr>
-                                        <td>219</td>
-                                        <td>Jane Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="label label-warning">Pending</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>657</td>
-                                        <td>Bob Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="label label-primary">Approved</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>175</td>
-                                        <td>Mike Doe</td>
-                                        <td>11-7-2014</td>
-                                        <td><span class="label label-danger">Denied</span></td>
-                                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
+                                    <?php
+                                        $i++;
+                                        }
+                                    ?>
                                 </tbody>
                             </table>
-                        </div><!-- /.box-body -->
-                    </div><!-- /.box -->
+                        </div>
+                    </div>
                 </div>
-            </div>
+                </div>
+                <?php
+                    }else
+                    {
+                ?>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Students Details</h3>
+                                <div class="box-tools">
+                                    <div class="input-group">
+                                        <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
+                                        <div class="input-group-btn">
+                                           <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.box-header -->
+                            <div class="box-body table-responsive no-padding">
+                                <table class="table table-hover">
+                            
+                                    <thead>
+                                        <tr>
+                                        <th>#</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Other Names</th>
+                                        <th>Course</th>
+                                        <th>Lecture Phone</th>
+                                        <th>Lecture Email</th>
+                                        <th>Registration Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="8"><center>No data found in this table...</center></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                    }
+                ?>
 
         </section><!-- /.content -->
     </aside><!-- /.right-side -->
 </div>
+
+<div class="modal fade" id="addlecturer">
+        <div class="modal-dialog" style="width:60%;margin-bottom:2px;">
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h5 class="modal-title">Add Lecturer</h5>
+                </div>
+                <div class="modal-body" style="padding-bottom:0px;">    
+
+                    <?php echo form_open_multipart(base_url().'admin/addLecturer') ?>
+                        <div>
+                            <div class="input-group" style="width: 100%;padding:4px;">
+                                <span class="input-group-addon" style="width: 40%;" >First Name:</span>
+                                <input class="textfield form-control" type="text" name="firstname" id="firstname" required/>
+                            </div>
+                            <div class="input-group" style="width: 100%;padding:4px;">
+                                <span class="input-group-addon" style="width: 40%;">Second Name: </span>
+                                <input class="textfield form-control" type="text" name="surname" id="surname" required/>
+                            </div>
+                            <div class="input-group" style="width: 100%;padding:4px;">
+                                <span class="input-group-addon" style="width: 40%;">Other Name: </span>
+                                <input class="textfield form-control" type="text" name="othername" id="othername" required/>
+                            </div>
+                             <div class="input-group" style="width: 100%;padding:4px;">
+                                <span class="input-group-addon" style="width: 40%;">Phone Number: </span>
+                                <input class="textfield form-control" type="text" name="phonenumber" id="phonenumber" required/>
+                            </div>
+                             <div class="input-group" style="width: 100%;padding:4px;">
+                                <span class="input-group-addon" style="width: 40%;">Gender: </span>
+                                <select class="textfield form-control"name="gender" id="gender">
+                                    <option value="" selected="true" disabled="on">**Select a gender**</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                             <div class="input-group" style="width: 100%;padding:4px;">
+                                <span class="input-group-addon" style="width: 40%;">Lecturer Email@: </span>
+                                <input class="textfield form-control" type="text" name="lec_email" id="lec_email" required/>
+                            </div>
+                            <div class="input-group" style="width: 100%;padding:4px;">
+                                <span class="input-group-addon" style="width: 40%;">Date of Birth: </span>
+                                <!--  <input type="text" name="dob" id="dob" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask /> -->
+                                <input class="textfield form-control" type="date" name="dob" id="dob" required/>
+                            </div>
+                            <div class="input-group" style="width: 100%;padding:4px;">
+                                <span class="input-group-addon" style="width: 40%;">Location: </span>
+                                <input class="textfield form-control" type="text" name="location" id="location" required/>
+                            </div>
+                           <div class="input-group" style="width: 100%;padding:4px;">
+                                <span class="input-group-addon" style="width: 40%;">Photo: </span>
+                                <input type = "file" name = "lec_photo" class="textfield form-control" />
+                           </div>
+                           <div class="input-group" style="width: 100%;padding:4px;">
+                                <span class="input-group-addon" style="width: 40%;">Course: </span>
+                                <?php echo $courses; ?>
+                           </div>
+                           
+                            <div style="">
+                                <button type="submit" class="btn btn-default"> Save User</button>
+                            </div>
+                                    
+                        </div>
+                    </form>
+                    <div class="modal-footer" style="height:11px;padding-top:11px;">
+                        <?php echo $this->config->item("copyrights");?>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+

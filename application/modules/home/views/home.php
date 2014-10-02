@@ -46,8 +46,12 @@
           <div>
             <div class="container">
               <div class="hero-unit">
+              <?php if (isset($error)){?><div class="alert alert-danger alert-dismissible" role="alert">
+               <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              	<strong><?php echo $error; ?></strong>
+              	</div><?php } ?>
                 <h1>Welcome to Strathmore Notification System</h1>
-                <p>This is a system that enables both students and lecturers have a good notification system
+                <p style="color: white;">This is a system that enables both students and lecturers have a good notification system
                   <br/>Login to experience this</p>
                   <button class = "btn loginbutton" data-toggle="modal" data-target="#myModal">Login Here</button>
               </div>
