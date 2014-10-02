@@ -42,12 +42,14 @@ class Lecturer extends MX_Controller
 	function page_to_load($selection = null){
 		$unit_data = array();
 		$lecturer_id = $this->session->userdata('username');
+		$course = $this->session->userdata('course');
+
 		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no('lecturer_messages',$lecturer_id);
 		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages('lecturer_messages',$lecturer_id);
 		//$data['sender_info'] = $this->m_lecturers->get_sender_info();
 		$total_students= $this->m_lecturers->total_students();
 		$data['total_students'] = $total_students[0]['total_students'];
-		$data['students'] = $this->m_lecturers->get_students();
+		$data['students'] = $this->m_lecturers->get_students(1);
 		$data['units'] = $this->m_lecturers->get_lecturer_units($lecturer_id);
 
 		//echo "<pre>";print_r($data['units']);echo "</pre>";exit;
@@ -67,6 +69,12 @@ class Lecturer extends MX_Controller
 		}elseif ($selection == "attendance") {
 			//$data['students'] = $this->m_lecturers->get_students();
 			$this ->load->view('attendance.php',$data);
+		}elseif ($selection == "examinations") {
+			//$data['students'] = $this->m_lecturers->get_students();
+			$this ->load->view('examinations.php',$data);
+		}elseif ($selection == "news_feed") {
+			//$data['students'] = $this->m_lecturers->get_students();
+			$this ->load->view('news_feed.php',$data);
 		}
 	}
 	function messages(){
@@ -98,9 +106,11 @@ class Lecturer extends MX_Controller
 	}
 
 	function attendance(){
-	
 		$result = $this->m_lecturers->set_absentism();
 		echo $result;
+	}
 
+	function examinations(){
+		echo "Successful posting";
 	}
 }

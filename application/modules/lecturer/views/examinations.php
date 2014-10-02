@@ -1,4 +1,6 @@
 ﻿<?php 
+//echo "<pre>";print_r($this->session->all_userdata());echo "</pre>"; exit; 
+//echo "<pre>";print_r($msg_no);echo "</pre>"; exit; 
 $fname = $this->session->userdata('firstname');
 $sname = $this->session->userdata('secondname');
 $onames = $this->session->userdata('othernames');
@@ -128,7 +130,7 @@ $full_name = $fname.' '.$sname.' '.$onames;
 											<label class="control-label" for="basicinput">Students: </label>
 											<div class="controls ">
 												<select id="student_select" tabindex="1" class="span8 student_select">
-												<option>-- Select Student -- </option>
+												<option value="">-- Select Student -- </option>
 											<?php 
 													foreach ($students as $student_data) {
 														$full_names= $student_data['firstname'].' '.$student_data['lastname'].' '.$student_data['othernames'];
@@ -141,45 +143,32 @@ $full_name = $fname.' '.$sname.' '.$onames;
 												</select>
 											</div>
 										</div>
-
-										
 										<div class="control-group">
-											<label class="control-label" for="basicinput"></label>
+										<?php echo validation_errors(); ?>
+										<?php $attr = array('id'=>'exam_form'); echo form_open('lecturer/examinations'); ?>
+											<label class="control-label" for="basicinput">CAT One: </label>
 											<div class="controls">
-												<span class="help-inline">Total Hours for <?php echo date("D/M/Y") ?></span>
-												<input type="text" id="basicinput" placeholder="Type something here..." class="span8 total_hrs" value="8" disabled="disabled">
+												<input type="number" title="Please enter a Number between 1 and 100" required = "required" maxlength="3" max = "100"  id="basicinput" class="cat_1"> %
 											</div>
 										</div>
 
-										<div class="control-group float_left">
-											<label class="control-label" for="basicinput">Morning Lesson: </label>
+										<div class="control-group">
+											<label class="control-label" for="basicinput">CAT Two: </label>
 											<div class="controls">
-												<input type="checkbox" id="basicinput" class="morning_class" title="Student was available during the MORNING class">
+												<input type="number" title="Please enter a Number between 1 and 100" required = "required" maxlength="3" max = "100"  id="basicinput" class="cat_2"> %
 											</div>
 										</div>
 
-										<div class="control-group float_left">
-											<label class="control-label" for="basicinput">Late Morning/ Early Afternoon Lesson: </label>
+										<div class="control-group">
+											<label class="control-label" for="basicinput">Final Examination: </label>
 											<div class="controls">
-												<input type="checkbox" id="basicinput" class="late_morning_class" title="Student was available during the Late Morning/ Early Afternoon  class">
+												<input type="number" title="Please enter a Number between 1 and 100" required = "required" maxlength="3" max = "100"  id="basicinput" class="final_exam"> %
 											</div>
 										</div>
-
-										<div class="control-group float_left">
-											<label class="control-label" for="basicinput">Afternoon Lesson: </label>
-											<div class="controls">
-												<input type="checkbox" id="basicinput" class="afternoon_class" title="Student was available during the Afternoon class">
-											</div>
-										</div>
-
-										<div class="control-group float_left">
-											<label class="control-label" for="basicinput">Evening Lesson: </label>
-											<div class="controls">
-												<input type="checkbox" id="basicinput" class="evening_class" title="Student was available during the Evening class">
-											</div>
-										</div>
-
-												<button type="submit" class="btn update_attendance">Update Attendance</button>
+										</br>
+												<center><button type="submit" id="save_examination" class="btn "> Save Record </button></center>
+												<div id="error_message"></div>
+										<?php echo form_close(); ?>
 									</form>
 							</div>
 						</div>

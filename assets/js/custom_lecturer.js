@@ -2,7 +2,7 @@ var base_url = 'http://localhost/sun/';
 var msg_path = 'lecturer/messages';
 var reply_path = 'lecturer/reply';
 var attendance_path = 'lecturer/attendance';
-
+var exam_path = 'lecturer/examinations';
 $(document).ready(function(){
 	$('#message_compose').addClass('fadeOutUp');
 
@@ -46,6 +46,51 @@ $(document).ready(function(){
 		}//end of if
 	});//LEAVE THIS ALONE
 
+	// $('#exam_form').submit(function(){
+	// 	alert('SUBMITTED FORM');
+	// });
+	$('#save_examination').click(function(){
+		event.preventDefault();
+		var cat_1 = $('.cat_1').val();
+		var cat_2 = $('.cat_2').val();
+		var final_exam = $('.final_exam').val();
+		var student_select = $('.student_select').val();
+
+		var path = base_url.concat(exam_path);
+
+		if (student_select == '') {
+			$('#error_message').replaceWith('<div id="error_message"><i id="im_icon" class = "fa fa-exclamation"></i> Please Select a Student</div>');
+		}else if(cat_1 == '' || cat_2 == '' || final_exam == '' ) {
+			$('#error_message').replaceWith('<div id="error_message"><i id="im_icon" class = "fa fa-exclamation"></i> Please Insert Appropriate Data into the fields</div>');
+		}
+		else{
+		$('#error_message').replaceWith('<div id="error_message"><span id="im_icon" class = "fa fa-spinner fa-spin"></span>Inserting Record</div>');
+		$.ajax({
+			type:'POST',
+			url:path,
+			data:{
+				'student':student_select,
+				'cat_1':cat_1,
+				'cat_2':cat_2,
+				'final_exam':final_exam
+			},
+			success:function(success_im){
+				$('.msg').val('');
+				$('.sbj').val('');
+				$('#error_message').replaceWith('<div id="error_message"><span id="im_icon" class = "fa fa-check"></span>Record Inserted</div>');
+				console.log(success_im);
+				console.log(cat_1);
+				console.log(cat_2);
+				console.log(final_exam);
+				console.log(student_select);
+			}
+		});//end of AJAX
+
+		}//end of if		
+
+	});//LEAVE THIS ALONE
+
+	// save_examination
 	$('.compose,.close_msg_modal').click(function(){
 		if ($("#message_compose").hasClass("fadeOutUp")) {
 		$("#message_compose").removeClass("fadeOutUp");
