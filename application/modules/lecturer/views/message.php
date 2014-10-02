@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿ <?php //echo "<pre>"; print_r($msg_data);echo "</pre>"; exit; ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <head>
@@ -8,7 +9,10 @@
         <link type="text/css" href="<?php echo base_url().'assets/bootstrap/css/bootstrap.min.css';?>" rel="stylesheet">
         <link type="text/css" href="<?php echo base_url().'assets/bootstrap/css/bootstrap-responsive.min.css';?>" rel="stylesheet">
         <link type="text/css" href="<?php echo base_url().'assets/css/lecturer_theme.css';?>" rel="stylesheet">
+        <link type="text/css" href="<?php echo base_url().'assets/semantic/packaged/css/semantic.css'; ?>" rel="stylesheet">
+        <link type="text/css" href="<?php echo base_url().'assets/css/lecturer_theme.css';?>" rel="stylesheet">
         <link type="text/css" href="<?php echo base_url().'assets/font-awesome-4.1.0/css/font-awesome.css'; ?>" rel="stylesheet">
+        <link type="text/css" href="<?php echo base_url().'assets/css/animate.css'; ?>" rel="stylesheet">
         <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
             rel='stylesheet'>
     </head>
@@ -87,10 +91,41 @@
                                 <li><a href="#"><i class="menu-icon fa fa-signout"></i>Logout </a></li>
                             </ul>
                 </div>
-        
+        <div class="animated display-none" id = "message_compose">
+                <?php $attributes=array('id'=>'compose_message'); echo form_open(base_url().'lecturer/messages',$attributes) ?>
+                <h6 style="color:#ffffff;">Compose New</h6>
+                <h5 style="color:#ffffff;">Subject:</h5></br>
+                <input type="text" placeholder="Subject" required = "required" class="inputs_md sbj">
+                <h5 style="color:#ffffff;">Message:</h5></br>
+                <textarea class="inputs_md msg" placeholder = "Enter message" required = "required"></textarea></br>
+                <button class="button instant_msg_button" id="submit_im" type="button"><div id="sub_button_animation"><i class = "fa fa-paper-plane"></i></span>Send</div></button>
+                <i class = "fa fa-close close_msg_modal"></i>
+                <?php echo form_close(); ?>
+                <div class="empty_warn"></div>
+        </div>
+
+        <div class="animated display-none" id = "message_view">
+                <?php $attributes=array('id'=>'compose_message'); echo form_open(base_url().'lecturer/messages',$attributes) ?>
+                <h5 style="color:#ffffff;" class="float_left margin_right">From:</h5>
+                <input type="text" placeholder="Subject" required = "required" disabled="disabled" class="float_left inputs_modal_sm view_from margin_right">
+                <h5 style="color:#ffffff;" class="float_left margin_right">Student Email:</h5>
+                <input type="text" placeholder="Subject" required = "required" disabled="disabled" class="float_left inputs_modal_sm view_from_email margin_right">
+                
+                <h5 style="color:#ffffff;" class="clear">Subject:</h5></br>
+                <input type="text" placeholder="Subject" required = "required" disabled="disabled" class="inputs_md view_msg_sbj">
+                <h5 style="color:#ffffff;">Message:</h5></br>
+                <textarea rows="3" class="inputs_md msg msg_view_content" placeholder = "Enter message" disabled="disabled"></textarea></br>
+                <h5 style="color:#ffffff;">Reply:</h5></br>
+                <textarea rows="5" class="inputs_md msg_reply" placeholder = "Enter message" required = "required"></textarea></br>
+                <button class="button instant_msg_button" id="submit_reply" type="button"><div id="sub_button_animation_reply"><i class = "fa fa-paper-plane"></i></span>Send</div></button>
+                <i class = "fa fa-close close_msg_view_modal"></i>
+                <?php echo form_close(); ?>
+                <div class="empty_warn"></div>
+        </div>
+
         <div class="wrapper">
-        
             <div class="container ">
+
                 <div class="row ">
                     <div class="span9 content_span9">
                         <div class="content">
@@ -108,7 +143,7 @@
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a href="#">Inbox(11)</a></li>
+                                                <li><a href="#">Inbox(<?php echo $msg_no; ?>)</a></li>
                                                 <li><a href="#">Sent</a></li>
                                                 <li><a href="#">Draft(2)</a></li>
                                                 <li><a href="#">Trash</a></li>
@@ -118,7 +153,7 @@
                                         </div>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-primary">Compose</a>
+                                        <a href="#" id = "compose" class="compose btn btn-primary">Compose</a>
                                     </div>
                                 </div>
                                 <div class="module-body table">
@@ -139,29 +174,18 @@
                                                 <td class="cell-icon hidden-phone hidden-tablet">
                                                 </td>
                                                 <td class="cell-time align-right">
+                                                    View
+                                                </td>
+                                                <td class="cell-time align-right">
                                                     Date
                                                 </td>
                                             </tr>
-                                            <tr class="unread">
-                                                <td class="cell-check">
-                                                    <input type="checkbox" class="inbox-checkbox">
-                                                </td>
-                                                <td class="cell-icon">
-                                                    <i class="fa fa-star"></i>
-                                                </td>
-                                                <td class="cell-author hidden-phone hidden-tablet">
-                                                    John Donga
-                                                </td>
-                                                <td class="cell-title">
-                                                    Sample Work
-                                                </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
-                                                    <i class="fa fa-paper-clip"></i>
-                                                </td>
-                                                <td class="cell-time align-right">
-                                                    18:24
-                                                </td>
-                                            </tr>
+
+                                           <?php 
+                                           foreach ($msg_data as $data) {
+                                            $fullname = $data['firstname'].' '.$data['lastname'];
+                                            $info = array();
+                                              echo '
                                             <tr class="unread starred">
                                                 <td class="cell-check">
                                                     <input type="checkbox" class="inbox-checkbox">
@@ -170,319 +194,42 @@
                                                     <i class="fa fa-star"></i>
                                                 </td>
                                                 <td class="cell-author hidden-phone hidden-tablet">
-                                                    John Donga
+                                                    '.$fullname.'
                                                 </td>
                                                 <td class="cell-title">
-                                                    Test Title
-                                                </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
-                                                    <i class="fa fa-paper-clip-no"></i>
-                                                </td>
-                                                <td class="cell-time align-right">
-                                                    18:01
-                                                </td>
-                                            </tr>
-                                            <tr class="unread">
-                                                <td class="cell-check">
-                                                    <input type="checkbox" class="inbox-checkbox">
-                                                </td>
-                                                <td class="cell-icon">
-                                                    <i class="fa fa-star"></i>
-                                                </td>
-                                                <td class="cell-author hidden-phone hidden-tablet">
-                                                    Facebook
-                                                </td>
-                                                <td class="cell-title">
-                                                    Dongi sents you a friend request!
+                                                    '.$data['subject'].'
                                                 </td>
                                                 <td class="cell-icon hidden-phone hidden-tablet">
                                                     <i class="fa fa-paper-clip"></i>
                                                 </td>
-                                                <td class="cell-time align-right">
-                                                    23:58
+
+                                               <td class="cell-time align-right display-none">
+                                                   
                                                 </td>
-                                            </tr>
-                                            <tr class="unread">
-                                                <td class="cell-check">
-                                                    <input type="checkbox" class="inbox-checkbox">
-                                                </td>
-                                                <td class="cell-icon">
-                                                    <i class="fa fa-star"></i>
-                                                </td>
-                                                <td class="cell-author hidden-phone hidden-tablet">
-                                                    John Donga
-                                                </td>
-                                                <td class="cell-title">
-                                                    Something
-                                                </td>
+
                                                 <td class="cell-icon hidden-phone hidden-tablet">
-                                                    <i class="fa fa-paper-clip"></i>
+                                                    <i class="fa fa-binoculars"></i>
+
+                                                     <input type="hidden" id = "'.$data['message_id'].'" class="" value ="'.$data['message'].'" data-student-id = "'.$data['student_id'].'" data-sbj = "'.$data['subject'].'" data-student-email = "'.$data['student_email'].'" data-fullname = "'.$fullname.'" >
+                                                     <a value = "'.$data['message_id'].'" class = "message_view_link">View</a>
                                                 </td>
+
                                                 <td class="cell-time align-right">
-                                                    22:17
+                                                    '.$data['sent_on'].'
                                                 </td>
+
                                             </tr>
-                                            <tr class="read starred">
-                                                <td class="cell-check">
-                                                    <input type="checkbox" class="inbox-checkbox">
-                                                </td>
-                                                <td class="cell-icon">
-                                                    <i class="fa fa-star"></i>
-                                                </td>
-                                                <td class="cell-author hidden-phone hidden-tablet">
-                                                    John Donga
-                                                </td>
-                                                <td class="cell-title">
-                                                    Someone wants to talk to you!
-                                                </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
-                                                    <i class="fa fa-paper-clip-no"></i>
-                                                </td>
-                                                <td class="cell-time align-right">
-                                                    May 21
-                                                </td>
-                                            </tr>
-                                            <tr class="read">
-                                                <td class="cell-check">
-                                                    <input type="checkbox" class="inbox-checkbox">
-                                                </td>
-                                                <td class="cell-icon">
-                                                    <i class="fa fa-star"></i>
-                                                </td>
-                                                <td class="cell-author hidden-phone hidden-tablet">
-                                                    John Doe
-                                                </td>
-                                                <td class="cell-title">
-                                                    Doe wants to talk to you!
-                                                </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
-                                                    <i class="fa fa-paper-clip"></i>
-                                                </td>
-                                                <td class="cell-time align-right">
-                                                    May 15
-                                                </td>
-                                            </tr>
-                                            <tr class="read starred">
-                                                <td class="cell-check">
-                                                    <input type="checkbox" class="inbox-checkbox">
-                                                </td>
-                                                <td class="cell-icon">
-                                                    <i class="fa fa-star"></i>
-                                                </td>
-                                                <td class="cell-author hidden-phone hidden-tablet">
-                                                    Social Network
-                                                </td>
-                                                <td class="cell-title">
-                                                    An example message from a social network
-                                                </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
-                                                    <i class="fa fa-paper-clip"></i>
-                                                </td>
-                                                <td class="cell-time align-right">
-                                                    May 15
-                                                </td>
-                                            </tr>
-                                            <tr class="unread">
-                                                <td class="cell-check">
-                                                    <input type="checkbox" class="inbox-checkbox">
-                                                </td>
-                                                <td class="cell-icon">
-                                                    <i class="fa fa-star"></i>
-                                                </td>
-                                                <td class="cell-author hidden-phone hidden-tablet">
-                                                    John Donga
-                                                </td>
-                                                <td class="cell-title">
-                                                    Sample Work
-                                                </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
-                                                    <i class="fa fa-paper-clip"></i>
-                                                </td>
-                                                <td class="cell-time align-right">
-                                                    18:24
-                                                </td>
-                                            </tr>
-                                            <tr class="unread starred">
-                                                <td class="cell-check">
-                                                    <input type="checkbox" class="inbox-checkbox">
-                                                </td>
-                                                <td class="cell-icon">
-                                                    <i class="fa fa-star"></i>
-                                                </td>
-                                                <td class="cell-author hidden-phone hidden-tablet">
-                                                    John Donga
-                                                </td>
-                                                <td class="cell-title">
-                                                    Test Title
-                                                </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
-                                                    <i class="fa fa-paper-clip-no"></i>
-                                                </td>
-                                                <td class="cell-time align-right">
-                                                    18:01
-                                                </td>
-                                            </tr>
-                                            <tr class="unread">
-                                                <td class="cell-check">
-                                                    <input type="checkbox" class="inbox-checkbox">
-                                                </td>
-                                                <td class="cell-icon">
-                                                    <i class="fa fa-star"></i>
-                                                </td>
-                                                <td class="cell-author hidden-phone hidden-tablet">
-                                                    Facebook
-                                                </td>
-                                                <td class="cell-title">
-                                                    Dongi sents you a friend request!
-                                                </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
-                                                    <i class="fa fa-paper-clip"></i>
-                                                </td>
-                                                <td class="cell-time align-right">
-                                                    23:58
-                                                </td>
-                                            </tr>
-                                            <tr class="unread">
-                                                <td class="cell-check">
-                                                    <input type="checkbox" class="inbox-checkbox">
-                                                </td>
-                                                <td class="cell-icon">
-                                                    <i class="fa fa-star"></i>
-                                                </td>
-                                                <td class="cell-author hidden-phone hidden-tablet">
-                                                    John Donga
-                                                </td>
-                                                <td class="cell-title">
-                                                    Something
-                                                </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
-                                                    <i class="fa fa-paper-clip"></i>
-                                                </td>
-                                                <td class="cell-time align-right">
-                                                    22:17
-                                                </td>
-                                            </tr>
-                                            <tr class="read starred">
-                                                <td class="cell-check">
-                                                    <input type="checkbox" class="inbox-checkbox">
-                                                </td>
-                                                <td class="cell-icon">
-                                                    <i class="fa fa-star"></i>
-                                                </td>
-                                                <td class="cell-author hidden-phone hidden-tablet">
-                                                    John Donga
-                                                </td>
-                                                <td class="cell-title">
-                                                    Someone wants to talk to you!
-                                                </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
-                                                    <i class="fa fa-paper-clip-no"></i>
-                                                </td>
-                                                <td class="cell-time align-right">
-                                                    May 21
-                                                </td>
-                                            </tr>
-                                            <tr class="read">
-                                                <td class="cell-check">
-                                                    <input type="checkbox" class="inbox-checkbox">
-                                                </td>
-                                                <td class="cell-icon">
-                                                    <i class="fa fa-star"></i>
-                                                </td>
-                                                <td class="cell-author hidden-phone hidden-tablet">
-                                                    John Doe
-                                                </td>
-                                                <td class="cell-title">
-                                                    Doe wants to talk to you!
-                                                </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
-                                                    <i class="fa fa-paper-clip"></i>
-                                                </td>
-                                                <td class="cell-time align-right">
-                                                    May 15
-                                                </td>
-                                            </tr>
-                                            <tr class="read starred">
-                                                <td class="cell-check">
-                                                    <input type="checkbox" class="inbox-checkbox">
-                                                </td>
-                                                <td class="cell-icon">
-                                                    <i class="fa fa-star"></i>
-                                                </td>
-                                                <td class="cell-author hidden-phone hidden-tablet">
-                                                    Social Network
-                                                </td>
-                                                <td class="cell-title">
-                                                    An example message from a social network
-                                                </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
-                                                    <i class="fa fa-paper-clip"></i>
-                                                </td>
-                                                <td class="cell-time align-right">
-                                                    May 15
-                                                </td>
-                                            </tr>
-                                            <tr class="read">
-                                                <td class="cell-check">
-                                                    <input type="checkbox" class="inbox-checkbox">
-                                                </td>
-                                                <td class="cell-icon">
-                                                    <i class="fa fa-star"></i>
-                                                </td>
-                                                <td class="cell-author hidden-phone hidden-tablet">
-                                                    Greepit.com
-                                                </td>
-                                                <td class="cell-title">
-                                                    An email from Greepit.com
-                                                </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
-                                                    <i class="fa fa-paper-clip-no"></i>
-                                                </td>
-                                                <td class="cell-time align-right">
-                                                    Jan 12
-                                                </td>
-                                            </tr>
-                                            <tr class="read starred">
-                                                <td class="cell-check">
-                                                    <input type="checkbox" class="inbox-checkbox">
-                                                </td>
-                                                <td class="cell-icon">
-                                                    <i class="fa fa-star"></i>
-                                                </td>
-                                                <td class="cell-author hidden-phone hidden-tablet">
-                                                    EGrappler.com
-                                                </td>
-                                                <td class="cell-title">
-                                                    An email from EGrappler.com
-                                                </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
-                                                    <i class="fa fa-paper-clip"></i>
-                                                </td>
-                                                <td class="cell-time align-right">
-                                                    Jan 11
-                                                </td>
-                                            </tr>
-                                            <tr class="read">
-                                                <td class="cell-check">
-                                                    <input type="checkbox" class="inbox-checkbox">
-                                                </td>
-                                                <td class="cell-icon">
-                                                    <i class="fa fa-star"></i>
-                                                </td>
-                                                <td class="cell-author hidden-phone hidden-tablet">
-                                                    An unread message
-                                                </td>
-                                                <td class="cell-title">
-                                                    This is how an unread message looks alike.
-                                                </td>
-                                                <td class="cell-icon hidden-phone hidden-tablet">
-                                                    <i class="fa fa-paper-clip-no"></i>
-                                                </td>
-                                                <td class="cell-time align-right">
-                                                    Jan 10
-                                                </td>
-                                            </tr>
+
+                                              ';
+                                           }
+
+                                            ?>
+                                            
                                         </tbody>
+
+                                
+
+
                                     </table>
                                 </div>
                                 <div class="module-foot">
@@ -502,7 +249,14 @@
                 <b class="copyright">&copy; 2014 Edmin - EGrappler.com </b>All rights reserved.
             </div>
         </div>
+
+       
         <script src="<?php echo base_url().'assets/js/jquery-1.9.1.min.js';?>" type="text/javascript"></script>
         <script src="<?php echo base_url().'assets/js/jquery-ui-1.10.1.custom.min.js';?>" type="text/javascript"></script>
        <script src="<?php echo base_url().'assets/bootstrap/js/bootstrap.min.js';?>" type="text/javascript"></script>
+        <script src="<?php echo base_url().'assets/semantic/packaged/javascript/semantic.js';?>" type="text/javascript"></script>
+        <script src="<?php echo base_url().'assets/js/custom_lecturer.js';?>" type="text/javascript"></script>
+
+        
+
     </body>

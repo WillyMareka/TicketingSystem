@@ -20,7 +20,7 @@ class M_admin extends MY_Model {
     	$location = strtoupper($this->input->post('location'));
     	$course = $this->input->post('course');
 
-    	$query = "INSERT INTO students VALUES(NULL, '$firstname', '$lastname', '$others', '$phone', '$parent_phone', '$student_email', '$parent_email', '$location', '$path', NULL)";
+    	$query = "INSERT INTO students VALUES(NULL, '$firstname', '$lastname', '$others', '$phone', '$parent_phone', '$student_email', '$parent_email', '$location', '$path', NULL,0)";
     	$result = $this->db->query($query);
 
     	$student_no = mysql_insert_id();
@@ -35,6 +35,7 @@ class M_admin extends MY_Model {
     	$result = $this->db->query($user_query);
 
     	$course_query = $this->db->query("INSERT INTO student_course VALUES (NULL, '$student_no', 1, NULL)");
+        $attendance_query = $this->db->query("INSERT INTO attendance VALUES (NULL, NULL, '$student_no', 0, 0,0,0,0)");   
         $message = array();
     	$message['text'] =  "Hello " . $firstname . ' ' . $lastname . ', Your admission no is: ' . $student_no . '. Default password is: 12345';
         $message['phonenumber'] = $phone;

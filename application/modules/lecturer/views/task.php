@@ -110,7 +110,7 @@
 	<div class="wrapper">
 		<div class="container">
 			<div class="row">
-				<div class="span9">
+				<div class="span9 content_span9">
 					<div class="content">
 
 						<div class="module message">
