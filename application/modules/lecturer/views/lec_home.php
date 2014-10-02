@@ -83,7 +83,7 @@ $full_name = $fname.' '.$sname.' '.$onames;
                 </a></li>
                 <li><a href="<?php echo base_url()."lecturer/page_to_load/activity"?>"><i class="menu-icon fa fa-bullhorn"></i>News Feed </a>
                 </li>
-                <li><a href="<?php echo base_url()."lecturer/page_to_load/messages"?>"><i class="menu-icon fa fa-inbox"></i>Inbox <b class="label green pull-right">
+                <li><a href="<?php echo base_url()."lecturer/page_to_load/messages"?>"><i class="menu-icon fa fa-inbox"></i>Sentbox <b class="label green pull-right">
                 <?php echo $msg_no[0]['total']; ?></b> </a></li>
                 <li><a href="<?php echo base_url()."lecturer/page_to_load/students"?>"><i class="menu-icon fa fa-tasks"></i>Students <b class="label orange pull-right">
                     <?php echo $total_students; ?></b> </a></li>
@@ -157,7 +157,7 @@ $full_name = $fname.' '.$sname.' '.$onames;
                                     <h6>This message will be sent to all students in this unit</h6>
                                     <input type="text" placeholder="Subject" required = "required" class="inputs sbj">
                                     <textarea class="inputs msg" placeholder = "Enter message" required = "required"></textarea>
-                                    <button class="button instant_msg_button" id="submit_im" type="button"><div id="sub_button_animation"><span id="im_icon" class = "glyphicon glyphicon-send"></span>Send</div></button>
+                                    <button class="button instant_msg_button" id="submit_im" type="button"><div id="sub_button_animation"><i class = "fa fa-paper-plane"></i>Send</div></button>
                                     <i class = "fa fa-arrow-circle-down instantup"></i>
                                     <?php echo form_close(); ?>
                                     <div class="empty_warn"></div>
@@ -303,7 +303,6 @@ $full_name = $fname.' '.$sname.' '.$onames;
         <script src="<?php echo base_url().'assets/js/jquery.flot.js';?>" type="text/javascript"></script>
         <script src="<?php echo base_url().'assets/js/jquery.flot.resize.js';?>" type="text/javascript"></script>
         <script src="<?php echo base_url().'assets/js/jquery.dataTables.js';?>" type="text/javascript"></script>
-        <script src="<?php echo base_url().'assets/js/common.js';?>" type="text/javascript"></script>
         <script src="<?php echo base_url().'assets/js/custom_lecturer.js';?>" type="text/javascript"></script>
 
       

@@ -80,10 +80,15 @@ class M_lecturers extends MY_Model {
 
     // get_lecturer_messages_no
     public function get_lecturer_messages(){
+    	// SELECT s.id as student_id,s.firstname,s.lastname,s.othernames,s.student_phone,s.student_email,s.photo,
+     //    l_m.id as message_id,l_m.origin as msg_src,l_m.origin_description,l_m.message,l_m.subject,l_m.sent_on,l_m.origin from students s,lecturer_messages l_m 
+     //    WHERE s.id = l_m.origin
         $result = $this->db->query("
-        SELECT s.id as student_id,s.firstname,s.lastname,s.othernames,s.student_phone,s.student_email,s.photo,
-        l_m.id as message_id,l_m.origin as msg_src,l_m.origin_description,l_m.message,l_m.subject,l_m.sent_on,l_m.origin from students s,lecturer_messages l_m 
-        WHERE s.id = l_m.origin
+        	SELECT s_m.id as message_id,l.id as lecturer_id,l.unit_code,l.f_name,l.s_name,l.o_names,l.course,
+        	l_u.lecturer_id,l_u.unit_id,u.unit_name,u.unit_short_code,
+        	s_m.subject,s_m.message,s_m.sent_on,s_m.unit as destination_unit
+        	FROM lecturers l,lecturer_units l_u,units u,student_messages s_m
+        	WHERE l.course = u.course_id AND l.unit_code = u.unit_id AND l_u.lecturer_id = l_u.lecturer_id
         ");
 
         $msg_data = $result->result_array();
@@ -91,8 +96,14 @@ class M_lecturers extends MY_Model {
     }
 
     public function reply_message(){
+    	$message = array();
+    	$message_data = array(
+
+    		);
+    	
     	$reply = $_POST['reply'];
     	$msg_id = $_POST['msg_id'];
+
 
     	$query = "
     		UPDATE student_messages SET reply = '$reply',status = 1 WHERE id = $msg_id

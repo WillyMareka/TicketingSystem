@@ -24,7 +24,7 @@ $(document).ready(function(){
 		var sbj = $('.sbj').val();
 		var path = base_url.concat(msg_path);
 		if (msg == '' || sbj == '') {
-			$('#sub_button_animation').replaceWith('<div id="sub_button_animation"><span id="im_icon" class = "fa"></span> Please Enter Message/Subject before sending</div>');
+			$('#sub_button_animation').replaceWith('<div id="sub_button_animation"><i id="im_icon" class = "fa fa-exclamation"></i> Please Enter Message/Subject before sending</div>');
 		}else{
 		$('#sub_button_animation').replaceWith('<div id="sub_button_animation"><span id="im_icon" class = "fa fa-spinner fa-spin"></span>Sending</div>');
 		$.ajax({
@@ -64,28 +64,29 @@ $(document).ready(function(){
 		var msg_content = $('#'+msg_id).attr('value');
 		var student_id = $('#'+msg_id).attr('data-student-id');
 		var msg_sbj = $('#'+msg_id).attr('data-sbj');
-		var student_email = $('#'+msg_id).attr('data-student-email');
+		var designated_unit = $('#'+msg_id).attr('data-designated-unit');
 		var full_name =  $('#'+msg_id).attr('data-fullname')
 		// alert(msg_content);return;
-		$('#submit_reply').click(function(){
-		event.preventDefault();
-			send_reply(msg_id);
-				});
 
-		$('.msg_view_content').html(msg_content);
-		$('.view_from').val(full_name);
-		$('.view_msg_sbj').val(msg_sbj);
-		$('.view_from_email').val(student_email);
+		$('#submit_reply').click(function(event){
+			event.preventDefault();
+				send_reply(msg_id);
+					});
 
-		if ($("#message_view").hasClass("fadeOutUp")) {
-		$("#message_view").removeClass("fadeOutUp");
-		$("#message_view").removeClass("display-none");
-		$("#message_view").addClass("fadeInDown");
+			$('.msg_view_content').html(msg_content);
+			$('.view_from').val(full_name);
+			$('.view_msg_sbj').val(msg_sbj);
+			$('.designated_unit').val(designated_unit);
 
-		}else{
-		$("#message_view").removeClass("fadeInDown");	
-		$("#message_view").addClass("fadeOutUp");
-		// $("#login").hide();
+			if ($("#message_view").hasClass("fadeOutUp")) {
+			$("#message_view").removeClass("fadeOutUp");
+			$("#message_view").removeClass("display-none");
+			$("#message_view").addClass("fadeInDown");
+
+			}else{
+			$("#message_view").removeClass("fadeInDown");	
+			$("#message_view").addClass("fadeOutUp");
+			// $("#login").hide();
 		};
 	});//end of message compose modal
 
@@ -135,10 +136,10 @@ $(document).ready(function(){
 
 	function send_reply(msg_id){
 			var reply = $('.msg_reply').val();
-			// console.log(msg_id);return;
 			var rep_path = base_url.concat(reply_path);
+			// console.log(msg_id);return;
 			if (reply == '') {
-				$('#sub_button_animation_reply').replaceWith('<div id="sub_button_animation_reply"><span id="im_icon" class = "fa"></span> Please Enter Message/Subject before sending</div>');
+				$('#sub_button_animation_reply').replaceWith('<div id="sub_button_animation_reply"><i id="im_icon" class = "fa fa-exclamation"></i> Please Enter Message/Subject before sending</div>');
 			}else{
 			$('#sub_button_animation_reply').replaceWith('<div id="sub_button_animation_reply"><span id="im_icon" class = "fa fa-spinner fa-spin"></span>Sending</div>');
 			$.ajax({

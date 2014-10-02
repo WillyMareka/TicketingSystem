@@ -106,18 +106,20 @@
 
         <div class="animated display-none" id = "message_view">
                 <?php $attributes=array('id'=>'compose_message'); echo form_open(base_url().'lecturer/messages',$attributes) ?>
-                <h5 style="color:#ffffff;" class="float_left margin_right">From:</h5>
+                <h5 style="color:#ffffff;" class="float_left margin_right">Message Sent By Lecturer:</h5>
                 <input type="text" placeholder="Subject" required = "required" disabled="disabled" class="float_left inputs_modal_sm view_from margin_right">
-                <h5 style="color:#ffffff;" class="float_left margin_right">Student Email:</h5>
-                <input type="text" placeholder="Subject" required = "required" disabled="disabled" class="float_left inputs_modal_sm view_from_email margin_right">
+                <h5 style="color:#ffffff;" class="float_left margin_right">Designated Unit:</h5>
+                <input type="text" placeholder="Subject" required = "required" disabled="disabled" class="float_left inputs_modal_sm designated_unit margin_right">
                 
                 <h5 style="color:#ffffff;" class="clear">Subject:</h5></br>
                 <input type="text" placeholder="Subject" required = "required" disabled="disabled" class="inputs_md view_msg_sbj">
                 <h5 style="color:#ffffff;">Message:</h5></br>
                 <textarea rows="3" class="inputs_md msg msg_view_content" placeholder = "Enter message" disabled="disabled"></textarea></br>
+                <!-- 
                 <h5 style="color:#ffffff;">Reply:</h5></br>
                 <textarea rows="5" class="inputs_md msg_reply" placeholder = "Enter message" required = "required"></textarea></br>
-                <button class="button instant_msg_button" id="submit_reply" type="button"><div id="sub_button_animation_reply"><i class = "fa fa-paper-plane"></i></span>Send</div></button>
+                 -->
+                 <button class="button instant_msg_button" id="submit_reply" type="button"><div id="sub_button_animation_reply"><i class = "fa fa-paper-plane"></i></span>Re-Send/Re-Use Msg</div></button>
                 <i class = "fa fa-close close_msg_view_modal"></i>
                 <?php echo form_close(); ?>
                 <div class="empty_warn"></div>
@@ -138,17 +140,21 @@
                                     <div class="pull-left">
                                         <div class="btn-group">
                                             <button class="btn">
-                                                Inbox</button>
+                                                Sent Messages</button>
+                                            <!-- 
                                             <button class="btn dropdown-toggle" data-toggle="dropdown">
                                                 <span class="caret"></span>
-                                            </button>
+                                            </button> 
+                                            -->
                                             <ul class="dropdown-menu">
-                                                <li><a href="#">Inbox(<?php echo $msg_no; ?>)</a></li>
-                                                <li><a href="#">Sent</a></li>
-                                                <li><a href="#">Draft(2)</a></li>
-                                                <li><a href="#">Trash</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Settings</a></li>
+                                                <li><a href="#">Sent Messages(<?php echo $msg_no; ?>)</a></li>
+                                               <!--  
+                                               <li><a href="#">Sent</a></li>
+                                               <li><a href="#">Draft(2)</a></li>
+                                               <li><a href="#">Trash</a></li>
+                                               <li class="divider"></li>
+                                               <li><a href="#">Settings</a></li> 
+                                                -->
                                             </ul>
                                         </div>
                                     </div>
@@ -166,7 +172,7 @@
                                                 <td class="cell-icon">
                                                 </td>
                                                 <td class="cell-author hidden-phone hidden-tablet">
-                                                    Sender
+                                                    Lecturer Name(s) 
                                                 </td>
                                                 <td class="cell-title">
                                                     Subject
@@ -174,16 +180,16 @@
                                                 <td class="cell-icon hidden-phone hidden-tablet">
                                                 </td>
                                                 <td class="cell-time align-right">
-                                                    View
+                                                    View Message
                                                 </td>
                                                 <td class="cell-time align-right">
-                                                    Date
+                                                    Date Sent
                                                 </td>
                                             </tr>
 
                                            <?php 
                                            foreach ($msg_data as $data) {
-                                            $fullname = $data['firstname'].' '.$data['lastname'];
+                                            $fullname = $data['f_name'].' '.$data['s_name'].' '.$data['o_names'];
                                             $info = array();
                                               echo '
                                             <tr class="unread starred">
@@ -210,7 +216,7 @@
                                                 <td class="cell-icon hidden-phone hidden-tablet">
                                                     <i class="fa fa-binoculars"></i>
 
-                                                     <input type="hidden" id = "'.$data['message_id'].'" class="" value ="'.$data['message'].'" data-student-id = "'.$data['student_id'].'" data-sbj = "'.$data['subject'].'" data-student-email = "'.$data['student_email'].'" data-fullname = "'.$fullname.'" >
+                                                     <input type="hidden" id = "'.$data['message_id'].'" class="" value ="'.$data['message'].'" data-sbj = "'.$data['subject'].'" data-fullname = "'.$fullname.'" data-designated-unit = "'.$data['unit_name'].'">
                                                      <a value = "'.$data['message_id'].'" class = "message_view_link">View</a>
                                                 </td>
 

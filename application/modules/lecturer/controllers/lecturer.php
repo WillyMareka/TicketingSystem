@@ -43,7 +43,7 @@ class Lecturer extends MX_Controller
 		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no('lecturer_messages',$lecturer_id);
 		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages('lecturer_messages',$lecturer_id);
 		//$data['sender_info'] = $this->m_lecturers->get_sender_info();
-		
+		//echo "<pre>";print_r($data['msg_data']);echo "</pre>";exit;
 		$total_students= $this->m_lecturers->total_students();
 		$data['total_students'] = $total_students[0]['total_students'];
 		$data['students'] = $this->m_lecturers->get_students();
