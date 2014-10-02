@@ -133,4 +133,9 @@ class Student extends MY_Controller
 		$data['content_view'] = "inbox";
 		$this->load->view('student_template_view', $data);
 	}
+
+	function elearning($unit_id)
+	{
+		$uploaded_notes = $this->m_student->getUploadedNotes($unit_id);
+	}
 }
