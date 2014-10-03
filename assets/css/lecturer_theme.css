@@ -1865,6 +1865,11 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', end
 .margin_right{
 	margin-right: 10px!important;
 }
+
+.margin_top{
+	margin:30px 0 !important;
+}
+
 /*END OF CUSTOM CSS*/
 
 /*OVERRIDDEN BOOTSTRAP AND OTHER CSS*/

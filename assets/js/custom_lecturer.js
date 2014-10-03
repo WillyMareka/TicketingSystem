@@ -1,9 +1,9 @@
-$(document).ready(function(){
 var base_url = 'http://localhost/sun/';
 var msg_path = 'lecturer/messages';
 var reply_path = 'lecturer/reply';
 var attendance_path = 'lecturer/attendance';
-
+var exam_path = 'lecturer/examinations';
+$(document).ready(function(){
 	$('#message_compose').addClass('fadeOutUp');
 
 	$('.instant_message').click(function(){
@@ -22,9 +22,10 @@ var attendance_path = 'lecturer/attendance';
 		event.preventDefault();
 		var msg = $('.msg').val();
 		var sbj = $('.sbj').val();
+		var unit = $('.unit_selection').val();
 		var path = base_url.concat(msg_path);
 		if (msg == '' || sbj == '') {
-			$('#sub_button_animation').replaceWith('<div id="sub_button_animation"><span id="im_icon" class = "fa"></span> Please Enter Message/Subject before sending</div>');
+			$('#sub_button_animation').replaceWith('<div id="sub_button_animation"><i id="im_icon" class = "fa fa-exclamation"></i> Please Enter Message/Subject before sending</div>');
 		}else{
 		$('#sub_button_animation').replaceWith('<div id="sub_button_animation"><span id="im_icon" class = "fa fa-spinner fa-spin"></span>Sending</div>');
 		$.ajax({
@@ -32,7 +33,8 @@ var attendance_path = 'lecturer/attendance';
 			url:path,
 			data:{
 				'msg':msg,
-				'sbj':sbj
+				'sbj':sbj,
+				'unit':unit
 			},
 			success:function(success_im){
 				$('.msg').val('');
@@ -44,6 +46,68 @@ var attendance_path = 'lecturer/attendance';
 		}//end of if
 	});//LEAVE THIS ALONE
 
+	// $('#exam_form').submit(function(){
+	// 	alert('SUBMITTED FORM');
+	// });
+	// $('.student_select').change(function(){
+	// 	var student_select = $('.student_select').val();
+		
+	// 	var student_data = $('.std_data').attr('data-student-id');
+	// 	if (student_select == student_data) {
+	// 	alert(student_select);return;
+	// 			var std_percentage = $(this).attr('data-student-percentage');
+	// 		if (std_percentage = "") {
+	// 		$('#error_message').replaceWith('<div id="error_message"><i id="im_icon" class = "fa fa-exclamation"></i> Student has no previous records</div>');
+	// 		}else{
+	// 			var msg = '<div id="error_message"><i id="im_icon" class = "fa fa-exclamation"></i> The students previous percentage was: </div>';
+	// 			$('#error_message').replaceWith(msg.concat(std_percentage));
+	// 		}
+
+	// 	};
+	// });
+	$('#save_examination').click(function(event){
+		event.preventDefault();
+		var cat_1 = $('.cat_1').val();
+		var cat_2 = $('.cat_2').val();
+		var final_exam = $('.final_exam').val();
+		var student_select = $('.student_select').val();
+
+		var path = base_url.concat(exam_path);
+
+		if (student_select == '') {
+			$('#error_message').replaceWith('<div id="error_message"><i id="im_icon" class = "fa fa-exclamation"></i> Please Select a Student</div>');
+		}else if(cat_1 == '' || cat_2 == '' || final_exam == '' ) {
+			$('#error_message').replaceWith('<div id="error_message"><i id="im_icon" class = "fa fa-exclamation"></i> Please Insert Appropriate Data into the fields</div>');
+		}
+		else{
+			$('#error_message').replaceWith('<div id="error_message"><span id="im_icon" class = "fa fa-spinner fa-spin"></span>Inserting Record</div>');
+			$.ajax({
+				type:'POST',
+				url:path,
+				data:{
+					'student':student_select,
+					'cat_1':cat_1,
+					'cat_2':cat_2,
+					'final_exam':final_exam
+				},
+				success:function(success_im){
+					$('.cat_1').val('');
+					$('.cat_2').val('');
+					$('.final_exam').val('');
+
+					$('#error_message').replaceWith('<div id="error_message"><span id="im_icon" class = "fa fa-check"></span>Record Inserted</div>');
+					console.log(success_im);
+					console.log(cat_1);
+					console.log(cat_2);
+					console.log(final_exam);
+					console.log(student_select);
+				}
+			});//end of AJAX
+
+		}//end of if		
+	});//LEAVE THIS ALONE
+
+	// save_examination
 	$('.compose,.close_msg_modal').click(function(){
 		if ($("#message_compose").hasClass("fadeOutUp")) {
 		$("#message_compose").removeClass("fadeOutUp");
@@ -64,28 +128,29 @@ var attendance_path = 'lecturer/attendance';
 		var msg_content = $('#'+msg_id).attr('value');
 		var student_id = $('#'+msg_id).attr('data-student-id');
 		var msg_sbj = $('#'+msg_id).attr('data-sbj');
-		var student_email = $('#'+msg_id).attr('data-student-email');
+		var designated_unit = $('#'+msg_id).attr('data-designated-unit');
 		var full_name =  $('#'+msg_id).attr('data-fullname')
 		// alert(msg_content);return;
-		$('#submit_reply').click(function(){
-		event.preventDefault();
-			send_reply(msg_id);
-				});
 
-		$('.msg_view_content').html(msg_content);
-		$('.view_from').val(full_name);
-		$('.view_msg_sbj').val(msg_sbj);
-		$('.view_from_email').val(student_email);
+		$('#submit_reply').click(function(event){
+			event.preventDefault();
+				send_reply(msg_id);
+					});
 
-		if ($("#message_view").hasClass("fadeOutUp")) {
-		$("#message_view").removeClass("fadeOutUp");
-		$("#message_view").removeClass("display-none");
-		$("#message_view").addClass("fadeInDown");
+			$('.msg_view_content').html(msg_content);
+			$('.view_from').val(full_name);
+			$('.view_msg_sbj').val(msg_sbj);
+			$('.designated_unit').val(designated_unit);
 
-		}else{
-		$("#message_view").removeClass("fadeInDown");	
-		$("#message_view").addClass("fadeOutUp");
-		// $("#login").hide();
+			if ($("#message_view").hasClass("fadeOutUp")) {
+			$("#message_view").removeClass("fadeOutUp");
+			$("#message_view").removeClass("display-none");
+			$("#message_view").addClass("fadeInDown");
+
+			}else{
+			$("#message_view").removeClass("fadeInDown");	
+			$("#message_view").addClass("fadeOutUp");
+			// $("#login").hide();
 		};
 	});//end of message compose modal
 
@@ -106,6 +171,11 @@ var attendance_path = 'lecturer/attendance';
 		var total_hrs = $('.total_hrs').val();
 		var att_path = base_url.concat(attendance_path);
 
+		if (student_selection == '') {
+			$('#error_message').replaceWith('<div id="error_message"><i id="im_icon" class = "fa fa-exclamation"></i> Please Select a Student</div>');
+		}
+		else{
+
 		$.ajax({
 			type:'POST',
 			url:att_path,
@@ -119,9 +189,10 @@ var attendance_path = 'lecturer/attendance';
 			},
 			success:function(success){
 				console.log(success);
-				$('.alert-success').removeClass('display-none');
-				$('.alert-success').addClass('fadeInDown');
-				$('.alert-success').html(success);
+				$('#error_message').replaceWith('<div id="error_message"><span id="im_icon" class = "fa fa-check"></span> Student Absentism Updated</div>');
+				// $('.alert-success').removeClass('display-none');
+				// $('.alert-success').addClass('fadeInDown');
+				// $('.alert-success').html(success);
 				console.log(student_selection);
 				console.log(morning_class);
 				console.log(late_morning_class);
@@ -129,16 +200,17 @@ var attendance_path = 'lecturer/attendance';
 				console.log(evening_class);
 			}
 		});
+		}//end of if
 	});//end of update attendance
 
 
 
 	function send_reply(msg_id){
 			var reply = $('.msg_reply').val();
-			// console.log(msg_id);return;
 			var rep_path = base_url.concat(reply_path);
+			// console.log(msg_id);return;
 			if (reply == '') {
-				$('#sub_button_animation_reply').replaceWith('<div id="sub_button_animation_reply"><span id="im_icon" class = "fa"></span> Please Enter Message/Subject before sending</div>');
+				$('#sub_button_animation_reply').replaceWith('<div id="sub_button_animation_reply"><i id="im_icon" class = "fa fa-exclamation"></i> Please Enter Message/Subject before sending</div>');
 			}else{
 			$('#sub_button_animation_reply').replaceWith('<div id="sub_button_animation_reply"><span id="im_icon" class = "fa fa-spinner fa-spin"></span>Sending</div>');
 			$.ajax({

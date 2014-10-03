@@ -26,6 +26,7 @@ class M_lecturers extends MY_Model {
     	return "SUCCESSFUL MESSAGE SENDING";
     }
 
+
     public function set_absentism(){
     	$calc = 0;
 		$student_id = $_POST['student_id'];
@@ -67,10 +68,10 @@ class M_lecturers extends MY_Model {
 		echo "The student's absentism has been updated";
     }
 
-    public function get_lecturer_messages_no(){
+    public function get_lecturer_messages_no($lecturer_id){
         $result = $this->db->query(
         "
-       SELECT COUNT(*) AS total FROM (SELECT s.id,s.firstname,s.lastname,s.othernames,s.student_phone,s.student_email,s.photo, l_m.origin as msg_src,l_m.origin_description,l_m.message,l_m.subject,l_m.sent_on,l_m.origin FROM students s,lecturer_messages l_m WHERE s.id = l_m.origin)total
+       SELECT COUNT(*) AS total FROM (SELECT * FROM student_messages s_m WHERE s_m.lecturer_id = $lecturer_id)total
         ");
 
         $msg_number = $result->result_array();
@@ -88,7 +89,7 @@ class M_lecturers extends MY_Model {
             l_u.lecturer_id,l_u.unit_id,u.unit_name,u.unit_short_code,
             s_m.subject,s_m.message,s_m.sent_on,s_m.unit as destination_unit
             FROM lecturers l,lecturer_units l_u,units u,student_messages s_m
-            WHERE l.course = u.course_id AND s_m.unit = u.unit_id and s_m.lecturer_id = $lecturer_id
+            WHERE s_m.lecturer_id = $lecturer_id
         	 GROUP BY s_m.id
         ");
 
@@ -125,6 +126,12 @@ class M_lecturers extends MY_Model {
     	return $results;
     }
 
+    public function get_student_marks($unit_id = null){
+        $result = $this->db->query("SELECT * FROM examinations WHERE unit_id = $unit_id");
+        $results = $result ->result_array();
+        return $results;
+    }
+
     public function examinations(){
         $cat_1 = $_POST['cat_1'];
         $cat_2 = $_POST['cat_2'];
@@ -157,6 +164,20 @@ class M_lecturers extends MY_Model {
 
         // echo $result;die;
         return "Record Entry Was Successful";
+    }
+
+    public function get_students_and_marks($course_id = null,$student_id = null,$unit_id = null){
+        $filter = isset($course_id)? "AND s_c.course_id = $course_id":NULL;
+        $filter .= isset($student_id)? "AND s.id = $student_id":NULL;
+        $filter .= isset($unit_id)? " AND e.unit_id = $unit_id":NULL;
+         $result = $this->db->query("
+            SELECT
+             s.id as student_id,s.firstname,s.lastname,s.othernames,s.student_phone,s.student_email,s.photo,s.admission_date,
+             s_c.course_id,c.course_name,c.course_short_code,e.percentage
+            FROM  students s,student_course s_c,courses c,examinations e WHERE c.course_id = s_c.course_id AND s.id = s_c.student_id $filter
+            ");
+        $total_students = $result->result_array();
+        return $total_students;
     }
 
     function lecturer_units($lec_no)
