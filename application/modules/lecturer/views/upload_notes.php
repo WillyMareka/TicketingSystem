@@ -33,12 +33,12 @@ $full_name = $fname.' '.$sname.' '.$onames;
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                        <i class="fa fa-reorder shaded"></i></a><a class="brand" href="<?php echo base_url().'lecturer' ?>">Lecturer Dashboard: Upload Notes</a>
+                        <i class="fa fa-reorder shaded"></i></a><a class="brand" href="<?php echo base_url().'lecturer' ?>">Lecturer Dashboard</a>
                     <div class="nav-collapse collapse navbar-inverse-collapse">
                         <ul class="nav nav-icons">
-                            <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-                            <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#"><i class="fa fa-area-chart"></i></a></li>
+                            <li><a href="<?php echo base_url()."lecturer/page_to_load/messages"?>"><i class="fa fa-envelope"></i></a></li>
+                            <li><a href="<?php echo base_url()."lecturer/page_to_load/attendance"?>"><i class="menu-icon fa fa-area-chart"></i></a></li>
+                            <li><a href="http://www.bbc.com" target="_blank"><i class="menu-icon fa fa-bullhorn"></i></a>
                         </ul>
                         <!-- <form class="navbar-search pull-left input-append" action="#">
                         <input type="text" class="span3">
@@ -47,6 +47,7 @@ $full_name = $fname.' '.$sname.' '.$onames;
                         </button>
                         </form> -->
                         <ul class="nav pull-right">
+                            <!-- 
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown
                                 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
@@ -57,15 +58,16 @@ $full_name = $fname.' '.$sname.' '.$onames;
                                     <li><a href="#">A Separated link</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Support </a></li>
+                            <li><a href="#">Support </a></li> 
+                            -->
                             <li class="nav-user dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="<?php echo $photo ?>" class="nav-avatar" />
+                                <?php echo $full_name; ?>   <img src="<?php echo $photo ?>" class="nav-avatar" />
                                 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Your Profile</a></li>
+                                    <!-- <li><a href="#">Your Profile</a></li>
                                     <li><a href="#">Edit Profile</a></li>
                                     <li><a href="#">Account Settings</a></li>
-                                    <li class="divider"></li>
+                                    <li class="divider"></li> -->
                                     <li><a href="<?php echo base_url().'lecturer/log_out' ?>">Logout</a></li>
                                 </ul>
                             </li>

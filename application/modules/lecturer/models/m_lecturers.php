@@ -68,10 +68,10 @@ class M_lecturers extends MY_Model {
 		echo "The student's absentism has been updated";
     }
 
-    public function get_lecturer_messages_no(){
+    public function get_lecturer_messages_no($lecturer_id){
         $result = $this->db->query(
         "
-       SELECT COUNT(*) AS total FROM (SELECT s.id,s.firstname,s.lastname,s.othernames,s.student_phone,s.student_email,s.photo, l_m.origin as msg_src,l_m.origin_description,l_m.message,l_m.subject,l_m.sent_on,l_m.origin FROM students s,lecturer_messages l_m WHERE s.id = l_m.origin)total
+       SELECT COUNT(*) AS total FROM (SELECT * FROM student_messages s_m WHERE s_m.lecturer_id = $lecturer_id)total
         ");
 
         $msg_number = $result->result_array();

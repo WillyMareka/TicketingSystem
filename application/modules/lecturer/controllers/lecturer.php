@@ -16,7 +16,7 @@ class Lecturer extends MY_Controller
 
 		$lecturer_id = $this->session->userdata('username');
 		$course_id = $this->session->userdata('course_id');
-		$msg_no = $this->m_lecturers->get_lecturer_messages_no('lecturer_messages',$lecturer_id);
+		$msg_no = $this->m_lecturers->get_lecturer_messages_no($lecturer_id);
 		$msg_data= $this->m_lecturers->get_lecturer_messages($lecturer_id);
 		$total_students= $this->m_lecturers->total_students_in_course($course_id);
 		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no($lecturer_id);
