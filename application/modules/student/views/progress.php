@@ -4,3 +4,7 @@
 	</div>
 </div>
 <!-- /.row -->
+
+<div class = "row">
+	<?php echo $progress; ?>
+</div>

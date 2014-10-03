@@ -16,7 +16,7 @@ class Lecturer extends MY_Controller
 
 		$lecturer_id = $this->session->userdata('username');
 		$course_id = $this->session->userdata('course_id');
-		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no('lecturer_messages',$lecturer_id);
+		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no($lecturer_id);
 		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages($lecturer_id);
 		$data['units'] = $this->m_lecturers->get_lecturer_units($lecturer_id);
 		//$data['sender_info'] = $this->m_lecturers->get_sender_info();

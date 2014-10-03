@@ -123,15 +123,19 @@ class M_student extends MY_Model {
     public function getMessages($course)
     {
         $units = $this->getStudentUnitByCourseID($course);
-        $counter = 0;
-        foreach ($units as $unit) {
-            $query = $this->db->query("SELECT * FROM student_messages WHERE unit = " .$unit['unit_id']);
-            $not = $query->result_array();
-
-            foreach ($not as $n) {
-                $counter++;
-                $notification_message[$counter] = $n;
-            }
+        $notification_message = '';
+        if($units)
+       { 
+            $counter = 0;
+           foreach ($units as $unit) {
+               $query = $this->db->query("SELECT * FROM student_messages WHERE unit = " .$unit['unit_id']." ORDER BY sent_on DESC");
+               $not = $query->result_array();
+   
+               foreach ($not as $n) {
+                   $counter++;
+                   $notification_message[$counter] = $n;
+               }
+           }
         }
 
         return $notification_message;
@@ -164,5 +168,13 @@ class M_student extends MY_Model {
         $not = $query->result_array();
 
         return $not;
+    }
+
+    public function getProgress($student_id)
+    {
+        $query = $this->db->query("SELECT * FROM examinations WHERE student_id = " . $student_id);
+        $progress = $query->result_array();
+
+        return $progress;
     }
 }

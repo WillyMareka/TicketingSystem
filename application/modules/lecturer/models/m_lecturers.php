@@ -128,13 +128,13 @@ class M_lecturers extends MY_Model {
     public function examinations(){
         $cat_1 = $_POST['cat_1'];
         $cat_2 = $_POST['cat_2'];
-        $student_id = $_POST['student_select'];
+        $student_id = $_POST['student'];
         $final_exam = $_POST['final_exam'];
 
         $student_data=$this->get_students(NULL,$student_id);
         $student_id = $student_data[0]['student_id'];
         $lecturer_id = $this->session->userdata('username');
-        $unit_id = $this->session->userdata('unit_code');
+        $unit_id = $this->lecturer_units($lecturer_id)[0]['unit_id'];
 
         $max_marks = 300;
         $total_marks = $cat_1 + $cat_2+$final_exam;

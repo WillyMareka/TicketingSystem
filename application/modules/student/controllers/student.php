@@ -2,6 +2,7 @@
 
 class Student extends MY_Controller
 {
+	public $firstfive;
 	function __construct()
     {
         // Call the Model constructor
@@ -12,6 +13,8 @@ class Student extends MY_Controller
 		if($logged_in == TRUE)
 		{
 			$data['student'] = $this->getStudentDetails();
+			$course = $this->getStudentDetails()['course_id'];
+			$this->firstfive = $this->getFiveLatestMessages('course');
 		}
 		else
 		{
@@ -25,6 +28,7 @@ class Student extends MY_Controller
 		{
 			$data['student'] = $this->getStudentDetails();
 			$course = $this->getStudentDetails()['course_id'];
+			$data['firstfive'] = $this->firstfive;
 			$data['message_count'] = $this->m_student->getMessageCount($course);
 			$data['notifications'] = $this->m_student->getNotificationCount($course);
 			$data['message'] = $this->createMessage();
@@ -47,9 +51,37 @@ class Student extends MY_Controller
 
 	function load_progress()
 	{
+		$progress = '';
 		$course = $this->getStudentDetails()['course_id'];
 		$data['message_count'] = $this->m_student->getMessageCount($course);
 		$data['student'] = $this->getStudentDetails();
+		$units = $this->m_student->getUnitsbyCourse($course);
+		$data['firstfive'] = $this->firstfive;
+		$marks = $this->m_student->getProgress($this->session->userdata('username'));
+		$progress .= '<div class = "panel panel-success">';
+		foreach ($units as $unit) {	
+			$progress .= '<div class = "panel-heading bg-blue"><h3>'.$unit['unit_name'].'</h3></div>';
+			$progress .= '<table class = "table table-bordered">';
+			if($marks)
+			{
+				foreach ($marks as $mark) {
+					if($mark['unit_id'] == $unit['unit_id'])
+					{
+						$progress .= '<tr><td>CAT 1</td><td>'.$mark['cat_1'].'</td></tr>';
+						$progress .= '<tr><td>CAT 2</td><td>'.$mark['cat_2'].'</td></tr>';					
+						$progress .= '<tr><td>FINAL EXAM</td><td>'.$mark['final'].'</td></tr>';
+						$progress .= '<tr class = "bg-green"><td>UNIT AVERAGE</td><td>'.$mark['percentage'].'</td></tr>';
+					}
+				}
+			}
+			else
+			{
+				$progress .= '<h3 class = "text-center">No marks uploaded yet</h3>';
+			}
+			$progress .= '</table>';
+		}
+		$progress .= '</div>';
+		$data['progress'] = $progress;
 		$data['title'] = "Student: Progress Report";
 		$data['content_view'] = "progress";
 		$this->load->view('student_template_view', $data);
@@ -157,14 +189,20 @@ class Student extends MY_Controller
 		$course = $this->getStudentDetails()['course_id'];
 		$data['message_count'] = $this->m_student->getMessageCount($course);
 		$messages = $this->m_student->getMessages($course);
-
-		foreach ($messages as $message) {
-			$lect = $this->m_student->getLecturerByID($message['lecturer_id']);
-			$message_section .= '<a "><tr class = "unread"><td class="small-col"><input type="checkbox" /></td><td class="small-col"><i class="fa fa-star"></i></td>';
-			$message_section .= '<td class = "name"><a href = "'.base_url().'student/view_message/'.$message['id'].'">'.$lect['f_name'].' ' .$lect['s_name']. '</a></td>';
-			$message_section .= '<td class = "subject"><a href = "'.base_url().'student/view_message/'.$message['id'].'">'.$message['subject']. '</a></td>';
-			$message_section .= '<td class = "time"><a href = "'.base_url().'student/view_message/'.$message['id'].'">'.$message['sent_on']. '</a></td>';
-			$message_section .='</tr></a>';
+		if($messages)
+		{
+			foreach ($messages as $message) {
+				$lect = $this->m_student->getLecturerByID($message['lecturer_id']);
+				$message_section .= '<a "><tr class = "unread"><td class="small-col"><input type="checkbox" /></td><td class="small-col"><i class="fa fa-star"></i></td>';
+				$message_section .= '<td class = "name"><a href = "'.base_url().'student/view_message/'.$message['id'].'">'.$lect['f_name'].' ' .$lect['s_name']. '</a></td>';
+				$message_section .= '<td class = "subject"><a href = "'.base_url().'student/view_message/'.$message['id'].'">'.$message['subject']. '</a></td>';
+				$message_section .= '<td class = "time"><a href = "'.base_url().'student/view_message/'.$message['id'].'">'.$message['sent_on']. '</a></td>';
+				$message_section .='</tr></a>';
+			}
+		}
+		else
+		{
+			$message_section .= 'No messages for you';
 		}
 		$data['message_section'] = $message_section;
 		$data['content_view'] = "inbox";
@@ -258,6 +296,7 @@ class Student extends MY_Controller
 		$data['student'] = $this->getStudentDetails();
 		$course = $this->getStudentDetails()['course_id'];
 		$data['message_count'] = $this->m_student->getMessageCount($course);
+		$data['firstfive'] = $this->firstfive;
 		$messages = $this->m_student->getMessageById($message_id);
 		$message_section = '';
 		$lect = $this->m_student->getLecturerByID($messages[0]['lecturer_id']);
@@ -271,5 +310,30 @@ class Student extends MY_Controller
 		$data['title'] = "Message: " . $message['subject'];
 		$data['content_view'] = "message";
 		$this->load->view('student_template_view', $data);
+	}
+
+	function getFiveLatestMessages()
+	{
+		$message_section = '';
+		$data['student'] = $this->getStudentDetails();
+		$course = $this->getStudentDetails()['course_id'];
+		$messages = $this->m_student->getMessages($course);
+
+		foreach ($messages as $message) {
+			$lect = $this->m_student->getLecturerByID($message['lecturer_id']);
+			$message_section .= '<li><a href="'.base_url().'student/view_message/'.$message['id'].'"><span class="photo"><img alt="avatar" src="'.$lect['profile_picture'].'"></span>
+                                <span class="subject">
+                                <span class="from">'.$lect['f_name'].' ' .$lect['s_name']. '</span>
+                                    <span class="time">'.$message['subject'].'</span>
+                                    </span>
+                                    <span class="message">'
+                                       .substr($message['message'],0,10).'...';
+                                    '</span>
+                                </a>
+                            </li>';
+		}
+
+		return $message_section;
+
 	}
 }

@@ -53,7 +53,7 @@
                 <!--  notification start -->
                 <ul class="nav top-menu">
                     <!-- settings start -->
-                    <li class="dropdown">
+                    <!--<li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#" style="color:white;">
                             <i class="fa fa-tasks"></i>
                             <span class="badge bg-green">4</span>
@@ -119,7 +119,7 @@
                                 <a href="#">See All Tasks</a>
                             </li>
                         </ul>
-                    </li>
+                    </li>-->
                     <!-- settings end -->
                     <!-- inbox dropdown start-->
                     <li id="header_inbox_bar" class="dropdown" >
@@ -130,56 +130,9 @@
                         <ul class="dropdown-menu extended inbox">
                             <div class="notify-arrow notify-arrow-green"></div>
                             <li>
-                                <p class="green">You have 5 new messages</p>
+                                <p class="green">You have <?php echo $message_count; ?> new messages</p>
                             </li>
-                            <li>
-                                <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Zac Snider</span>
-                                    <span class="time">Just now</span>
-                                    </span>
-                                    <span class="message">
-                                        Hi mate, how is everything?
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-divya.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Divya Manian</span>
-                                    <span class="time">40 mins.</span>
-                                    </span>
-                                    <span class="message">
-                                     Hi, I need your help with this.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-danro.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Dan Rogers</span>
-                                    <span class="time">2 hrs.</span>
-                                    </span>
-                                    <span class="message">
-                                        Love your new Dashboard.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-sherman.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Dj Sherman</span>
-                                    <span class="time">4 hrs.</span>
-                                    </span>
-                                    <span class="message">
-                                        Please, answer asap.
-                                    </span>
-                                </a>
-                            </li>
+                            <?php echo $firstfive;?>
                             <li>
                                 <a href="index.html#">See all messages</a>
                             </li>
@@ -216,9 +169,9 @@
                             <a href="<?php echo base_url() .'student/load_progress'?>"><i class="fa fa-bar-chart-o fa-fw"></i> Progress Report</a>
                             <!-- /.nav-second-level -->
                         </li>
-                         <li>
+                         <!--<li>
                             <a href="<?php echo base_url() .'student/attendance'?>"><i class="fa fa-users fa-fw"></i> Attendance</a>
-                        </li>
+                        </li>-->
                         <li>
                             <a href="<?php echo base_url() .'student/timetables'?>"><i class="fa fa-table fa-fw"></i> Time Tables</a>
                         </li>
@@ -230,12 +183,12 @@
                             <a href="<?php echo base_url() .'student/inbox'?>"><i class="fa fa-envelope fa-fw"></i> Messages <small class = "pull-right badge bg-yellow"><?php echo $message_count; ?></small></a>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li>
+                        <!--<li>
                             <a href="#"><i class="fa fa-tasks fa-fw"></i> Tasks<span class="badge pull-right bg-green">New</span></a>
                         </li>
                         <li>
                           <a href="#"><i class = "fa fa-magic fa-fw"></i> Forum</a>
-                        </li>
+                        </li>-->
 
                         <li>
                           <a href="#"><i class = "fa fa-sign-out fa-fw"></i> Log Out</a>

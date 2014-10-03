@@ -89,14 +89,11 @@ $full_name = $fname.' '.$sname.' '.$onames;
                 <?php echo $msg_no[0]['total']; ?></b> </a></li>
                 <li><a href="<?php echo base_url()."lecturer/page_to_load/students"?>"><i class="menu-icon fa fa-tasks"></i>Students <b class="label orange pull-right">
                     <?php echo $total_students; ?></b> </a></li>
-<<<<<<< HEAD
 
                 <li><a href="<?php echo base_url()."lecturer/page_to_load/charts"?>"><i class="menu-icon fa fa-area-chart"></i>Statistics </a></li>
                 <li><a href = "<?php echo base_url() ."lecturer/page_to_load/upload_notes"?>"><i class = "menu-icon fa fa-upload"></i>Upload Notes</a></li>
-=======
                 <li><a href="<?php echo base_url()."lecturer/page_to_load/attendance"?>"><i class="menu-icon fa fa-area-chart"></i>Attendance</a></li>
                 <li><a href="<?php echo base_url()."lecturer/page_to_load/examinations"?>"><i class="menu-icon fa fa-gavel"></i>Examinations</a></li>
->>>>>>> 7cc07c739542aedab99074dc7f9c01182497afa5
 
                <!--  <li><a class="collapsed" data-toggle="collapse" href="#togglePages"><i class="menu-icon fa fa-cog">
                 </i><i class="fa fa-chevron-down pull-right"></i><i class="fa fa-chevron-up pull-right">

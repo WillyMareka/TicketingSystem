@@ -123,7 +123,7 @@ class Admin_model extends MY_Model {
         $location = strtoupper($this->input->post('location'));
         $course = $this->input->post('course');
         $group = '0';
-        $query = "INSERT INTO students VALUES(NULL, '$firstname', '$lastname', '$others', '$phone', '$gender', '$parent_phone', '$student_email', '$parent_email', '$location', '$path', NULL, 1,'$group')";
+        $query = "INSERT INTO students VALUES(NULL, '$firstname', '$lastname', '$others', '$phone', '$gender', '$parent_phone', '$student_email', '$parent_email', '$location', '$path', NULL, 1)";
         $result = $this->db->query($query);
 
         $student_no = mysql_insert_id();
