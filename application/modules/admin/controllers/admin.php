@@ -427,8 +427,62 @@ class Admin extends MY_Controller
 			//$this->students();
 			redirect('admin/students');
 		}
+	
+	}
 
+	function quick_mail()
+	{
+		$this->form_validation->set_rules('recipient', 'Recipients', 'trim|required');
+		$this->form_validation->set_rules('subject', 'Subject', 'trim|required');
+		$this->form_validation->set_rules('message', 'Message', 'trim|required');
 		
+		if ($this->form_validation->run() == FALSE) 
+		{
+			echo "The form validation process was failed!!!";
+            redirect('admin');
+		} else 
+		{
+			$rec = $this->input->post('recipient');
+			$sub = $this->input->post('subject');
+			$msg = $this->input->post('message');
+			// echo "The form validation was very successfull";
+           	$this->admin_email($rec, $sub, $msg);
+			
+			redirect('admin');
+				
+		}
+		
+	}
+
+	function admin_email($email, $subject, $message)
+	{
+		$time=date('Y-m-d');
+		
+		$config = array(
+			'protocol' => 'smtp',
+			'smtp_host' => 'ssl://smtp.googlemail.com',
+			'smtp_port' => 465,
+			'smtp_user' => "chrisrichrads@gmail.com",
+			'smtp_pass' => "joshuaSUN"
+			);
+		
+		$this->load->library('email', $config);
+		$this->email->set_newline("\r\n");
+
+		$this->email->from('chrisrichrads@gmail.com', 'STRATHMORE UNIVERSITY NOTIFICATION');
+		$this->email->to($email);
+		$this->email->subject($subject.' (Administrator)');
+		$this->email->message($message);
+		$this->email->set_mailtype("html");
+		
+		
+		if($this->email->send())
+			{	
+								
+			} else 
+			{
+				show_error($this->email->print_debugger());
+			}
 	}
 }
 
