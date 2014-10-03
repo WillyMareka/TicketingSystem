@@ -125,7 +125,7 @@
                     <li id="header_inbox_bar" class="dropdown" >
                         <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#" style="color:white;">
                             <i class="fa fa-envelope-o"></i>
-                            <span class="badge bg-yellow">5</span>
+                            <span class="badge bg-yellow"><?php echo $message_count; ?></span>
                         </a>
                         <ul class="dropdown-menu extended inbox">
                             <div class="notify-arrow notify-arrow-green"></div>
@@ -227,7 +227,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="<?php echo base_url() .'student/inbox'?>"><i class="fa fa-envelope fa-fw"></i> Messages <small class = "pull-right badge bg-yellow">15</small></a>
+                            <a href="<?php echo base_url() .'student/inbox'?>"><i class="fa fa-envelope fa-fw"></i> Messages <small class = "pull-right badge bg-yellow"><?php echo $message_count; ?></small></a>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>

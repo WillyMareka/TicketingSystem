@@ -7,6 +7,7 @@ class Student extends MY_Controller
         // Call the Model constructor
         parent::__construct();
         $this->load->model('m_student');
+        // error_reporting(0);
         $logged_in = $this->check_login();
 		if($logged_in == TRUE)
 		{
@@ -24,6 +25,7 @@ class Student extends MY_Controller
 		{
 			$data['student'] = $this->getStudentDetails();
 			$course = $this->getStudentDetails()['course_id'];
+			$data['message_count'] = $this->m_student->getMessageCount($course);
 			$data['notifications'] = $this->m_student->getNotificationCount($course);
 			$data['message'] = $this->createMessage();
 			$data['title'] = "Student: Homepage";
@@ -45,6 +47,8 @@ class Student extends MY_Controller
 
 	function load_progress()
 	{
+		$course = $this->getStudentDetails()['course_id'];
+		$data['message_count'] = $this->m_student->getMessageCount($course);
 		$data['student'] = $this->getStudentDetails();
 		$data['title'] = "Student: Progress Report";
 		$data['content_view'] = "progress";
@@ -52,6 +56,8 @@ class Student extends MY_Controller
 	}
 	function attendance()
 	{
+		$course = $this->getStudentDetails()['course_id'];
+		$data['message_count'] = $this->m_student->getMessageCount($course);
 		$data['student'] = $this->getStudentDetails();
 		$data['title'] = "Student: Attendance";
 		$data['content_view'] = "attendance";
@@ -59,6 +65,8 @@ class Student extends MY_Controller
 	}
 	function timetables()
 	{
+		$course = $this->getStudentDetails()['course_id'];
+		$data['message_count'] = $this->m_student->getMessageCount($course);
 		$data['student'] = $this->getStudentDetails();
 		$timetable_row = '';
 		$timetable = $this->m_student->getTimetables($data['student']['course_id']);
@@ -104,6 +112,8 @@ class Student extends MY_Controller
 	}
 	function notes()
 	{
+		$course = $this->getStudentDetails()['course_id'];
+		$data['message_count'] = $this->m_student->getMessageCount($course);
 		$unit_list = '';
 		$student_details = $this->getStudentDetails();
 		$units = $this->m_student->getUnitsbyCourse($student_details['course_id']);
@@ -139,14 +149,32 @@ class Student extends MY_Controller
 
 	function inbox()
 	{
+		$course = $this->getStudentDetails()['course_id'];
+		$data['message_count'] = $this->m_student->getMessageCount($course);
+		$message_section = '';
 		$data['student'] = $this->getStudentDetails();
 		$data['title'] = "Student: Inbox";
+		$course = $this->getStudentDetails()['course_id'];
+		$data['message_count'] = $this->m_student->getMessageCount($course);
+		$messages = $this->m_student->getMessages($course);
+
+		foreach ($messages as $message) {
+			$lect = $this->m_student->getLecturerByID($message['lecturer_id']);
+			$message_section .= '<a "><tr class = "unread"><td class="small-col"><input type="checkbox" /></td><td class="small-col"><i class="fa fa-star"></i></td>';
+			$message_section .= '<td class = "name"><a href = "'.base_url().'student/view_message/'.$message['id'].'">'.$lect['f_name'].' ' .$lect['s_name']. '</a></td>';
+			$message_section .= '<td class = "subject"><a href = "'.base_url().'student/view_message/'.$message['id'].'">'.$message['subject']. '</a></td>';
+			$message_section .= '<td class = "time"><a href = "'.base_url().'student/view_message/'.$message['id'].'">'.$message['sent_on']. '</a></td>';
+			$message_section .='</tr></a>';
+		}
+		$data['message_section'] = $message_section;
 		$data['content_view'] = "inbox";
 		$this->load->view('student_template_view', $data);
 	}
 
 	function elearning($unit_id)
 	{
+		$course = $this->getStudentDetails()['course_id'];
+		$data['message_count'] = $this->m_student->getMessageCount($course);
 		$unit_section = '';
 		$uploaded_notes = $this->m_student->getUploadedNotes($unit_id);
 		$unit = $this->m_student->get_unit($unit_id);
@@ -223,5 +251,25 @@ class Student extends MY_Controller
 			$notification_list .= '<p>You have no Notifications</p>';
 		}
 		return  $notification_list;
+	}
+
+	function view_message($message_id)
+	{
+		$data['student'] = $this->getStudentDetails();
+		$course = $this->getStudentDetails()['course_id'];
+		$data['message_count'] = $this->m_student->getMessageCount($course);
+		$messages = $this->m_student->getMessageById($message_id);
+		$message_section = '';
+		$lect = $this->m_student->getLecturerByID($messages[0]['lecturer_id']);
+
+		foreach ($messages as $message) {
+			// echo ($message);
+			$message_section .= '<div class="panel panel-default"><div class = "panel-heading"><p><h4>Subject: '.$message['subject'].'</h4><p><p><small><i>'.$lect['f_name'].' '.$lect['s_name'].'</i> at '.$message['sent_on'].'</small></p></div>';
+			$message_section .=  '<div class="panel-body">'.$message['message'].'</div></div>';
+		}
+		$data['message_section'] = $message_section;
+		$data['title'] = "Message: " . $message['subject'];
+		$data['content_view'] = "message";
+		$this->load->view('student_template_view', $data);
 	}
 }

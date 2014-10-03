@@ -12,21 +12,17 @@ class Lecturer extends MY_Controller
 	function index()
 	{
 		$data = array();
-		$data['nyangundi'] = "This is an attempt yo";
-		$data['notification_1'] = "This is the first notification";
-		$data['notification_2'] = "This is the second notification";
-		$data['notification_3'] = "This is the third notification";
-		$data['notification_4'] = "This is the fourth notification";
-		$data['notification_4'] = "This is the fourth notification";
-		$data['notification_5'] = "This is the fifth notification";
+		// echo "<pre>";print_r($this->session->all_userdata());echo "</pre>"; exit; 
 
-		$data['messages_no'] = 35;
 		$lecturer_id = $this->session->userdata('username');
+		$course_id = $this->session->userdata('course_id');
 		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no('lecturer_messages',$lecturer_id);
-		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages('lecturer_messages',$lecturer_id);
+		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages($lecturer_id);
+		$data['units'] = $this->m_lecturers->get_lecturer_units($lecturer_id);
 		//$data['sender_info'] = $this->m_lecturers->get_sender_info();
+
 		
-		$total_students= $this->m_lecturers->total_students();
+		$total_students= $this->m_lecturers->total_students_in_course($course_id);
 		$data['total_students'] = $total_students[0]['total_students'];
 		if($this->session->userdata('user_type') == 'lecturer')
 		{
@@ -39,15 +35,20 @@ class Lecturer extends MY_Controller
 
 	}
 	function page_to_load($selection = null){
+		$unit_data = array();
 		$lecturer_id = $this->session->userdata('username');
-		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no('lecturer_messages',$lecturer_id);
-		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages('lecturer_messages',$lecturer_id);
+		$course_id = $this->session->userdata('course_id');
+		$course = $this->session->userdata('course');
+
+		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no($lecturer_id);
+		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages($lecturer_id);
 		//$data['sender_info'] = $this->m_lecturers->get_sender_info();
-		
-		$total_students= $this->m_lecturers->total_students();
+		$total_students= $this->m_lecturers->total_students_in_course($course_id);
 		$data['total_students'] = $total_students[0]['total_students'];
 		$data['students'] = $this->m_lecturers->get_students();
 		$data['upload_section'] = $this->createUploadNotesSection();
+
+		$data['units'] = $this->m_lecturers->get_lecturer_units($lecturer_id);
 
 
 		if ($selection == "messages") {
@@ -65,6 +66,12 @@ class Lecturer extends MY_Controller
 		}elseif ($selection == "attendance") {
 			//$data['students'] = $this->m_lecturers->get_students();
 			$this ->load->view('attendance.php',$data);
+		}elseif ($selection == "examinations") {
+			//$data['students'] = $this->m_lecturers->get_students();
+			$this ->load->view('examinations.php',$data);
+		}elseif ($selection == "news_feed") {
+			//$data['students'] = $this->m_lecturers->get_students();
+			$this ->load->view('news_feed.php',$data);
 		}
 		else if($selection == "upload_notes")
 		{
@@ -75,7 +82,7 @@ class Lecturer extends MY_Controller
 		$lecturer_id = $this->session->userdata('username');
 		$message = $_POST['msg'];
 		$subject = $_POST['sbj'];
-		$unit = $this->session->userdata('unit_code');
+		$unit = $_POST['unit'];
 		
 		$response = $this->m_lecturers->lecturer_messages($lecturer_id,$subject,$message,$unit,'students');
 		echo $response;
@@ -87,7 +94,7 @@ class Lecturer extends MY_Controller
 		// echo "<pre>";print_r($jibu);echo "</pre></br>";
 		// echo "<pre>";print_r($jibu_);echo "</pre>";
 
-		$jibu = $this->m_lecturers->get_students();
+		$jibu = $this->m_lecturers->examinations();
 		echo "<pre>";print_r($jibu);echo "</pre></br>";
 	}
 
@@ -100,10 +107,15 @@ class Lecturer extends MY_Controller
 	}
 
 	function attendance(){
-	
 		$result = $this->m_lecturers->set_absentism();
 		echo $result;
+	}
 
+	function examinations(){
+		$result = $this->m_lecturers->examinations();
+
+		echo $result;
+		// echo "Successful posting";
 	}
 
 	function createUploadNotesSection()

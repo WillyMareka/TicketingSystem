@@ -44,6 +44,14 @@ class MY_Model extends CI_Model {
 
         return $total_students;
     }
+
+    public function total_students_in_course($course_id){
+         $result = $this->db->query("SELECT COUNT(*) as total_students FROM  student_course WHERE course_id = $course_id ");
+        $total_students = $result->result_array();
+
+        return $total_students;
+    }
+
     public function getUnits()
     {
         $query = $this->db->query("SELECT * FROM units");
@@ -106,5 +114,13 @@ class MY_Model extends CI_Model {
         $topics = $query->result_array();
 
         return $topics;
+    }
+
+    public function getLecturerByID($lec_no)
+    {
+        $query = $this->db->query("SELECT * FROM lecturers WHERE id = " . $lec_no . " LIMIT 1");
+        $result = $query->result_array();
+
+        return $result[0];
     }
 }

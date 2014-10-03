@@ -162,7 +162,7 @@ class Admin extends MY_Controller
 
 			$this->admin_model->add_lec($path);
 
-			$this->lectures();
+			redirect('admin/lectures');
 			// echo "Success!";die;
 		}
 		// $this->m_admin->addStudent();
@@ -190,7 +190,7 @@ class Admin extends MY_Controller
 			}
 
 			$this->admin_model->addStudent($path);
-			$this->students();
+			redirect('admin/students');
 			// echo "Success!";die;
 		}
 		// $this->m_admin->addStudent();
