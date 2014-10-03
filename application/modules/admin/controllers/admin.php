@@ -13,6 +13,7 @@ class Admin extends MY_Controller
 		parent::__construct();
 		$this->load->model('admin_model');
 		$this->load->model('m_admin');
+
 		 $logged_in = $this->check_login();
 		if($logged_in == TRUE)
 		{
@@ -31,6 +32,10 @@ class Admin extends MY_Controller
 	{
 		if ($this->session->userdata('user_type') == 'administrator') {
 			$data['userdetails'] = $this->admin_model->admin_details($this->session->userdata('username'));
+			$data['unit'] = $this->admin_model->unit_count();
+			$data['course'] = $this->admin_model->course_count();
+			$data['student'] = $this->admin_model->student_count();
+			$data['lecturer'] = $this->admin_model->lecturer_count();
 			$data['content_view'] = "admin_dashboard";
 			$data['title'] = 'Administrators Section: Dashboard';
 		}
@@ -49,6 +54,10 @@ class Admin extends MY_Controller
 		$data['title'] = 'Administrators Section: Lecturers';
 		$data['courses'] = $this->createCourseDropdown();
 		$data['lecture'] = $this->admin_model->get_lectures(); 
+		$data['unit'] = $this->admin_model->unit_count();
+		$data['course'] = $this->admin_model->course_count();
+		$data['student'] = $this->admin_model->student_count();
+		$data['lecturer'] = $this->admin_model->lecturer_count();
 
 		$this->load->view('admin_template_view', $data);
 	}
@@ -60,6 +69,11 @@ class Admin extends MY_Controller
 		$data['title'] = 'Administrators Section: Sudents';
 		$data['stude'] = $this->admin_model->get_students();
 		$data['courses'] = $this->createCourseDropdown();
+		$data['unit'] = $this->admin_model->unit_count();
+		$data['course'] = $this->admin_model->course_count();
+		$data['student'] = $this->admin_model->student_count();
+		$data['lecturer'] = $this->admin_model->lecturer_count();
+
 
 		$this->load->view('admin_template_view', $data);
 	}
@@ -72,6 +86,11 @@ class Admin extends MY_Controller
 		$data['courses'] = $this->admin_model->get_courses();
 		$data['units'] = $this->admin_model->get_units();
 		$data['lecturers'] = $this->admin_model->get_lectures();
+		$data['unit'] = $this->admin_model->unit_count();
+		$data['course'] = $this->admin_model->course_count();
+		$data['student'] = $this->admin_model->student_count();
+		$data['lecturer'] = $this->admin_model->lecturer_count();
+
 
 		$this->load->view('admin_template_view', $data);
 	}
@@ -82,6 +101,11 @@ class Admin extends MY_Controller
 		$data['content_view'] = "courses_view";
 		$data['title'] = 'Administrators Section: Courses';
 		$data['courses'] = $this->admin_model->get_courses();
+		$data['unit'] = $this->admin_model->unit_count();
+		$data['course'] = $this->admin_model->course_count();
+		$data['student'] = $this->admin_model->student_count();
+		$data['lecturer'] = $this->admin_model->lecturer_count();
+
 
 		$this->load->view('admin_template_view', $data);
 	}
@@ -92,6 +116,11 @@ class Admin extends MY_Controller
 		$data['content_view'] = "units_view";
 		$data['title'] = 'Administrators Section: Units';
 		$data['units'] = $this->admin_model->get_units();
+		$data['unit'] = $this->admin_model->unit_count();
+		$data['course'] = $this->admin_model->course_count();
+		$data['student'] = $this->admin_model->student_count();
+		$data['lecturer'] = $this->admin_model->lecturer_count();
+
 
 		$this->load->view('admin_template_view', $data);
 	}
@@ -132,6 +161,8 @@ class Admin extends MY_Controller
 			}
 
 			$this->admin_model->add_lec($path);
+
+			$this->lectures();
 			// echo "Success!";die;
 		}
 		// $this->m_admin->addStudent();
@@ -158,7 +189,8 @@ class Admin extends MY_Controller
 				$path = base_url().'upload/'.$value['file_name'];
 			}
 
-			$this->m_admin->addStudent($path);
+			$this->admin_model->addStudent($path);
+			$this->students();
 			// echo "Success!";die;
 		}
 		// $this->m_admin->addStudent();
@@ -224,8 +256,13 @@ class Admin extends MY_Controller
 	{
 		$data['userdetails'] = $this->admin_model->admin_details($this->session->userdata('username'));
 		$data['courses'] = $this->createCourseDropdown();
+		$data['timetables'] = $this->admin_model->get_timetables();
 		$data['content_view'] = "addTimetable";
 		$data['title'] = 'Administrators Section: Timetables';
+		$data['unit'] = $this->admin_model->unit_count();
+		$data['course'] = $this->admin_model->course_count();
+		$data['student'] = $this->admin_model->student_count();
+		$data['lecturer'] = $this->admin_model->lecturer_count();
 
 		$this->load->view('admin_template_view', $data);
 	}
@@ -268,6 +305,10 @@ class Admin extends MY_Controller
 		$data['userdetails'] = $this->admin_model->admin_details($this->session->userdata('username'));
 		$data['content_view'] = "admin_view";
 		$data['title'] = 'Administrators Section: Administrator';
+		$data['unit'] = $this->admin_model->unit_count();
+		$data['course'] = $this->admin_model->course_count();
+		$data['student'] = $this->admin_model->student_count();
+		$data['lecturer'] = $this->admin_model->lecturer_count();
 		
 
 		$this->load->view('admin_template_view', $data);
@@ -321,7 +362,50 @@ class Admin extends MY_Controller
 
 	function editStudent()
 	{
+		$this->form_validation->set_rules('f_name', 'First Name', 'trim|required');
+		$this->form_validation->set_rules('s_name', 'Second Name', 'trim|required');
+		$this->form_validation->set_rules('o_name', 'Other Names', 'trim|required');
+		$this->form_validation->set_rules('phone', 'Phone Number', 'trim|required');
+		$this->form_validation->set_rules('semail', 'Email', 'trim|required');
+		$this->form_validation->set_rules('local', 'Lcoation', 'trim|required');
 
+
+		if ($this->form_validation->run() == FALSE) 
+		{
+			echo "The form validation process was failed!!!";
+            $this->students();
+		} else 
+		{
+			// echo "The form validation was very successfull";
+           	$this->admin_model->update_student();
+			
+			$this->students();
+				
+		}
+	}
+
+	function editLecturer()
+	{
+		
+		$this->form_validation->set_rules('f_name', 'First Name', 'trim|required');
+		$this->form_validation->set_rules('s_name', 'Second Name', 'trim|required');
+		$this->form_validation->set_rules('o_name', 'Other Names', 'trim|required');
+		$this->form_validation->set_rules('phone', 'Phone Number', 'trim|required');
+		$this->form_validation->set_rules('lemail', 'Email', 'trim|required');
+		
+
+		if ($this->form_validation->run() == FALSE) 
+		{
+			echo "The form validation process was failed!!!";
+            $this->lectures();
+		} else 
+		{
+			// echo "The form validation was very successfull";
+           	$this->admin_model->update_lecturer();
+			
+			redirect('admin/lectures');
+				
+		}
 	}
 
 	function deactivate($table, $id)
@@ -337,9 +421,11 @@ class Admin extends MY_Controller
 		$this->db->query($sql);
 
 		if ($table == "lecturers") {
-			$this->lectures();
+			//$this->lectures();
+			redirect('admin/lectures');
 		}else if ($table == "students") {
-			$this->students();
+			//$this->students();
+			redirect('admin/students');
 		}
 
 		

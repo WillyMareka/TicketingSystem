@@ -50,11 +50,6 @@
                     <span class="icon-bar"></span>
                 </a>
                 
-                <a href="" class="logo">
-                    <!-- Add the class icon to your logo image or logo icon to add the margining -->
-                    Strathmore Notification
-                </a>
-                
                 <div class="navbar-right">
                     <ul class="nav navbar-nav">
                         <!-- Messages: style can be found in dropdown.less-->
@@ -265,7 +260,7 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="javascript:void(null);" class="btn btn-default btn-flat" onclick="show_profile()">Profile</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="<?php echo base_url().'admin/logout'?>" class="btn btn-default btn-flat">Sign out</a>
@@ -290,6 +285,68 @@
            ?>
         </div><!-- ./wrapper -->
 
+
+<div class="modal fade" id="profile">
+        <div class="modal-dialog" style="width:60%;margin-bottom:2px;">
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h5 class="modal-title"><?php echo $userdetails[0]['f_name'];?>`s Profile Summarry</h5>
+                </div>
+                <div class="modal-body" style="padding-bottom:0px;">    
+                    <div class="row">
+                        <div class = "col-lg-9">
+                            <div class="box box-success">
+                                <div class="box-header">
+                                    <h3 class="box-title"><?php echo $userdetails[0]['f_name'];?> <?php echo $userdetails[0]['s_name'];?> <?php echo $userdetails[0]['o_names'];?></h3>
+                                </div>
+                                <div class="box-body">
+                        <div class = "row">
+                            <div class="col-md-3">
+                              <img src="<?php echo $userdetails[0]['profile_picture']; ?>" style = "width: 170px !important; height: 210px !important;">
+                            </div>
+
+                            <div class = "col-md-9">
+                              <table class = "table table-striped table-bordered table-hover">
+                                <tr>
+                                  <th>REGISTRTION ID:</th>
+                                  <td><?php echo $this->session->userdata('username'); ?></td>
+                                </tr>
+                                <tr>
+                                  <th>NAME:</th>
+                                  <td><?php echo $userdetails[0]['f_name'];?> <?php echo $userdetails[0]['s_name'];?> <?php echo $userdetails[0]['o_names'];?></td>
+                                </tr>
+                                
+                                <tr>
+                                  <th>EMAIL:</th>
+                                  <td><?php echo $userdetails[0]['email'];?></td>
+                                </tr>
+                                <tr>
+                                  <th>PHONE NUMBER:</th>
+                                  <td><?php echo $userdetails[0]['phone_no'];?></td>
+                                </tr>
+                                <tr>
+                                  <th>LOCATION:</th>
+                                  <td><?php echo $userdetails[0]['location'];?></td>
+                                </tr>
+                              </table>
+                            </div>
+                        </div>
+                    </div><!-- /.box-body -->
+                    <div class = "box-footer">
+                      
+                    </div>
+                    
+                        </div>
+                    </div>
+
+                    <div class="modal-footer" style="height:11px;padding-top:11px;">
+                        <?php echo $this->config->item("copyrights");?>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
         <!-- add new calendar event modal -->
 
 
@@ -389,6 +446,12 @@
                     showInputs: false
                 });
             });
+
+function show_profile()
+{
+
+    $('#profile').modal("show");
+}
 </script>
 
 

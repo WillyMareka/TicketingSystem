@@ -21,7 +21,7 @@
                     <div class="small-box bg-aqua">
                         <div class="inner">
                             <h3>
-                                150
+                                <?php echo $course[0]['total']; ?>
                             </h3>
                             <p>
                                Courses
@@ -40,7 +40,7 @@
                     <div class="small-box bg-green">
                         <div class="inner">
                             <h3>
-                                53<sup style="font-size: 20px">%</sup>
+                                <?php echo $unit[0]['total']; ?><!-- <sup style="font-size: 20px">%</sup> -->
                             </h3>
                             <p>
                                 Units
@@ -59,7 +59,7 @@
                     <div class="small-box bg-yellow">
                         <div class="inner">
                             <h3>
-                                44
+                               <?php echo $lecturer[0]['total']; ?>
                             </h3>
                             <p>
                                 Lecturers
@@ -78,7 +78,7 @@
                     <div class="small-box bg-red">
                         <div class="inner">
                             <h3>
-                                65
+                                <?php echo $student[0]['total']; ?>
                             </h3>
                             <p>
                                 Students
@@ -98,7 +98,7 @@
                                 <ul class="nav nav-tabs pull-right">
                                     <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
                                     <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-                                    <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
+                                    <li class="pull-left header"><i class="fa fa-inbox"></i> Analytics</li>
                                 </ul>
                                 <div class="tab-content no-padding">
                                     <!-- Morris chart - Sales -->

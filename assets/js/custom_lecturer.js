@@ -1,9 +1,9 @@
+$(document).ready(function(){
 var base_url = 'http://localhost/sun/';
 var msg_path = 'lecturer/messages';
 var reply_path = 'lecturer/reply';
 var attendance_path = 'lecturer/attendance';
 
-$(document).ready(function(){
 	$('#message_compose').addClass('fadeOutUp');
 
 	$('.instant_message').click(function(){
