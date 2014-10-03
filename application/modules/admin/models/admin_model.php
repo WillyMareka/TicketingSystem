@@ -13,6 +13,9 @@ class Admin_model extends MY_Model {
         $sql = "SELECT
                         `f_name`,
                         `s_name`,
+                        `o_names`,
+                        `email`,
+                        `phone_no`,
                         `profile_picture`,
                         `location`
                     FROM
@@ -33,6 +36,7 @@ class Admin_model extends MY_Model {
                     `lecturers`.`s_name`,
                     `lecturers`.`o_names`,
                     `lecturers`.`course`,
+                    `lecturers`.`gender`,
                     `courses`.`course_id`,
                     `courses`.`course_name`,
                     `lecturers`.`phone_no`,
@@ -54,17 +58,25 @@ class Admin_model extends MY_Model {
     function get_students()
     {
     	$sql = "SELECT
-    				`id`,
-    				`firstname`,
-    				`lastname`,
-    				`othernames`,
-    				`student_phone`,
-    				`student_email`,
-    				`admission_date`,
-                    'group_id'
-                    `status`
+    				`students`.`id`,
+    				`students`.`firstname`,
+    				`students`.`lastname`,
+    				`students`.`othernames`,
+                    `students`.`gender`,
+    				`students`.`student_phone`,
+    				`students`.`student_email`,
+                    `students`.`location`,
+    				`students`.`admission_date`,
+                    `students`.`course_id`,
+                    `students`.`status`,
+                    `courses`.`course_id`,
+                    `courses`.`course_name`
     			FROM 
-    				`students`";
+    				`students`
+                LEFT JOIN
+                        `courses`
+                    ON
+                        `students`.`course_id` = `courses`.`course_id`";
 
     	$students = $this->db->query($sql);
 
@@ -110,6 +122,29 @@ class Admin_model extends MY_Model {
         return $units->result_array();
     }
 
+    function get_timetables()
+    {
+        $sql = "SELECT
+                    `timetables`.`id`,
+                    `timetables`.`file_name`,
+                    `timetables`.`category`,
+                    `timetables`.`course_id`,
+                    `timetables`.`upload_date`,
+                    `timetables`.`active`,
+                    `courses`.`course_id`,
+                    `courses`.`course_name`
+                FROM
+                    `timetables`
+                LEFT JOIN
+                    `courses`
+                ON
+                    `timetables`.`course_id` = `courses`.`course_id`";
+
+        $timetables = $this->db->query($sql);
+
+        return $timetables->result_array();
+    }
+
     function addStudent($path)
     {
         $firstname = strtoupper($this->input->post('firstname'));
@@ -122,8 +157,8 @@ class Admin_model extends MY_Model {
         $parent_email= $this->input->post('parent_email');
         $location = strtoupper($this->input->post('location'));
         $course = $this->input->post('course');
-        $group = '0';
-        $query = "INSERT INTO students VALUES(NULL, '$firstname', '$lastname', '$others', '$phone', '$gender', '$parent_phone', '$student_email', '$parent_email', '$location', '$path', NULL, 1,'$group')";
+
+        $query = "INSERT INTO students VALUES(NULL, '$firstname', '$lastname', '$others', '$phone', '$gender', '$parent_phone', '$student_email', '$parent_email', '$location', '$path', NULL, 1, '0', '$course')";
         $result = $this->db->query($query);
 
         $student_no = mysql_insert_id();
@@ -132,8 +167,6 @@ class Admin_model extends MY_Model {
        
         $user_query = "INSERT INTO users VALUES (NULL, '$student_no', '$password', 'student', NULL, 0)";
         $result = $this->db->query($user_query);
-
-        $attendance_query = $this->db->query("INSERT INTO attendance VALUES (NULL, NULL, '$student_no', 0, 0,NULL,0,0)");                           
 
         $course_query = $this->db->query("INSERT INTO student_course VALUES (NULL, '$student_no', 1, NULL)");
 
@@ -194,9 +227,6 @@ class Admin_model extends MY_Model {
         $user_query = "INSERT INTO users VALUES (NULL, '$lecturer_no', '$password', 'lecturer', NULL, 0)";
         $result = $this->db->query($user_query);
 
-       
-
-        echo "Successfully Inserted " . $lecturer_no;die;
     }
 
     function add_admin($path)
@@ -234,14 +264,109 @@ class Admin_model extends MY_Model {
         $assign = $this->db->query($sql);
     }
 
-    function update_student(){
-        $sql        =   "UPDATE  'students'
+    function update_student()
+    {
+        $id = $this->input->post('editid');
+        $firstname = strtoupper($this->input->post('f_name'));
+        $lastname = strtoupper($this->input->post('s_name'));
+        $others = strtoupper($this->input->post('o_name'));
+        $phone = $this->input->post('phone');
+        // $gender = $this->input->post('sgender');
+        $student_email = $this->input->post('semail');
+        // $parent_phone = $this->input->post('parent_phone');
+        $status = $this->input->post('editstatus');
+        
+        
+
+        $sql        =   "UPDATE  `students`
                             SET 
+                                `firstname`     =   '$firstname',
+                                `lastname`      =   '$lastname',
+                                `othernames`    =   '$others',
+                                `student_phone` =   '$phone',
+                                `student_email` =   '$student_email',
                                 `status`        =   '$status'
                             WHERE  
                                 `id`='$id'
                         ";
 
         $this->db->query($sql);
+    }
+
+    function update_lecturer()
+    {
+        $id = $this->input->post('editid');
+        $firstname = strtoupper($this->input->post('f_name'));
+        $lastname = strtoupper($this->input->post('s_name'));
+        $others = strtoupper($this->input->post('o_name'));
+        $phone = $this->input->post('phone');
+        $email = $this->input->post('lemail');
+        $status = $this->input->post('editstatus');
+        
+
+        $sql        =   "UPDATE  `lecturers`
+                            SET 
+                                `f_name`    =   '$firstname',
+                                `s_name`    =   '$lastname',
+                                `o_names`   =   '$others',
+                                `phone_no`  =   '$phone',
+                                `email`     =   '$email',
+                                `status`    =   '$status'
+                            WHERE  
+                                `id`='$id'
+                        ";
+
+        $this->db->query($sql);
+    }
+
+    function unit_count()
+    {
+        $sql = "SELECT 
+                    COUNT(*) AS total
+                FROM
+                    `units`";
+
+        $result = $this->db->query($sql);
+
+        return $result->result_array();
+    }
+
+    function course_count()
+    {
+        
+       $sql = "SELECT 
+                    COUNT(*) AS total
+                FROM
+                    `courses`";
+
+        $result = $this->db->query($sql);
+
+        return $result->result_array();
+    }
+
+    function lecturer_count()
+    {
+        
+       $sql = "SELECT 
+                    COUNT(*) AS total
+                FROM
+                    `lecturers`";
+
+        $result = $this->db->query($sql);
+
+        return $result->result_array();
+    }
+
+    function student_count()
+    {
+        
+        $sql = "SELECT 
+                    COUNT(*) AS total
+                FROM
+                    `students`";
+
+        $result = $this->db->query($sql);
+
+        return $result->result_array();
     }
 }

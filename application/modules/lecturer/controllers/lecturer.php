@@ -7,7 +7,7 @@ class Lecturer extends MY_Controller
         // Call the Model constructor
         parent::__construct();
         $this->load->model('m_lecturers');
-        //error_reporting(0);
+        error_reporting(0);
     }
 
 	function index()
@@ -18,9 +18,12 @@ class Lecturer extends MY_Controller
 		$course_id = $this->session->userdata('course_id');
 		$msg_no = $this->m_lecturers->get_lecturer_messages_no('lecturer_messages',$lecturer_id);
 		$msg_data= $this->m_lecturers->get_lecturer_messages($lecturer_id);
+		$total_students= $this->m_lecturers->total_students_in_course($course_id);
+		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no($lecturer_id);
+		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages($lecturer_id);
+		$data['total_students'] = $total_students[0]['total_students'];
 		$data['units'] = $this->m_lecturers->get_lecturer_units($lecturer_id);
 		//$data['sender_info'] = $this->m_lecturers->get_sender_info();
-		$total_students= $this->m_lecturers->total_students_in_course($course_id);
 		$total_students_no = $total_students[0]['total_students'];
 
 		$sidebar = '
@@ -63,7 +66,7 @@ class Lecturer extends MY_Controller
 		// echo "<pre>";print_r($this->session->all_userdata());echo "</pre>"; exit; 
 
 		
-		$msg_no = $this->m_lecturers->get_lecturer_messages_no('lecturer_messages',$lecturer_id);
+		$msg_no = $this->m_lecturers->get_lecturer_messages_no($lecturer_id);
 		$msg_data= $this->m_lecturers->get_lecturer_messages($lecturer_id);
 		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no($lecturer_id);
 		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages($lecturer_id);

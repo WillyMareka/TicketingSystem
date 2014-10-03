@@ -1,3 +1,4 @@
+$(document).ready(function(){
 var base_url = 'http://localhost/sun/';
 var msg_path = 'lecturer/messages';
 var reply_path = 'lecturer/reply';
@@ -18,7 +19,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#submit_im').click(function(){
+	$('#submit_im').click(function(event){
 		event.preventDefault();
 		var msg = $('.msg').val();
 		var sbj = $('.sbj').val();
@@ -105,7 +106,7 @@ $(document).ready(function(){
 		};
 	});//end of message compose modal
 
-	$('.message_view_link,.close_msg_view_modal').click(function(){
+	$('.message_view_link,.close_msg_view_modal').click(function(event){
 		event.preventDefault();
 		// alert($(this).attr('value'));return;
 		var msg_id = $(this).attr('value');
@@ -145,7 +146,7 @@ $(document).ready(function(){
 		$('.alert-success').removeClass('fadeInDown');
 		$('.alert-success').addClass('fadeUpOut');
 	});
-	$('.update_attendance').click(function(){
+	$('.update_attendance').click(function(event){
 		event.preventDefault();
 		var student_selection = $('#student_select option:selected').val();
 		var morning_class = $('.morning_class').is(':checked');
