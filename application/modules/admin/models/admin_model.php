@@ -32,7 +32,7 @@ class Admin_model extends MY_Model {
                     `lecturers`.`f_name`,
                     `lecturers`.`s_name`,
                     `lecturers`.`o_names`,
-                    `lecturers`.`course_code`,
+                    `lecturers`.`course`,
                     `courses`.`course_id`,
                     `courses`.`course_name`,
                     `lecturers`.`phone_no`,
@@ -44,7 +44,7 @@ class Admin_model extends MY_Model {
                 LEFT JOIN
                         `courses`
                     ON
-                        `lecturers`.`course_code` = `courses`.`course_id`";
+                        `lecturers`.`course` = `courses`.`course_id`";
 
         $lecturers = $this->db->query($sql);
 

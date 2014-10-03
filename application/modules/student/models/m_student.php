@@ -133,6 +133,8 @@ class M_student extends MY_Model {
                 $notification_message[$counter] = $n;
             }
         }
+
+        return $notification_message;
     }
 
     public function getMessageCount($course)
@@ -156,5 +158,11 @@ class M_student extends MY_Model {
         return $result;
     }
 
+    public function getMessageById($m_id)
+    {
+        $query = $this->db->query("SELECT * FROM student_messages WHERE id = " .$m_id ." LIMIT 1");
+        $not = $query->result_array();
 
+        return $not;
+    }
 }

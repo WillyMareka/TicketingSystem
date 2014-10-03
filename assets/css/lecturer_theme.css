@@ -1,11 +1,9 @@
-/*
+@import url(http://fonts.googleapis.com/css?family=Dancing+Script:700);
 
-Edming Admin Template
-EGrappler.com
-All Rights Reserved.
-
-*/
-
+.brand{
+	font-family: 'Dancing Script', cursive ,Helvetica;
+	font-size: 25px!important;
+}
 body {
 	font-size: 13px;
 	font-family: 'Open Sans', Arial, sans-serif;
@@ -1895,5 +1893,9 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', end
 .content_span9{
 	left:250px;
 	position: relative;
+}
+
+#basicinput{
+	height: 25px;
 }
 /*END OF OVERRIDDEN BOOTSTRAP*/

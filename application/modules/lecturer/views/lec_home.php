@@ -1,5 +1,5 @@
 ﻿<?php 
-//echo "<pre>";print_r($this->session->all_userdata());echo "</pre>"; exit; 
+// echo "<pre>";print_r($this->session->all_userdata());echo "</pre>"; exit; 
 //echo "<pre>";print_r($msg_no);echo "</pre>"; exit; 
 $fname = $this->session->userdata('firstname');
 $sname = $this->session->userdata('secondname');
@@ -36,9 +36,9 @@ $full_name = $fname.' '.$sname.' '.$onames;
                         <i class="fa fa-reorder shaded"></i></a><a class="brand" href="<?php echo base_url().'lecturer' ?>">Lecturer Dashboard</a>
                     <div class="nav-collapse collapse navbar-inverse-collapse">
                         <ul class="nav nav-icons">
-                            <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-                            <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#"><i class="fa fa-area-chart"></i></a></li>
+                            <li><a href="<?php echo base_url()."lecturer/page_to_load/messages"?>"><i class="fa fa-envelope"></i></a></li>
+                            <li><a href="<?php echo base_url()."lecturer/page_to_load/attendance"?>"><i class="menu-icon fa fa-area-chart"></i></a></li>
+                            <li><a href="http://www.bbc.com" target="_blank"><i class="menu-icon fa fa-bullhorn"></i></a>
                         </ul>
                         <!-- <form class="navbar-search pull-left input-append" action="#">
                         <input type="text" class="span3">
@@ -47,6 +47,7 @@ $full_name = $fname.' '.$sname.' '.$onames;
                         </button>
                         </form> -->
                         <ul class="nav pull-right">
+                            <!-- 
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown
                                 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
@@ -57,15 +58,16 @@ $full_name = $fname.' '.$sname.' '.$onames;
                                     <li><a href="#">A Separated link</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Support </a></li>
+                            <li><a href="#">Support </a></li> 
+                            -->
                             <li class="nav-user dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="<?php echo $photo ?>" class="nav-avatar" />
+                                <?php echo $full_name; ?>   <img src="<?php echo $photo ?>" class="nav-avatar" />
                                 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Your Profile</a></li>
+                                    <!-- <li><a href="#">Your Profile</a></li>
                                     <li><a href="#">Edit Profile</a></li>
                                     <li><a href="#">Account Settings</a></li>
-                                    <li class="divider"></li>
+                                    <li class="divider"></li> -->
                                     <li><a href="<?php echo base_url().'lecturer/log_out' ?>">Logout</a></li>
                                 </ul>
                             </li>
@@ -81,15 +83,20 @@ $full_name = $fname.' '.$sname.' '.$onames;
             <ul class="widget widget-menu unstyled">
                 <li class="active"><a href="<?php echo base_url()."lecturer"?>"><i class="menu-icon fa fa-dashboard"></i>Dashboard
                 </a></li>
-                <li><a href="<?php echo base_url()."lecturer/page_to_load/activity"?>"><i class="menu-icon fa fa-bullhorn"></i>News Feed </a>
+                <li><a href="http://www.bbc.com" target="_blank"><i class="menu-icon fa fa-bullhorn"></i>News Feed </a>
                 </li>
-                <li><a href="<?php echo base_url()."lecturer/page_to_load/messages"?>"><i class="menu-icon fa fa-inbox"></i>Inbox <b class="label green pull-right">
+                <li><a href="<?php echo base_url()."lecturer/page_to_load/messages"?>"><i class="menu-icon fa fa-inbox"></i>Sentbox <b class="label green pull-right">
                 <?php echo $msg_no[0]['total']; ?></b> </a></li>
                 <li><a href="<?php echo base_url()."lecturer/page_to_load/students"?>"><i class="menu-icon fa fa-tasks"></i>Students <b class="label orange pull-right">
                     <?php echo $total_students; ?></b> </a></li>
+<<<<<<< HEAD
 
                 <li><a href="<?php echo base_url()."lecturer/page_to_load/charts"?>"><i class="menu-icon fa fa-area-chart"></i>Statistics </a></li>
                 <li><a href = "<?php echo base_url() ."lecturer/page_to_load/upload_notes"?>"><i class = "menu-icon fa fa-upload"></i>Upload Notes</a></li>
+=======
+                <li><a href="<?php echo base_url()."lecturer/page_to_load/attendance"?>"><i class="menu-icon fa fa-area-chart"></i>Attendance</a></li>
+                <li><a href="<?php echo base_url()."lecturer/page_to_load/examinations"?>"><i class="menu-icon fa fa-gavel"></i>Examinations</a></li>
+>>>>>>> 7cc07c739542aedab99074dc7f9c01182497afa5
 
                <!--  <li><a class="collapsed" data-toggle="collapse" href="#togglePages"><i class="menu-icon fa fa-cog">
                 </i><i class="fa fa-chevron-down pull-right"></i><i class="fa fa-chevron-up pull-right">
@@ -148,17 +155,29 @@ $full_name = $fname.' '.$sname.' '.$onames;
                                     <td>
                                     <div class="message_height">
                                         <div id="messages">
-                                             <a href="<?php echo base_url()."lecturer/page_to_load/messages"?>" class="btn-box big span4"><i class=" fa fa-envelope"></i><b>65</b>
+                                             <a href="<?php echo base_url()."lecturer/page_to_load/messages"?>" class="btn-box big span4"><i class=" fa fa-envelope"></i><b><?php echo $msg_no[0]['total']; ?></b>
                                             <p class="text-muted">
-                                                Messages</p>
+                                                Sent Messages</p>
                                         </a>
                                         <a href="#" class="instant_message">Quick Message</a></br></br>
                                         </div>
                                     <?php $attributes=array('id'=>'instant_message'); echo form_open('lecturer/messages',$attributes) ?>
-                                    <h6>This message will be sent to all students in this unit</h6>
+                                                    <select class="clear unit_selection">
+                                                        <option>--Select Units--</option>
+                                                        <?php 
+                                                        foreach ($units as $unit) {
+                                                            echo '
+
+                                                        <option value = "'.$unit['id'
+                                                        ].'" data-lecturer_id = "'.$unit['lecturer_id'].'">'.$unit['unit_name'] .'</option>
+
+                                                            ';
+                                                        }
+                                                         ?>
+                                                </select>
                                     <input type="text" placeholder="Subject" required = "required" class="inputs sbj">
                                     <textarea class="inputs msg" placeholder = "Enter message" required = "required"></textarea>
-                                    <button class="button instant_msg_button" id="submit_im" type="button"><div id="sub_button_animation"><span id="im_icon" class = "glyphicon glyphicon-send"></span>Send</div></button>
+                                    <button class="button instant_msg_button" id="submit_im" type="button"><div id="sub_button_animation"><i class = "fa fa-paper-plane"></i>Send</div></button>
                                     <i class = "fa fa-arrow-circle-down instantup"></i>
                                     <?php echo form_close(); ?>
                                     <div class="empty_warn"></div>
@@ -167,7 +186,7 @@ $full_name = $fname.' '.$sname.' '.$onames;
                                 </tr>
                                 <tr>
                                     <td>
-                                    <a href="#" class="btn-box big span4"><i class="fa fa-group"></i><b><?php echo $total_students; ?></b>
+                                    <a href="<?php echo base_url()."lecturer/page_to_load/students"?>" class="btn-box big span4"><i class="fa fa-group"></i><b><?php echo $total_students; ?></b>
                                         <p class="text-muted">
                                             Total Students</p>
                                     </a>
@@ -190,39 +209,41 @@ $full_name = $fname.' '.$sname.' '.$onames;
                                             Profit</p>
                                     </a> -->
                                 </div>
-                           <div class="module">
-                                <div class="module-head">
-                                    <h3>
-                                        Profit Chart</h3>
-                                </div>
-                                <div class="module-body">
-                                    <div class="chart inline-legend grid">
-                                        <div id="placeholder2" class="graph" style="height: 250px">
+                               <!-- 
+                               <div class="module">
+                                    <div class="module-head">
+                                        <h3>
+                                            Profit Chart</h3>
+                                    </div>
+                                    <div class="module-body">
+                                        <div class="chart inline-legend grid">
+                                            <div id="placeholder2" class="graph" style="height: 250px">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                </div> 
+                                -->
                                 <div class="btn-box-row row-fluid">
                                     <div class="span8">
                                         <div class="row-fluid">
                                             <div class="span12">
-                                                <a href="#" class="btn-box small span4"><i class="fa fa-envelope"></i><b>Messages</b>
-                                                </a><a href="#" class="btn-box small span4"><i class="fa fa-group"></i><b>Clients</b>
-                                                </a><a href="#" class="btn-box small span4"><i class="fa fa-exchange"></i><b>Expenses</b>
+                                                <a href="#" class="btn-box small span4"><i class="fa fa-envelope"></i><b>Sentbox</b>
+                                                </a><a href="<?php echo base_url()."lecturer/page_to_load/attendance"?>" class="btn-box small span4"><i class="fa fa-group"></i><b>Attendance</b>
+                                                </a><a href="<?php echo base_url()."lecturer/page_to_load/examinations"?>" class="btn-box small span4"><i class="fa fa-gavel"></i><b>Examinations</b>
                                                 </a>
                                             </div>
                                         </div>
-                                        <div class="row-fluid">
+                                        <!-- <div class="row-fluid">
                                             <div class="span12">
                                                 <a href="#" class="btn-box small span4"><i class="fa fa-save"></i><b>Total Sales</b>
                                                 </a><a href="#" class="btn-box small span4"><i class="fa fa-bullhorn"></i><b>Social Feed</b>
                                                 </a><a href="#" class="btn-box small span4"><i class="fa fa-sort-down"></i><b>Bounce
                                                     Rate</b> </a>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     
-                                    <ul class="widget widget-usage unstyled span4">
+                                    <!-- <ul class="widget widget-usage unstyled span4">
                                         <li>
                                             <p>
                                                 <strong>Windows 8</strong> <span class="pull-right small muted">78%</span>
@@ -259,7 +280,7 @@ $full_name = $fname.' '.$sname.' '.$onames;
                                                 </div>
                                             </div>
                                         </li>
-                                    </ul>
+                                    </ul> -->
                                 </div>
                             </div>
                             <!--/#btn-controls-->
@@ -304,7 +325,6 @@ $full_name = $fname.' '.$sname.' '.$onames;
         <script src="<?php echo base_url().'assets/js/jquery.flot.js';?>" type="text/javascript"></script>
         <script src="<?php echo base_url().'assets/js/jquery.flot.resize.js';?>" type="text/javascript"></script>
         <script src="<?php echo base_url().'assets/js/jquery.dataTables.js';?>" type="text/javascript"></script>
-        <script src="<?php echo base_url().'assets/js/common.js';?>" type="text/javascript"></script>
         <script src="<?php echo base_url().'assets/js/custom_lecturer.js';?>" type="text/javascript"></script>
 
       
