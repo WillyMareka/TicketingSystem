@@ -1,0 +1,94 @@
+<?php
+
+include_once("all.php");
+
+class Transactions {
+
+    function __construct() {
+        
+    }
+
+    public function getLastFifty($InputBarId) {
+
+        $bars = new Bars();
+        $bar_id_verification = $bars->barExists($InputBarId);
+
+        if ($bar_id_verification == '1') {
+
+            $query = "SELECT T.transaction_id, U.user_fname, U.user_lname,W.waiter_id, W.waiter_fname, W.waiter_lname,T.transaction_points, T.transaction_timestamp
+                FROM tbl_transactions AS T, tbl_users AS U, tbl_waiter AS W
+                WHERE T.transaction_zoneid = " . $InputBarId . "
+                AND T.transaction_userid = U.user_id
+                AND T.transaction_waiterid = W.waiter_id
+                ORDER BY T.transaction_timestamp
+                LIMIT 50";
+
+            $query_exe = mysql_query($query);
+            $num_rows = mysql_num_rows($query_exe);
+
+            if ($num_rows > 0) {
+                return $query_exe;
+            } else {//If no transaction on the bar
+                return 0;
+            }
+        } else {//If no Bar with the ID
+            return 0;
+        }
+    }
+
+    public function getLastFiftyWaiterTrans($waiterID) {
+
+        $query = "SELECT tbl_transactions.transaction_id , tbl_transactions.transaction_userid , 
+tbl_transactions.transaction_points , tbl_transactions.transaction_timestamp ,  tbl_users.user_fname , tbl_users.user_lname , tbl_balezones.zone_name 
+FROM tbl_transactions , tbl_users , tbl_balezones WHERE tbl_transactions.transaction_waiterid = '" . $waiterID . "' AND tbl_transactions.transaction_userid = tbl_users.user_id AND tbl_balezones.zone_id = tbl_transactions.transaction_zoneid ORDER BY tbl_transactions.transaction_timestamp LIMIT 50";
+        $query_exe = mysql_query($query);
+
+        while ($row = mysql_fetch_array($query_exe)) {
+            echo "<tr>";
+            echo "<td>" . date('d M Y', $row['transaction_timestamp']) . " at " . date('<b>g:i A</b>', $row['transaction_timestamp']) . "</td>";
+            echo "<td>" . $row['user_fname'] . " " . $row['user_lname'] . "</td>";
+            echo "<td>" . $row['transaction_points'] . " " . $row['waiter_lname'] . "</td>";
+            echo "<td>" . $row['zone_name'] . "</td>";
+            echo "</tr>";
+        }
+    }
+
+    public function getZoneCount($zoneID, $when) {
+        $query = "SELECT transaction_id FROM tbl_transactions WHERE transaction_zoneid = '" . $zoneID . "'";
+    }
+
+    public function addTransaction($userId, $barId, $waiterId, $amount_of_billable_items, $contractId, $card_number) {
+        $q = "INSERT INTO `tbl_transactions`(`transaction_zoneid`,"
+                . " `transaction_points`, `transaction_waiterid`, `transaction_contractid`,  `transaction_cardnumber`, `transaction_userid` ) "
+                . "VALUES (" . $barId . "," . $amount_of_billable_items . "," . $waiterId . ","
+                . $contractId . ",'" . "$card_number" . "'" . ", " . $userId . ")";
+        return mysql_query($q) or die(mysql_error());
+    }
+
+    public function getLastTransactionID($userId, $waiterId, $card_number) {
+
+        $q = "SELECT T.transaction_id
+                FROM tbl_transactions AS T
+                WHERE T.transaction_userid = '".$userId."'
+                AND T.transaction_waiterid = '".$waiterId."'
+                AND T.transaction_cardnumber = '".$card_number."'
+                ORDER BY T.transaction_timestamp DESC 
+                LIMIT 1";
+
+        $query_exe = mysql_query($q);
+
+        while ($row = mysql_fetch_array($query_exe)) {
+            return $row['transaction_id'];
+        }
+    }
+    public function getUserTransactions($userID , $from){
+ 
+    $query = "SELECT tbl_transactions.transaction_id , tbl_transactions.transaction_timestamp , tbl_transactions.transaction_points , tbl_balezones.zone_name FROM tbl_transactions , tbl_balezones WHERE tbl_transactions.transaction_userid = '".$userID."' AND tbl_transactions.transaction_zoneid = tbl_balezones.zone_id ORDER BY tbl_transactions.transaction_id DESC LIMIT  ".$from." , 20";
+    $query_exe = mysql_query($query);
+    
+    return $query_exe;
+
+    }
+}
+
+?>

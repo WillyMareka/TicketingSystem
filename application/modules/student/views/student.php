@@ -56,7 +56,7 @@
                     <div class="small-box bg-aqua">
                         <div class="inner">
                             <h3>
-                                150
+                                <?php echo $notifications; ?>
                             </h3>
                             <p>
                                 Notifications
@@ -116,105 +116,8 @@
                     <div class = "box-header" style = "text-align: center;">
                       <h3>NOTIFICATIONS</h3>
                     </div>
-                    <div class = "box-body">                
-                      <!-- First Action -->
-                      <div class="desc">
-                        <div class = "row">
-                          <div class = "col-md-4">
-                            <img src = "<?php echo base_url() .'upload/chris.jpg'?>"style = "width: 60px; height: 60px;"/>
-                          </div>
-                          <div class = "col-md-8">
-                            <div class = "row">
-                              <div class="thumb">
-                                <span class = "pull-left"><p><muted><i class="fa fa-clock-o"></i> 2 Minutes Ago</muted><br/></p></span>
-                              </div>
-                            </div>
-                            <div class = "row">
-                              <div class="details">
-                                   <p><a href="#">James Brown</a> subscribed to your newsletter.<br/></p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Second Action -->
-                      <div class="desc">
-                        <div class = "row">
-                          <div class = "col-md-4">
-                            <img src = "<?php echo base_url() .'upload/profile-02.jpg'?>"style = "width: 60px; height: 60px;"/>
-                          </div>
-                          <div class = "col-md-8">
-                            <div class = "row">
-                              <div class="thumb">
-                                <span class = "pull-left"><p><muted><i class="fa fa-clock-o"></i> 2 Minutes Ago</muted><br/></p></span>
-                              </div>
-                            </div>
-                            <div class = "row">
-                              <div class="details">
-                                   <p><a href="#">James Brown</a> subscribed to your newsletter.<br/></p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Third Action -->
-                      <div class="desc">
-                        <div class = "row">
-                          <div class = "col-md-4">
-                            <img src = "<?php echo base_url() .'upload/profile-02.jpg'?>"style = "width: 60px; height: 60px;"/>
-                          </div>
-                          <div class = "col-md-8">
-                            <div class = "row">
-                              <div class="thumb">
-                                <span class = "pull-left"><p><muted><i class="fa fa-clock-o"></i> 2 Minutes Ago</muted><br/></p></span>
-                              </div>
-                            </div>
-                            <div class = "row">
-                              <div class="details">
-                                   <p><a href="#">James Brown</a> subscribed to your newsletter.<br/></p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="desc">
-                        <div class = "row">
-                          <div class = "col-md-4">
-                            <img src = "<?php echo base_url() .'upload/profile-02.jpg'?>"style = "width: 60px; height: 60px;"/>
-                          </div>
-                          <div class = "col-md-8">
-                            <div class = "row">
-                              <div class="thumb">
-                                <span class = "pull-left"><p><muted><i class="fa fa-clock-o"></i> 2 Minutes Ago</muted><br/></p></span>
-                              </div>
-                            </div>
-                            <div class = "row">
-                              <div class="details">
-                                   <p><a href="#">James Brown</a> subscribed to your newsletter.<br/></p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="desc">
-                        <div class = "row">
-                          <div class = "col-md-4">
-                            <img src = "<?php echo base_url() .'upload/profile-06.jpg'?>"style = "width: 60px; height: 60px;"/>
-                          </div>
-                          <div class = "col-md-8">
-                            <div class = "row">
-                              <div class="thumb">
-                                <span class = "pull-left"><p><muted><i class="fa fa-clock-o"></i> 2 Minutes Ago</muted><br/></p></span>
-                              </div>
-                            </div>
-                            <div class = "row">
-                              <div class="details">
-                                   <p><a href="#">James Brown</a> subscribed to your newsletter.<br/></p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    <div class = "box-body">
+                      <?php echo $message; ?>
                     </div>
                   </div>
                     </div>

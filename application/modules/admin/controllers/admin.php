@@ -29,7 +29,7 @@ class Admin extends MY_Controller
 	
 	public function index()
 	{
-		if ($this->session->userdata('usertype') == 'administrator') {
+		if ($this->session->userdata('user_type') == 'administrator') {
 			$data['userdetails'] = $this->admin_model->admin_details($this->session->userdata('username'));
 			$data['content_view'] = "admin_dashboard";
 			$data['title'] = 'Administrators Section: Dashboard';

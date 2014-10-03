@@ -40,34 +40,7 @@ $full_name = $fname.' '.$sname.' '.$onames;
                             <li><a href="<?php echo base_url()."lecturer/page_to_load/attendance"?>"><i class="menu-icon fa fa-area-chart"></i></a></li>
                             <li><a href="http://www.bbc.com" target="_blank"><i class="menu-icon fa fa-bullhorn"></i></a>
                         </ul>
-                        <!-- <form class="navbar-search pull-left input-append" action="#">
-                        <input type="text" class="span3">
-                        <button class="btn" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                        </form> -->
                         <ul class="nav pull-right">
-                            <!-- 
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown
-                                <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Item No. 1</a></li>
-                                    <li><a href="#">Don't Click</a></li>
-                                    <li class="divider"></li>
-                                    <li class="nav-header">Example Header</li>
-                                    <li><a href="#">A Separated link</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Support </a></li> 
-                            -->
-                            <li class="nav-user dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <?php echo $full_name; ?>   <img src="<?php echo $photo ?>" class="nav-avatar" />
-                                <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <!-- <li><a href="#">Your Profile</a></li>
-                                    <li><a href="#">Edit Profile</a></li>
-                                    <li><a href="#">Account Settings</a></li>
-                                    <li class="divider"></li> -->
                                     <li><a href="<?php echo base_url().'lecturer/log_out' ?>">Logout</a></li>
                                 </ul>
                             </li>
@@ -79,31 +52,7 @@ $full_name = $fname.' '.$sname.' '.$onames;
             <!-- /navbar-inner -->
         </div>
         <!-- /navbar -->
-        <div class="sidebar">
-            <ul class="widget widget-menu unstyled">
-                <li class="active"><a href="<?php echo base_url()."lecturer"?>"><i class="menu-icon fa fa-dashboard"></i>Dashboard
-                </a></li>
-                <li><a href="http://www.bbc.com" target="_blank"><i class="menu-icon fa fa-bullhorn"></i>News Feed </a>
-                </li>
-                <li><a href="<?php echo base_url()."lecturer/page_to_load/messages"?>"><i class="menu-icon fa fa-inbox"></i>Sentbox <b class="label green pull-right">
-                <?php echo $msg_no[0]['total']; ?></b> </a></li>
-                <li><a href="<?php echo base_url()."lecturer/page_to_load/students"?>"><i class="menu-icon fa fa-tasks"></i>Students <b class="label orange pull-right">
-                    <?php echo $total_students; ?></b> </a></li>
-                <li><a href="<?php echo base_url()."lecturer/page_to_load/attendance"?>"><i class="menu-icon fa fa-area-chart"></i>Attendance</a></li>
-                <li><a href="<?php echo base_url()."lecturer/page_to_load/examinations"?>"><i class="menu-icon fa fa-gavel"></i>Examinations</a></li>
-
-               <!--  <li><a class="collapsed" data-toggle="collapse" href="#togglePages"><i class="menu-icon fa fa-cog">
-                </i><i class="fa fa-chevron-down pull-right"></i><i class="fa fa-chevron-up pull-right">
-                </i>More Pages </a>
-                    <ul id="togglePages" class="collapse unstyled">
-                        <li><a href="other-login.html"><i class="fa fa-inbox"></i>Login </a></li>
-                        <li><a href="other-user-profile.html"><i class="fa fa-inbox"></i>Profile </a></li>
-                        <li><a href="other-user-listing.html"><i class="fa fa-inbox"></i>All Users </a></li>
-                    </ul>
-                </li> -->
-                <li><a href="<?php echo base_url().'lecturer/log_out' ?>"><i class="menu-icon fa fa-signout"></i>Logout </a></li>
-            </ul>
-        </div>
+<?php echo $sidebar; ?>
         
         <div class="wrapper">
             <div class="container">
