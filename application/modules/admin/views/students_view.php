@@ -87,7 +87,7 @@
 										
 										<td><center><?php echo $span;?></center></td>
 										<td><center><a href="admin/deactivate/students/<?php echo $id;?>"><span style="font-size: 1.4em;color: #E80207;" class="glyphicon glyphicon-remove-sign"></span></a></center></td>
-										<td><center><a href="javascript:void(null);" onclick="edit_student(<?php echo $value['id'];?>,'<?php echo $value['firstname'];?>','<?php echo $value['lastname'];?>','<?php echo $value['othernames'];?>','<?php echo $value['gender'];?>','<?php echo $value['student_phone'];?>','<?php echo $value['student_email'];?>','<?php echo $value['admission_date'];?>','<?php echo $value['location'];?>','<?php echo $value['status']; ?>','<?php echo $value['course_id']?>')"><span style="color:#44D2F2;"><i class="fa fa-edit"></i></span></a></center></td>
+										<td><center><a href="javascript:void(null);" onclick="edit_student(<?php echo $value['id'];?>,'<?php echo $value['firstname'];?>','<?php echo $value['lastname'];?>','<?php echo $value['othernames'];?>','<?php echo $value['gender'];?>','<?php echo $value['student_phone'];?>','<?php echo $value['student_email'];?>','<?php echo $value['admission_date'];?>','<?php echo $value['location'];?>','<?php echo $value['status']; ?>')"><span style="color:#44D2F2;"><i class="fa fa-edit"></i></span></a></center></td>
 									</tr>
 									<?php
 										$i++;
@@ -303,10 +303,7 @@
 	                            <span class="input-group-addon" style="width: 40%;">Admission Date: </span>
 	                            <input class="textfield form-control" type="text" name="addm" id="addm" readonly/>
 	                        </div>
-	                        <div class="input-group" style="width: 100%;padding:4px;">
-	                       		<span class="input-group-addon" style="width: 40%;">Course: </span>
-	                       		<input class="textfield form-control" type="text" name="cos" id="cos" readonly />
-	                       </div>
+	                        
 	                       <div class="input-group" style="width: 100%;padding:4px;">
                             <span class="input-group-addon" style="width: 40%;"> Status :</span>
                             <span class="input-group-addon" style="width: 30%;"><input type="radio" name="editstatus" value="1"> <span class='label label-success'>Activate</span> </input></span>
@@ -327,7 +324,7 @@
 	</div>
 
 <script type="text/javascript">
-	function edit_student(id,fname,sname,oname,gender,sphone,semail,admission_date,location,status,corse)
+	function edit_student(id,fname,sname,oname,gender,sphone,semail,admission_date,location,status)
 	{
 		var str = "#tr_"+id;
 
@@ -343,7 +340,7 @@
         $('#semail').val(semail);
         $('#addm').val(admission_date);
         $('#local').val(location);
-        $('#cos').val(corse);
+        
         
 		if (status == 1) 
 			{

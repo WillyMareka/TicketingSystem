@@ -67,16 +67,11 @@ class Admin_model extends MY_Model {
     				`students`.`student_email`,
                     `students`.`location`,
     				`students`.`admission_date`,
-                    `students`.`course_id`,
-                    `students`.`status`,
-                    `courses`.`course_id`,
-                    `courses`.`course_name`
+                    `students`.`status`
+                    
     			FROM 
     				`students`
-                LEFT JOIN
-                        `courses`
-                    ON
-                        `students`.`course_id` = `courses`.`course_id`";
+                ";
 
     	$students = $this->db->query($sql);
 
