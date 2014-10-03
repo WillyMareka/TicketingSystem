@@ -102,9 +102,52 @@ class M_lecturers extends MY_Model {
     	echo "Your reply has been sent";
     }
 
-    function defaultfunction($param1, $param2)
+    function lecturer_units($lec_no)
     {
-        
+        $query = $this->db->query("SELECT u.unit_id, u.unit_name FROM units u, lecturer_units t, lecturers l WHERE t.lecturer_id = " . $lec_no ." AND t.unit_id = u.unit_id AND l.id = t.lecturer_id");
+        $lec_units = $query->result_array();
+
+        return $lec_units;
     }
+
+    function add_notes($path)
+    {
+        $description = $this->input->post('description');
+        $topic = $this->input->post('topic');
+        $unit = $this->input->post('unit');
+
+        $query = $this->db->query("INSERT INTO uploaded_notes VALUES(NULL, '".$description."', '".$path."', '".$unit."', NULL, '".$topic."')");
+        if($query)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function getTopicByID($t_no)
+    {
+        $query = $this->db->query("SELECT topic FROM topics WHERE topic_no = " . $t_no ." LIMIT 1");
+
+        $topic = $query->result_array();
+
+        return $topic[0]['topic'];
+    }
+    function createNotification($message, $unit)
+    {
+        $course_id = $this->getUnitCourse($unit);
+        $query = $this->db->query("INSERT INTO notifications VALUES (NULL, '".$course_id."', '".$message."', NULL, '".$this->session->userdata('username')."')");
+    }
+
+    function getUnitCourse($unit)
+    {
+        $query = $this->db->query("SELECT course_id FROM units WHERE unit_id = " .$unit ." LIMIT 1");
+        $unit = $query->result_array();
+
+        return $unit[0]['course_id'];
+    }
+
 
 }

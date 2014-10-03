@@ -89,6 +89,7 @@ $full_name = $fname.' '.$sname.' '.$onames;
                     <?php echo $total_students; ?></b> </a></li>
 
                 <li><a href="<?php echo base_url()."lecturer/page_to_load/charts"?>"><i class="menu-icon fa fa-area-chart"></i>Statistics </a></li>
+                <li><a href = "<?php echo base_url() ."lecturer/page_to_load/upload_notes"?>"><i class = "menu-icon fa fa-upload"></i>Upload Notes</a></li>
 
                <!--  <li><a class="collapsed" data-toggle="collapse" href="#togglePages"><i class="menu-icon fa fa-cog">
                 </i><i class="fa fa-chevron-down pull-right"></i><i class="fa fa-chevron-up pull-right">

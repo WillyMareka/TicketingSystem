@@ -32,7 +32,7 @@ class MY_Model extends CI_Model {
     }
 
     public function get_unit($unit_id = null){
-        $result = $this->db->query('SELECT * FROM units WHERE unit_id = '.$unit_id);
+        $result = $this->db->query('SELECT * FROM units WHERE unit_id = '.$unit_id.' LIMIT 1');
         $unit = $result ->result_array();
 
         return $unit;
@@ -98,5 +98,13 @@ class MY_Model extends CI_Model {
         
         $msg_data = $result ->result_array();
          return $msg_data;
+    }
+
+    public function getTopics()
+    {
+        $query = $this->db->query("SELECT * FROM topics");
+        $topics = $query->result_array();
+
+        return $topics;
     }
 }
