@@ -222,8 +222,8 @@ $full_name = $fname.' '.$sname.' '.$onames;
                                         <div class="row-fluid">
                                             <div class="span12">
                                                 <a href="#" class="btn-box small span4"><i class="fa fa-envelope"></i><b>Sentbox</b>
-                                                </a><a href="#" class="btn-box small span4"><i class="fa fa-group"></i><b>Attendance</b>
-                                                </a><a href="#" class="btn-box small span4"><i class="fa fa-gavel"></i><b>Examinations</b>
+                                                </a><a href="<?php echo base_url()."lecturer/page_to_load/attendance"?>" class="btn-box small span4"><i class="fa fa-group"></i><b>Attendance</b>
+                                                </a><a href="<?php echo base_url()."lecturer/page_to_load/examinations"?>" class="btn-box small span4"><i class="fa fa-gavel"></i><b>Examinations</b>
                                                 </a>
                                             </div>
                                         </div>

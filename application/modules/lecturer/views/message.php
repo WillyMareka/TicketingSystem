@@ -1,6 +1,6 @@
 ﻿<?php 
 //echo "<pre>";print_r($this->session->all_userdata());echo "</pre>"; exit; 
-//echo "<pre>";print_r($msg_no);echo "</pre>"; exit; 
+// echo "<pre>";print_r($msg_data);echo "</pre>"; exit; 
 $fname = $this->session->userdata('firstname');
 $sname = $this->session->userdata('secondname');
 $onames = $this->session->userdata('othernames');
@@ -21,7 +21,7 @@ $full_name = $fname.' '.$sname.' '.$onames;
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lecturer Dashboard</title>
+        <title>Lecturer Dashboard: Sentbox</title>
         <link type="text/css" href="<?php echo base_url().'assets/bootstrap/css/bootstrap.min.css';?>" rel="stylesheet">
         <link type="text/css" href="<?php echo base_url().'assets/bootstrap/css/bootstrap-responsive.min.css';?>" rel="stylesheet">
         <link type="text/css" href="<?php echo base_url().'assets/css/lecturer_theme.css';?>" rel="stylesheet">

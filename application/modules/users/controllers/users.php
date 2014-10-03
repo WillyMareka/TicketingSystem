@@ -59,10 +59,13 @@ class Users extends MY_Controller
 			}elseif($usertype == 'lecturer') {
 				// $this ->session->sess_destroy();
 				$lecturer = $this->m_users->getUser('lecturers',$username);
+				// course
 				if($lecturer)
 				{
-					// $course = $this->m_users->getCourse($course_id);
-					// $unit = $this->m_users->get_unit($unit_id);
+
+					$course = $this->m_users->getCourse($lecturer[0]['course']);
+					// echo "<pre>";print_r($lecturer);echo "</pre>"; exit; 
+					$unit = $this->m_users->get_unit($lecturer[0]['unit_code']);
 					
 					// echo"<pre>"; print_r($unit);echo"<pre>";die;
 					$data['username'] = $lecturer[0]['id'];

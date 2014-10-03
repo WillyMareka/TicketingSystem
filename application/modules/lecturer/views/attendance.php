@@ -17,7 +17,7 @@ $full_name = $fname.' '.$sname.' '.$onames;
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Lecturer Dashboard</title>
+	<title>Lecturer Dashboard: Attendance</title>
 	<link type="text/css" href="<?php echo base_url().'assets/bootstrap/css/bootstrap.min.css';?>" rel="stylesheet">
 	<link type="text/css" href="<?php echo base_url().'assets/bootstrap/css/bootstrap-responsive.min.css';?>" rel="stylesheet">
 	<link type="text/css" href="<?php echo base_url().'assets/css/lecturer_theme.css';?>" rel="stylesheet">
@@ -112,7 +112,7 @@ $full_name = $fname.' '.$sname.' '.$onames;
 
 						<div class="module">
 							<div class="module-head">
-								<h3>Forms</h3>
+								<h3>Attendance</h3>
 							</div>
 							<div class="module-body">
 									<div class="alert alert-success display-none animated">
@@ -128,7 +128,7 @@ $full_name = $fname.' '.$sname.' '.$onames;
 											<label class="control-label" for="basicinput">Students: </label>
 											<div class="controls ">
 												<select id="student_select" tabindex="1" class="span8 student_select">
-												<option>-- Select Student -- </option>
+												<option value="">-- Select Student -- </option>
 											<?php 
 													foreach ($students as $student_data) {
 														$full_names= $student_data['firstname'].' '.$student_data['lastname'].' '.$student_data['othernames'];
@@ -181,6 +181,7 @@ $full_name = $fname.' '.$sname.' '.$onames;
 
 												<button type="submit" class="btn update_attendance">Update Attendance</button>
 									</form>
+									<div id="error_message"></div>
 							</div>
 						</div>
 

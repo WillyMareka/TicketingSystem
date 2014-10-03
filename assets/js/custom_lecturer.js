@@ -64,30 +64,31 @@ $(document).ready(function(){
 			$('#error_message').replaceWith('<div id="error_message"><i id="im_icon" class = "fa fa-exclamation"></i> Please Insert Appropriate Data into the fields</div>');
 		}
 		else{
-		$('#error_message').replaceWith('<div id="error_message"><span id="im_icon" class = "fa fa-spinner fa-spin"></span>Inserting Record</div>');
-		$.ajax({
-			type:'POST',
-			url:path,
-			data:{
-				'student':student_select,
-				'cat_1':cat_1,
-				'cat_2':cat_2,
-				'final_exam':final_exam
-			},
-			success:function(success_im){
-				$('.msg').val('');
-				$('.sbj').val('');
-				$('#error_message').replaceWith('<div id="error_message"><span id="im_icon" class = "fa fa-check"></span>Record Inserted</div>');
-				console.log(success_im);
-				console.log(cat_1);
-				console.log(cat_2);
-				console.log(final_exam);
-				console.log(student_select);
-			}
-		});//end of AJAX
+			$('#error_message').replaceWith('<div id="error_message"><span id="im_icon" class = "fa fa-spinner fa-spin"></span>Inserting Record</div>');
+			$.ajax({
+				type:'POST',
+				url:path,
+				data:{
+					'student':student_select,
+					'cat_1':cat_1,
+					'cat_2':cat_2,
+					'final_exam':final_exam
+				},
+				success:function(success_im){
+					$('.cat_1').val('');
+					$('.cat_2').val('');
+					$('.final_exam').val('');
+
+					$('#error_message').replaceWith('<div id="error_message"><span id="im_icon" class = "fa fa-check"></span>Record Inserted</div>');
+					console.log(success_im);
+					console.log(cat_1);
+					console.log(cat_2);
+					console.log(final_exam);
+					console.log(student_select);
+				}
+			});//end of AJAX
 
 		}//end of if		
-
 	});//LEAVE THIS ALONE
 
 	// save_examination
@@ -154,6 +155,11 @@ $(document).ready(function(){
 		var total_hrs = $('.total_hrs').val();
 		var att_path = base_url.concat(attendance_path);
 
+		if (student_selection == '') {
+			$('#error_message').replaceWith('<div id="error_message"><i id="im_icon" class = "fa fa-exclamation"></i> Please Select a Student</div>');
+		}
+		else{
+
 		$.ajax({
 			type:'POST',
 			url:att_path,
@@ -167,9 +173,10 @@ $(document).ready(function(){
 			},
 			success:function(success){
 				console.log(success);
-				$('.alert-success').removeClass('display-none');
-				$('.alert-success').addClass('fadeInDown');
-				$('.alert-success').html(success);
+				$('#error_message').replaceWith('<div id="error_message"><span id="im_icon" class = "fa fa-check"></span> Student Absentism Updated</div>');
+				// $('.alert-success').removeClass('display-none');
+				// $('.alert-success').addClass('fadeInDown');
+				// $('.alert-success').html(success);
 				console.log(student_selection);
 				console.log(morning_class);
 				console.log(late_morning_class);
@@ -177,6 +184,7 @@ $(document).ready(function(){
 				console.log(evening_class);
 			}
 		});
+		}//end of if
 	});//end of update attendance
 
 

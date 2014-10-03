@@ -23,7 +23,7 @@ class Lecturer extends MX_Controller
 		$data['messages_no'] = 35;
 		$lecturer_id = $this->session->userdata('username');
 		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no('lecturer_messages',$lecturer_id);
-		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages('lecturer_messages',$lecturer_id);
+		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages($lecturer_id);
 		$data['units'] = $this->m_lecturers->get_lecturer_units($lecturer_id);
 		//$data['sender_info'] = $this->m_lecturers->get_sender_info();
 		
@@ -44,8 +44,8 @@ class Lecturer extends MX_Controller
 		$lecturer_id = $this->session->userdata('username');
 		$course = $this->session->userdata('course');
 
-		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no('lecturer_messages',$lecturer_id);
-		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages('lecturer_messages',$lecturer_id);
+		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no($lecturer_id);
+		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages($lecturer_id);
 		//$data['sender_info'] = $this->m_lecturers->get_sender_info();
 		$total_students= $this->m_lecturers->total_students();
 		$data['total_students'] = $total_students[0]['total_students'];
@@ -93,7 +93,7 @@ class Lecturer extends MX_Controller
 		// echo "<pre>";print_r($jibu);echo "</pre></br>";
 		// echo "<pre>";print_r($jibu_);echo "</pre>";
 
-		$jibu = $this->m_lecturers->get_students();
+		$jibu = $this->m_lecturers->examinations();
 		echo "<pre>";print_r($jibu);echo "</pre></br>";
 	}
 
@@ -111,6 +111,9 @@ class Lecturer extends MX_Controller
 	}
 
 	function examinations(){
-		echo "Successful posting";
+		$result = $this->m_lecturers->examinations();
+
+		echo $result;
+		// echo "Successful posting";
 	}
 }
