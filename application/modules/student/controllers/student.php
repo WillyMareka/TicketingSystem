@@ -24,6 +24,8 @@ class Student extends MY_Controller
 		{
 			$data['student'] = $this->getStudentDetails();
 			$course = $this->getStudentDetails()['course_id'];
+			$this->m_student->getMessages($course);
+			$data['message_count'] = $this->m_student->getMessageCount($course);
 			$data['notifications'] = $this->m_student->getNotificationCount($course);
 			$data['message'] = $this->createMessage();
 			$data['title'] = "Student: Homepage";

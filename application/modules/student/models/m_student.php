@@ -120,7 +120,41 @@ class M_student extends MY_Model {
         return $lecturer[0];
     }
 
-    
+    public function getMessages($course)
+    {
+        $units = $this->getStudentUnitByCourseID($course);
+        $counter = 0;
+        foreach ($units as $unit) {
+            $query = $this->db->query("SELECT * FROM student_messages WHERE unit = " .$unit['unit_id']);
+            $not = $query->result_array();
+
+            foreach ($not as $n) {
+                $counter++;
+                $notification_message[$counter] = $n;
+            }
+        }
+    }
+
+    public function getMessageCount($course)
+    {
+        $noofmessages = 0;
+        $units = $this->getStudentUnitByCourseID($course);
+        foreach ($units as $unit) {
+            $query = $this->db->query("SELECT count(id) as noof FROM student_messages WHERE unit = " .$unit['unit_id'] .' LIMIT 1');
+            $count = $query->result_array();
+
+            $noofmessages += $count[0]['noof'];
+        }
+        return $noofmessages;      
+    }
+    public function getStudentUnitByCourseID($course)
+    {
+        $query = $this->db->query("SELECT unit_id FROM units WHERE course_id = " . $course);
+
+        $result = $query->result_array();
+
+        return $result;
+    }
 
 
 }

@@ -94,7 +94,7 @@
                     <div class="small-box bg-yellow">
                         <div class="inner">
                             <h3>
-                                2
+                                <?php echo $message_count; ?>
                             </h3>
                             <p>
                                 Messages
