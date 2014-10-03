@@ -20,25 +20,20 @@ $full_name = $fname.' '.$sname.' '.$onames;
         <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Lecturer Dashboard</title>
-        <link type="text/css" href="<?php echo base_url().'assets/bootstrap/css/bootstrap.min.css';?>" rel="stylesheet">
-        <link type="text/css" href="<?php echo base_url().'assets/bootstrap/css/bootstrap-responsive.min.css';?>" rel="stylesheet">
-        <link type="text/css" href="<?php echo base_url().'assets/css/lecturer_theme.css';?>" rel="stylesheet">
-        <link type="text/css" href="<?php echo base_url().'assets/semantic/packaged/css/semantic.css'; ?>" rel="stylesheet">
-        <link type="text/css" href="<?php echo base_url().'assets/font-awesome-4.1.0/css/font-awesome.css'; ?>" rel="stylesheet">
-        <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
-            rel='stylesheet'>
-        <link href="<?php echo base_url() .'assets/admin/css/AdminLTE.css" rel="stylesheet'?>" type="text/css" />
-        <link href="<?php echo base_url() .'assets/admin/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css'?>" rel="stylesheet" type="text/css" />
-    <!-- iCheck for checkboxes and radio inputs -->
-    <link href="<?php echo base_url() .'assets/admin/css/iCheck/minimal/blue.css'?>" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() .'assets/bootstrap/css/bootstrap.css'?>">
+    <link type="text/css" href="<?php echo base_url().'assets/bootstrap/css/bootstrap.min.css';?>" rel="stylesheet">
+    <link type="text/css" href="<?php echo base_url().'assets/bootstrap/css/bootstrap-responsive.min.css';?>" rel="stylesheet">
+    <link type="text/css" href="<?php echo base_url().'assets/css/lecturer_theme.css';?>" rel="stylesheet">
+    <link type="text/css" href="<?php echo base_url().'assets/font-awesome-4.1.0/css/font-awesome.css'; ?>" rel="stylesheet">
+    <link type="text/css" href="<?php echo base_url().'assets/css/lecturer_theme.css';?>" rel="stylesheet">
+    <link type="text/css" href="<?php echo base_url().'assets/css/animate.css'; ?>" rel="stylesheet">
+    <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet'>
     </head>
     <body>
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                        <i class="fa fa-reorder shaded"></i></a><a class="brand" href="<?php echo base_url().'lecturer' ?>">Lecturer Dashboard</a>
+                        <i class="fa fa-reorder shaded"></i></a><a class="brand" href="<?php echo base_url().'lecturer' ?>">Lecturer Dashboard: Upload Notes</a>
                     <div class="nav-collapse collapse navbar-inverse-collapse">
                         <ul class="nav nav-icons">
                             <li><a href="#"><i class="fa fa-envelope"></i></a></li>
@@ -82,14 +77,16 @@ $full_name = $fname.' '.$sname.' '.$onames;
             <!-- /navbar-inner -->
         </div>
         <!-- /navbar -->
-<?php echo $sidebar; ?>
+        <?php echo $sidebar; ?>
         
         <div class="wrapper">
             <div class="container">
                 <div class="row">
                     <!--/.span3-->
                     <div class="span9 content_span9">
+                    <div class="content">
                         <?php echo $upload_section; ?>
+                        </div>
                         <!--/.content-->
                     </div>
                     <!--/.span9-->

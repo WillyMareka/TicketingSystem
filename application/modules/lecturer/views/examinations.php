@@ -1,6 +1,6 @@
 ﻿<?php 
 //echo "<pre>";print_r($this->session->all_userdata());echo "</pre>"; exit; 
-//echo "<pre>";print_r($msg_no);echo "</pre>"; exit; 
+// echo "<pre>";print_r($students_marks);echo "</pre>"; exit; 
 $fname = $this->session->userdata('firstname');
 $sname = $this->session->userdata('secondname');
 $onames = $this->session->userdata('othernames');
@@ -24,8 +24,8 @@ $full_name = $fname.' '.$sname.' '.$onames;
 	<link type="text/css" href="<?php echo base_url().'assets/bootstrap/css/bootstrap-responsive.min.css';?>" rel="stylesheet">
 	<link type="text/css" href="<?php echo base_url().'assets/css/lecturer_theme.css';?>" rel="stylesheet">
 	<link type="text/css" href="<?php echo base_url().'assets/font-awesome-4.1.0/css/font-awesome.css'; ?>" rel="stylesheet">
-        <link type="text/css" href="<?php echo base_url().'assets/css/lecturer_theme.css';?>" rel="stylesheet">
-        <link type="text/css" href="<?php echo base_url().'assets/css/animate.css'; ?>" rel="stylesheet">
+    <link type="text/css" href="<?php echo base_url().'assets/css/lecturer_theme.css';?>" rel="stylesheet">
+    <link type="text/css" href="<?php echo base_url().'assets/css/animate.css'; ?>" rel="stylesheet">
 	<link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet'>
 </head>
 <body>
@@ -90,7 +90,7 @@ $full_name = $fname.' '.$sname.' '.$onames;
 
 						<div class="module">
 							<div class="module-head">
-								<h3>Forms</h3>
+								<h3>Examination Results</h3>
 							</div>
 							<div class="module-body">
 									<div class="alert alert-success display-none animated">
@@ -103,25 +103,32 @@ $full_name = $fname.' '.$sname.' '.$onames;
 									<form class="form-horizontal row-fluid">
 									<div class="control-group">
 									<div class="control-group">
+										<?php echo validation_errors(); ?>
+										<?php $attr = array('id'=>'exam_form'); echo form_open(''); ?>
 											<label class="control-label" for="basicinput">Students: </label>
 											<div class="controls ">
 												<select id="student_select" tabindex="1" class="span8 student_select">
 												<option value="">-- Select Student -- </option>
-											<?php 
-													foreach ($students as $student_data) {
-														$full_names= $student_data['firstname'].' '.$student_data['lastname'].' '.$student_data['othernames'];
-														echo '
-														<option value="'.$student_data['student_id'].'">'.$full_names.'</option>
-														
-														';
-													}
+													<?php 
+														foreach ($students as $student_data) {
+															$full_names= $student_data['firstname'].' '.$student_data['lastname'].' '.$student_data['othernames'];
+															echo '
+															<option value="'.$student_data['student_id'].'">'.$full_names.'</option>
+															
+															';
+														}
 													 ?>
 												</select>
+												<?php 
+												foreach ($student_marks as $marks) {
+													echo '
+														<input type="hidden" class="std_data" data-student-id = "'.$marks['student_id'].'" data-student-percentage = "'.$marks['percentage'].'">
+													';
+												} 
+												?>
 											</div>
 										</div>
 										<div class="control-group">
-										<?php echo validation_errors(); ?>
-										<?php $attr = array('id'=>'exam_form'); echo form_open('lecturer/examinations'); ?>
 											<label class="control-label" for="basicinput">CAT One: </label>
 											<div class="controls">
 												<input type="number" title="Please enter a Number between 1 and 100" required = "required" maxlength="3" max = "100"  id="basicinput" class="cat_1"> %
@@ -142,7 +149,7 @@ $full_name = $fname.' '.$sname.' '.$onames;
 											</div>
 										</div>
 										</br>
-												<center><button type="submit" id="save_examination" class="btn "> Save Record </button></center>
+												<center><button type="submit" id="save_examination" class="btn"> Save Record </button></center>
 												<div id="error_message"></div>
 										<?php echo form_close(); ?>
 									</form>

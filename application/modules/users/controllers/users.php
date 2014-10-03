@@ -66,7 +66,7 @@ class Users extends MY_Controller
 
 					$course = $this->m_users->getCourse($lecturer[0]['course']);
 					// echo "<pre>";print_r($lecturer);echo "</pre>"; exit; 
-					$unit = $this->m_users->get_unit($lecturer[0]['unit_code']);
+					//$unit = $this->m_users->get_unit($lecturer[0]['unit_code']);
 					
 					//echo "<pre>";print_r($course);echo "</pre>"; exit; 
 					// echo"<pre>"; print_r($unit);echo"<pre>";die;
@@ -81,7 +81,7 @@ class Users extends MY_Controller
 					$data['course'] = $course[0]['course_name'];
 					$data['course_id'] = $course[0]['course_id'];
 					$data['unit_code'] = $lecturer[0]['unit_code'];
-					$data['unit'] = $unit[0]['unit_name'];
+					//$data['unit'] = $unit[0]['unit_name'];
 					$data['logged_in'] = TRUE;
 					$data['user_type'] = $usertype;
 					$this->session->set_userdata($data);

@@ -85,6 +85,7 @@ $full_name = $fname.' '.$sname.' '.$onames;
         <!-- /navbar -->
 
 <?php echo $sidebar; ?>
+
         <div class="animated display-none" id = "message_compose">
                 <?php $attributes=array('id'=>'compose_message'); echo form_open(base_url().'lecturer/messages',$attributes) ?>
                 <h6 style="color:#ffffff;">Compose New</h6>

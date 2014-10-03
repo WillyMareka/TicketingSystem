@@ -37,10 +37,7 @@ class Lecturer extends MY_Controller
                 '.$msg_no[0]['total'].'</b> </a></li>
                 <li><a href="'.base_url()."lecturer/page_to_load/students".'"><i class="menu-icon fa fa-tasks"></i>Students <b class="label orange pull-right">
                     '.$total_students_no.'</b> </a></li>
-                <li><a href="'.base_url()."lecturer/page_to_load/attendance".'"><i class="menu-icon fa fa-area-chart"></i>Attendance</a></li>
                 <li><a href="'.base_url()."lecturer/page_to_load/examinations".'"><i class="menu-icon fa fa-gavel"></i>Examinations</a></li>
-
-                <li><a href="'.base_url()."lecturer/page_to_load/charts".'"><i class="menu-icon fa fa-area-chart"></i>Statistics </a></li>
                 <li><a href = "'.base_url() ."lecturer/page_to_load/upload_notes".'"><i class = "menu-icon fa fa-upload"></i>Upload Notes</a></li>
                 <li><a href="'.base_url()."lecturer/log_out".'"><i class="menu-icon fa fa-signout"></i>Logout </a></li>
 	            </ul>
@@ -74,6 +71,7 @@ class Lecturer extends MY_Controller
 		$total_students = $this->m_lecturers->total_students_in_course($course_id);
 		$total_students_no = $total_students[0]['total_students'];
 
+		$data['student_marks'] = $this->m_lecturers->get_student_marks(1); 
 		$sidebar = '
 		        <div class="sidebar">
             	<ul class="widget widget-menu unstyled">
@@ -85,10 +83,7 @@ class Lecturer extends MY_Controller
                 '.$msg_no[0]['total'].'</b> </a></li>
                 <li><a href="'.base_url()."lecturer/page_to_load/students".'"><i class="menu-icon fa fa-tasks"></i>Students <b class="label orange pull-right">
                     '.$total_students_no.'</b> </a></li>
-                <li><a href="'.base_url()."lecturer/page_to_load/attendance".'"><i class="menu-icon fa fa-area-chart"></i>Attendance</a></li>
                 <li><a href="'.base_url()."lecturer/page_to_load/examinations".'"><i class="menu-icon fa fa-gavel"></i>Examinations</a></li>
-
-                <li><a href="'.base_url()."lecturer/page_to_load/charts".'"><i class="menu-icon fa fa-area-chart"></i>Statistics </a></li>
                 <li><a href = "'.base_url() ."lecturer/page_to_load/upload_notes".'"><i class = "menu-icon fa fa-upload"></i>Upload Notes</a></li>
                 <li><a href="'.base_url()."lecturer/log_out".'"><i class="menu-icon fa fa-signout"></i>Logout </a></li>
 	            </ul>
@@ -96,6 +91,8 @@ class Lecturer extends MY_Controller
 		';
 		$data['total_students'] = $total_students[0]['total_students'];
 		$data['students'] = $this->m_lecturers->get_students($course_id);
+		// $data['students_marks'] = $this->m_lecturers->get_students_and_marks($course_id,NULL,1);
+		// get_students_and_marks
 		$data['units'] = $this->m_lecturers->get_lecturer_units($lecturer_id);
 		//echo "<pre>";print_r($data['units']);echo "</pre>";exit;
 		
@@ -175,21 +172,25 @@ class Lecturer extends MY_Controller
 		$units = $this->m_lecturers->lecturer_units($this->session->userdata('username'));
 		$topics = $this->m_lecturers->getTopics();
 		$units_section .= '<form method = "POST" action = "'.base_url().'lecturer/upload_notes" enctype = "multipart/form-data">';
-		$units_section .= '<div class="input-group" style="width: 100%;padding:4px;"><span class="input-group-addon" style="width: 40%;">Targeted Topic: </span>';
-		$units_section .= '<select name = "topic" class = "form-control" required>';
+		$units_section .= '<table><tr>';
+		$units_section .= '<td><div class="input-group" style="width: 100%;padding:4px;"><span class="input-group-addon" style="width: 40%;">Targeted Topic: </span></td>';
+		$units_section .= '<td><select name = "topic" class = "form-control" required>';
 		foreach ($topics as $topic) {
 			$units_section .= '<option value = "'.$topic['topic_no'].'">'.$topic['topic'].'</option>';
 		}
-		$units_section .= '</select></div>';
-		$units_section .= '<div class="input-group" style="width: 100%;padding:4px;"><span class="input-group-addon" style="width: 40%;">Unit: </span>';
-		$units_section .= '<select name = "unit" class = "form-control" required>';
+		$units_section .= '</select></td></div></tr>';
+		$units_section .= '<tr><td><div class="input-group" style="width: 100%;padding:4px;"><span class="input-group-addon" style="width: 40%;">Unit: </span></td>';
+		$units_section .= '<td><select name = "unit" class = "form-control" required>';
 		foreach ($units as $unit) {
 			$units_section .='<option value = "'.$unit['unit_id'].'">'.$unit['unit_name'].'</option>';
 		}
-		$units_section .= '</select></div>';
-		$units_section .= '<div class = "input-group" style = "width: 100%;padding:4px;"><span class="input-group-addon" style="width: 40%;">Description: </span><textarea name = "description" class = "textfield form-control" required></textarea></div>';
-		$units_section .= '<div class = "input-group" style = "width: 100%;padding:4px;"><span class="input-group-addon" style="width: 40%;">Upload File: </span><input type = "file" name="upload_file" value = "Pick File" required/></div>';
-		$units_section .= '<div class = "input-group"><button type = "submit" class = "btn btn-success"><i class = "fa fa-upload"></i> Upload Notes</button></div>';
+		$units_section .= '</select></td></div></tr>';
+		$units_section .= '<tr>
+							<td><div class = "input-group" style = "width: 100%;padding:4px;"><span class="input-group-addon" style="width: 40%;">Description: </span></td><td><textarea  name = "description" class = "textfield form-control" required></textarea></div></td></tr>';
+		$units_section .= '<tr><td><div class = "input-group" style = "width: 100%;padding:4px;"><span class="input-group-addon" style="width: 40%;">Upload File: </span></td><td><input type = "file" name="upload_file" value = "Pick File" class = "inputs" required/></div></td></tr>';
+		$units_section .= '<tr></br><td colspan = "2"><center><div class = "input-group"><button type = "submit" class = "btn margin_top"><i class = "fa fa-upload"></i> Upload Notes</button></div></center></td></tr>';
+		$units_section .= '</table>';
+		
 		$units_section .= '</form>';
 		return $units_section;
 	}

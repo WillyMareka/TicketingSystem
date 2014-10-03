@@ -1,4 +1,3 @@
-$(document).ready(function(){
 var base_url = 'http://localhost/sun/';
 var msg_path = 'lecturer/messages';
 var reply_path = 'lecturer/reply';
@@ -50,7 +49,23 @@ $(document).ready(function(){
 	// $('#exam_form').submit(function(){
 	// 	alert('SUBMITTED FORM');
 	// });
-	$('#save_examination').click(function(){
+	// $('.student_select').change(function(){
+	// 	var student_select = $('.student_select').val();
+		
+	// 	var student_data = $('.std_data').attr('data-student-id');
+	// 	if (student_select == student_data) {
+	// 	alert(student_select);return;
+	// 			var std_percentage = $(this).attr('data-student-percentage');
+	// 		if (std_percentage = "") {
+	// 		$('#error_message').replaceWith('<div id="error_message"><i id="im_icon" class = "fa fa-exclamation"></i> Student has no previous records</div>');
+	// 		}else{
+	// 			var msg = '<div id="error_message"><i id="im_icon" class = "fa fa-exclamation"></i> The students previous percentage was: </div>';
+	// 			$('#error_message').replaceWith(msg.concat(std_percentage));
+	// 		}
+
+	// 	};
+	// });
+	$('#save_examination').click(function(event){
 		event.preventDefault();
 		var cat_1 = $('.cat_1').val();
 		var cat_2 = $('.cat_2').val();
