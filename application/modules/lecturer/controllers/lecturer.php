@@ -12,22 +12,16 @@ class Lecturer extends MX_Controller
 	function index()
 	{
 		$data = array();
-		$data['nyangundi'] = "This is an attempt yo";
-		$data['notification_1'] = "This is the first notification";
-		$data['notification_2'] = "This is the second notification";
-		$data['notification_3'] = "This is the third notification";
-		$data['notification_4'] = "This is the fourth notification";
-		$data['notification_4'] = "This is the fourth notification";
-		$data['notification_5'] = "This is the fifth notification";
 
-		$data['messages_no'] = 35;
 		$lecturer_id = $this->session->userdata('username');
+		$course_id = $this->session->userdata('course_id');
 		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no('lecturer_messages',$lecturer_id);
 		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages($lecturer_id);
 		$data['units'] = $this->m_lecturers->get_lecturer_units($lecturer_id);
 		//$data['sender_info'] = $this->m_lecturers->get_sender_info();
+
 		
-		$total_students= $this->m_lecturers->total_students();
+		$total_students= $this->m_lecturers->total_students_in_course($course_id);
 		$data['total_students'] = $total_students[0]['total_students'];
 		if($this->session->userdata('user_type') == 'lecturer')
 		{
@@ -42,16 +36,17 @@ class Lecturer extends MX_Controller
 	function page_to_load($selection = null){
 		$unit_data = array();
 		$lecturer_id = $this->session->userdata('username');
+		$course_id = $this->session->userdata('course_id');
 		$course = $this->session->userdata('course');
+		// echo "<pre>";print_r($this->session->all_userdata());echo "</pre>"; exit; 
 
 		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no($lecturer_id);
 		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages($lecturer_id);
 		//$data['sender_info'] = $this->m_lecturers->get_sender_info();
-		$total_students= $this->m_lecturers->total_students();
+		$total_students= $this->m_lecturers->total_students_in_course($course_id);
 		$data['total_students'] = $total_students[0]['total_students'];
-		$data['students'] = $this->m_lecturers->get_students(1);
+		$data['students'] = $this->m_lecturers->get_students($course_id);
 		$data['units'] = $this->m_lecturers->get_lecturer_units($lecturer_id);
-
 		//echo "<pre>";print_r($data['units']);echo "</pre>";exit;
 
 		if ($selection == "messages") {
