@@ -68,6 +68,12 @@ class M_lecturers extends MY_Model {
 		echo "The student's absentism has been updated";
     }
 
+    public function get_marks($student_id){
+        $result = $this->db->query("SELECT * FROM examinations WHERE student_id = $student_id ORDER BY date_inserted desc LIMIT 1");
+        $results = $result->result_array();
+
+        return $results;
+    }
     public function get_lecturer_messages_no($lecturer_id){
         $result = $this->db->query(
         "
@@ -138,6 +144,7 @@ class M_lecturers extends MY_Model {
         $student_id = $_POST['student_select'];
         $final_exam = $_POST['final_exam'];
 
+        // return $student_id;die;
         $student_data=$this->get_students(NULL,$student_id);
         $student_id = $student_data[0]['student_id'];
         $lecturer_id = $this->session->userdata('username');

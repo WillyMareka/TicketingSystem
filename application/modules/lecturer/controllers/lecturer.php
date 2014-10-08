@@ -142,10 +142,29 @@ class Lecturer extends MY_Controller
 		// echo "<pre>";print_r($jibu);echo "</pre></br>";
 		// echo "<pre>";print_r($jibu_);echo "</pre>";
 
-		$jibu = $this->m_lecturers->examinations();
-		echo "<pre>";print_r($jibu);echo "</pre></br>";
+		$result = $this->m_lecturers->get_marks(70000);
+
+		if (empty($result)) {
+			$percentage = "The student has no prior records. ";
+		}else{
+			$percentage = "The student's previous percentage was: ".$result[0]['percentage'];
+			
+		}
+		echo $percentage;
 	}
 
+	function get_marks(){
+		$student_id = $_POST['student_id'];
+		$result = $this->m_lecturers->get_marks($student_id);
+
+		if (empty($result)) {
+			$percentage = "The student has no prior records. ";
+		}else{
+			$percentage = "The student's previous percentage was: ".$result[0]['percentage'];
+			
+		}
+		echo $percentage;
+	}
 	function reply(){
 		$reply = $this->m_lecturers->reply_message();
 	}
