@@ -113,6 +113,7 @@ class Admin extends MY_Controller
 		else
 		{
 			$data = array('upload_data' => $this->upload->data());
+			// print_r($data);die;
 			foreach ($data as $key => $value) {
 				$path = base_url().'upload/'.$value['file_name'];
 			}

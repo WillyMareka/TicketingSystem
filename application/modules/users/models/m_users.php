@@ -42,7 +42,7 @@ class M_users extends MY_Model {
 
     function register_session()
     {
-        print_r($this->session->userdata());
+        //print_r($this->session->userdata());
     }
 
     
