@@ -17,6 +17,16 @@
     <!-- Custom styles for this template -->
     <link href="<?php echo base_url() .'assets/css/style.css'?>" rel="stylesheet">
     <link href="<?php echo base_url() .'assets/css/style-responsive.css'?>" rel="stylesheet">
+     <!-- Ionicons -->
+    <link href="<?php echo base_url() .'assets/admin/css/ionicons.min.css'?>" rel="stylesheet" type="text/css" />
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link href="<?php echo base_url() .'assets/admin/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css'?>" rel="stylesheet" type="text/css" />
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link href="<?php echo base_url() .'assets/admin/css/iCheck/minimal/blue.css'?>" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="<?php echo base_url() .'assets/admin/css/AdminLTE.css" rel="stylesheet'?>" type="text/css" />
+
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() .'assets/css/student.css'?>">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -43,10 +53,10 @@
                 <!--  notification start -->
                 <ul class="nav top-menu">
                     <!-- settings start -->
-                    <li class="dropdown">
+                    <!--<li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#" style="color:white;">
                             <i class="fa fa-tasks"></i>
-                            <span class="badge bg-theme04">4</span>
+                            <span class="badge bg-green">4</span>
                         </a>
                         <ul class="dropdown-menu extended tasks-bar">
                             <div class="notify-arrow notify-arrow-green"></div>
@@ -109,67 +119,20 @@
                                 <a href="#">See All Tasks</a>
                             </li>
                         </ul>
-                    </li>
+                    </li>-->
                     <!-- settings end -->
                     <!-- inbox dropdown start-->
                     <li id="header_inbox_bar" class="dropdown" >
                         <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#" style="color:white;">
                             <i class="fa fa-envelope-o"></i>
-                            <span class="badge bg-theme04">5</span>
+                            <span class="badge bg-yellow"><?php echo $message_count; ?></span>
                         </a>
                         <ul class="dropdown-menu extended inbox">
                             <div class="notify-arrow notify-arrow-green"></div>
                             <li>
-                                <p class="green">You have 5 new messages</p>
+                                <p class="green">You have <?php echo $message_count; ?> new messages</p>
                             </li>
-                            <li>
-                                <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Zac Snider</span>
-                                    <span class="time">Just now</span>
-                                    </span>
-                                    <span class="message">
-                                        Hi mate, how is everything?
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-divya.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Divya Manian</span>
-                                    <span class="time">40 mins.</span>
-                                    </span>
-                                    <span class="message">
-                                     Hi, I need your help with this.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-danro.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Dan Rogers</span>
-                                    <span class="time">2 hrs.</span>
-                                    </span>
-                                    <span class="message">
-                                        Love your new Dashboard.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-sherman.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Dj Sherman</span>
-                                    <span class="time">4 hrs.</span>
-                                    </span>
-                                    <span class="message">
-                                        Please, answer asap.
-                                    </span>
-                                </a>
-                            </li>
+                            <?php echo $firstfive;?>
                             <li>
                                 <a href="index.html#">See all messages</a>
                             </li>
@@ -206,9 +169,9 @@
                             <a href="<?php echo base_url() .'student/load_progress'?>"><i class="fa fa-bar-chart-o fa-fw"></i> Progress Report</a>
                             <!-- /.nav-second-level -->
                         </li>
-                         <li>
+                         <!--<li>
                             <a href="<?php echo base_url() .'student/attendance'?>"><i class="fa fa-users fa-fw"></i> Attendance</a>
-                        </li>
+                        </li>-->
                         <li>
                             <a href="<?php echo base_url() .'student/timetables'?>"><i class="fa fa-table fa-fw"></i> Time Tables</a>
                         </li>
@@ -217,15 +180,15 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="<?php echo base_url() .'student/inbox'?>"><i class="fa fa-envelope fa-fw"></i> Messages</a>
+                            <a href="<?php echo base_url() .'student/inbox'?>"><i class="fa fa-envelope fa-fw"></i> Messages <small class = "pull-right badge bg-yellow"><?php echo $message_count; ?></small></a>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li>
-                            <a href="#"><i class="fa fa-tasks fa-fw"></i> Tasks<span class="badge pull-right">New</span></a>
+                        <!--<li>
+                            <a href="#"><i class="fa fa-tasks fa-fw"></i> Tasks<span class="badge pull-right bg-green">New</span></a>
                         </li>
                         <li>
                           <a href="#"><i class = "fa fa-magic fa-fw"></i> Forum</a>
-                        </li>
+                        </li>-->
 
                         <li>
                           <a href="#"><i class = "fa fa-sign-out fa-fw"></i> Log Out</a>
@@ -258,6 +221,13 @@
     <script class="include" type="text/javascript" src="<?php echo base_url() .'assets/js/dash/jquery.dcjqaccordion.2.7.js'?>"></script>
     <script src="<?php echo base_url() .'assets/js/dash/jquery.scrollTo.min.js'?>"></script>
     <script src="<?php echo base_url() .'assets/js/dash/jquery.nicescroll.js'?>" type="text/javascript"></script>
+    <script src="../js/AdminLTE/app.js" type="text/javascript"></script>
+    <!-- AdminLTE for demo purposes 
+    <script src="<?php echo base_url() .'assets/admin/js/AdminLTE/demo.js'?>" type="text/javascript"></script> -->       
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="<?php echo base_url() .'assets/admin/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js'?>" type="text/javascript"></script>
+    <!-- iCheck -->
+    <script src="<?php echo base_url() .'assets/admin/js/plugins/iCheck/icheck.min.js'?>" type="text/javascript"></script>
 
 
     <!--common script for all pages-->
@@ -265,14 +235,14 @@
 
     <!--script for this page-->
     
-  <script>
+ <!-- <script>
       //custom select box
 
       $(function(){
           $('select.styled').customSelect();
       });
 
-  </script>
+  </script> -->
 
   </body>
 </html>

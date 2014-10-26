@@ -30,7 +30,7 @@ class M_users extends MY_Model {
 
     function getUser($table, $name)
     {
-        $query = "SELECT * FROM $table WHERE id = $name LIMIT 1";
+        $query = "SELECT * FROM $table WHERE id = $name AND status = 1 LIMIT 1";
 
         $result = $this->db->query($query);
 

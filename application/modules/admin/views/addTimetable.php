@@ -35,6 +35,14 @@
 		                                    <span class="input-group-addon" style="width: 40%;">Course: </span>
 		                                    <?php echo $courses; ?>
 		                                </div>
+		                                <div class="input-group" style="width: 100%;padding:4px;">
+		                                    <span class="input-group-addon" style="width: 40%;">Timetable type: </span>
+		                                    <select class="textfield form-control" name="category" id="category">
+		                                    	<option value="" disabled="on" selected="true">**Select the timetable type**</option>
+		                                    	<option value="class">Class Timetable</option>
+		                                    	<option value="exam">Exam Timetable</option>
+		                                    </select>
+		                                </div>
 		                                
 		                                <div class="input-group" style="width: 100%;padding:4px;">
 		                                    <span class="input-group-addon" style="width: 40%;">Select a timetable: </span>

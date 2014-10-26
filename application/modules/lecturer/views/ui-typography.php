@@ -99,7 +99,7 @@
                     <!--/.sidebar-->
                 </div>
                 <!--/.span3-->
-                <div class="span9">
+                <div class="span9 content_span9">
                     <div class="content">
                         <div class="module">
                             <div class="module-head">

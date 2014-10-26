@@ -79,11 +79,6 @@
 	</div><!-- /navbar -->
 
 
-
-	<div class="wrapper">
-		<div class="container">
-			<div class="row">
-				<div class="span3">
 					<div class="sidebar">
 
 						<ul class="widget widget-menu unstyled">
@@ -162,10 +157,11 @@
 						</ul>
 
 					</div><!--/.sidebar-->
-				</div><!--/.span3-->
 
-
-				<div class="span9">
+	<div class="wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="span9 content_span9">
 					<div class="content">
 
 						<div class="module">

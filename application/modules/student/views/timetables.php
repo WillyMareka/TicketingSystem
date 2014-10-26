@@ -1,9 +1,8 @@
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header"><i class = "fa fa-table fa-fw"></i> Timetables</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
+<div class = "row">
+	<div class = "col-md-5">
+		<h3><i class = "fa fa-table"></i> Timetables</h3>
+	</div>
+</div>
+<!-- /.row -->
 
-            <?php echo $timetable_row; ?>
-            <!-- /.row -->
+<?php echo $timetable_row; ?>

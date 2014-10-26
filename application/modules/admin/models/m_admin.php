@@ -20,26 +20,37 @@ class M_admin extends MY_Model {
     	$location = strtoupper($this->input->post('location'));
     	$course = $this->input->post('course');
 
-    	$query = "INSERT INTO students VALUES(NULL, '$firstname', '$lastname', '$others', '$phone', '$parent_phone', '$student_email', '$parent_email', '$location', '$path', NULL)";
+    	$query = "INSERT INTO students VALUES(NULL, '$firstname', '$lastname', '$others', '$phone', '$parent_phone', '$student_email', '$parent_email', '$location', '$path', NULL,0)";
     	$result = $this->db->query($query);
 
     	$student_no = mysql_insert_id();
     	$password = md5("12345");
 
+        // $phone[0] = '';
+        // $phone = '254'.$phone;
+        // $phone = str_replace(' ', '', $phone);
+        // echo $phone;die;
+
     	$user_query = "INSERT INTO users VALUES (NULL, '$student_no', '$password', 'student', NULL, 0)";
     	$result = $this->db->query($user_query);
 
     	$course_query = $this->db->query("INSERT INTO student_course VALUES (NULL, '$student_no', 1, NULL)");
+        $attendance_query = $this->db->query("INSERT INTO attendance VALUES (NULL, NULL, '$student_no', 0, 0,0,0,0)");   
+        $message = array();
+    	$message['text'] =  "Hello " . $firstname . ' ' . $lastname . ', Your admission no is: ' . $student_no . '. Default password is: 12345';
+        $message['phonenumber'] = $phone;
+        $message['email'] = $student_email;
 
-    	echo "Successfully Inserted " . $student_no;die;
+        return $message;
     }
 
     function addTimetable($path, $filetype)
     {
         $filename = $_POST['file_name'];
         $course_id = $_POST['course'];
+        $category = $_POST['category'];
 
-        $query = "INSERT INTO timetables VALUES (NULL, '$filename', '$path', '$filetype', $course_id, NULL, 1)";
+        $query = "INSERT INTO timetables VALUES (NULL, '$filename', '$path', '$filetype', '$category', $course_id, NULL, 1)";
         $result = $this->db->query($query);
 
         if ($result) {
