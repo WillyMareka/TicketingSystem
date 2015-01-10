@@ -14,13 +14,14 @@ class M_admin extends MY_Model {
     	$lastname = strtoupper($this->input->post('lastname'));
     	$others = strtoupper($this->input->post('othername'));
     	$phone = $this->input->post('phonenumber');
+        $gender = $this->input->post('gender');
     	$student_email = $this->input->post('student_email');
     	$parent_phone = $this->input->post('parent_phone');
     	$parent_email= $this->input->post('parent_email');
     	$location = strtoupper($this->input->post('location'));
     	$course = $this->input->post('course');
 
-    	$query = "INSERT INTO students VALUES(NULL, '$firstname', '$lastname', '$others', '$phone', '$parent_phone', '$student_email', '$parent_email', '$location', '$path', NULL,0)";
+    	$query = "INSERT INTO students VALUES(NULL, '$firstname', '$lastname', '$others', '$phone', '$parent_phone','$gender', '$student_email', '$parent_email', '$location', '$path', NULL,0)";
     	$result = $this->db->query($query);
 
     	$student_no = mysql_insert_id();

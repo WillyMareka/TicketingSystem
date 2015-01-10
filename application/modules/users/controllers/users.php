@@ -32,18 +32,7 @@ class Users extends MY_Controller
 			if ($usertype == 'student') {
 				$student = $this->m_users->getUser('students', $username);
 				// print_r($student);die;
-<<<<<<< HEAD
-				$data['username'] = $student[0]['id'];
-				$data['firstname'] = $student[0]['firstname'];
-				$data['lastname'] = $student[0]['lastname'];
-				$data['email'] = $student[0]['student_email'];
-				$data['logged_in'] = TRUE;
-				$data['user_type'] = $usertype;
-				$this->session->set_userdata($data);
 
-				$this->m_users->register_session();
-				redirect(base_url() .'student');
-=======
 				if($student)
 				{
 					$data['username'] = $student[0]['id'];
@@ -126,7 +115,7 @@ class Users extends MY_Controller
 				{
 					redirect(base_url(). 'home/error');
 				}
->>>>>>> f1cf4ba1f853a67adc529f05de5fb0041e316fa9
+
 			}
 		}
 		else
