@@ -7,23 +7,47 @@ class Lecturer extends MY_Controller
         // Call the Model constructor
         parent::__construct();
         $this->load->model('m_lecturers');
+        error_reporting(0);
     }
 
 	function index()
 	{
 		$data = array();
-		// echo "<pre>";print_r($this->session->all_userdata());echo "</pre>"; exit; 
 
 		$lecturer_id = $this->session->userdata('username');
 		$course_id = $this->session->userdata('course_id');
+<<<<<<< HEAD
+=======
+		$msg_no = $this->m_lecturers->get_lecturer_messages_no($lecturer_id);
+		$msg_data= $this->m_lecturers->get_lecturer_messages($lecturer_id);
+		$total_students= $this->m_lecturers->total_students_in_course($course_id);
+>>>>>>> 4b7562348a4f412f1bb3db80023f3c6e984bc6e1
 		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no($lecturer_id);
 		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages($lecturer_id);
+		$data['total_students'] = $total_students[0]['total_students'];
 		$data['units'] = $this->m_lecturers->get_lecturer_units($lecturer_id);
 		//$data['sender_info'] = $this->m_lecturers->get_sender_info();
+		$total_students_no = $total_students[0]['total_students'];
 
+		$sidebar = '
+		        <div class="sidebar">
+            	<ul class="widget widget-menu unstyled">
+                <li class="active"><a href="'.base_url()."lecturer".'"><i class="menu-icon fa fa-dashboard"></i>Dashboard
+                </a></li>
+                <li><a href="http://www.bbc.com" target="_blank"><i class="menu-icon fa fa-bullhorn"></i>News Feed </a>
+                </li>
+                <li><a href="'.base_url()."lecturer/page_to_load/messages".'"><i class="menu-icon fa fa-inbox"></i>Sentbox <b class="label green pull-right">
+                '.$msg_no[0]['total'].'</b> </a></li>
+                <li><a href="'.base_url()."lecturer/page_to_load/students".'"><i class="menu-icon fa fa-tasks"></i>Students <b class="label orange pull-right">
+                    '.$total_students_no.'</b> </a></li>
+                <li><a href="'.base_url()."lecturer/page_to_load/examinations".'"><i class="menu-icon fa fa-gavel"></i>Examinations</a></li>
+                <li><a href = "'.base_url() ."lecturer/page_to_load/upload_notes".'"><i class = "menu-icon fa fa-upload"></i>Upload Notes</a></li>
+                <li><a href="'.base_url()."lecturer/log_out".'"><i class="menu-icon fa fa-signout"></i>Logout </a></li>
+	            </ul>
+	        	</div>
+		';
+		$data['sidebar'] = $sidebar;
 		
-		$total_students= $this->m_lecturers->total_students_in_course($course_id);
-		$data['total_students'] = $total_students[0]['total_students'];
 		if($this->session->userdata('user_type') == 'lecturer')
 		{
 			$this->load->view('lec_home.php',$data);
@@ -39,17 +63,45 @@ class Lecturer extends MY_Controller
 		$lecturer_id = $this->session->userdata('username');
 		$course_id = $this->session->userdata('course_id');
 		$course = $this->session->userdata('course');
+		// echo "<pre>";print_r($this->session->all_userdata());echo "</pre>"; exit; 
 
+		
+		$msg_no = $this->m_lecturers->get_lecturer_messages_no($lecturer_id);
+		$msg_data= $this->m_lecturers->get_lecturer_messages($lecturer_id);
 		$data['msg_no'] = $this->m_lecturers->get_lecturer_messages_no($lecturer_id);
 		$data['msg_data'] = $this->m_lecturers->get_lecturer_messages($lecturer_id);
 		//$data['sender_info'] = $this->m_lecturers->get_sender_info();
-		$total_students= $this->m_lecturers->total_students_in_course($course_id);
+		$total_students = $this->m_lecturers->total_students_in_course($course_id);
+		$total_students_no = $total_students[0]['total_students'];
+
+		$data['student_marks'] = $this->m_lecturers->get_student_marks(1); 
+		$sidebar = '
+		        <div class="sidebar">
+            	<ul class="widget widget-menu unstyled">
+                <li class="active"><a href="'.base_url()."lecturer".'"><i class="menu-icon fa fa-dashboard"></i>Dashboard
+                </a></li>
+                <li><a href="http://www.bbc.com" target="_blank"><i class="menu-icon fa fa-bullhorn"></i>News Feed </a>
+                </li>
+                <li><a href="'.base_url()."lecturer/page_to_load/messages".'"><i class="menu-icon fa fa-inbox"></i>Sentbox <b class="label green pull-right">
+                '.$msg_no[0]['total'].'</b> </a></li>
+                <li><a href="'.base_url()."lecturer/page_to_load/students".'"><i class="menu-icon fa fa-tasks"></i>Students <b class="label orange pull-right">
+                    '.$total_students_no.'</b> </a></li>
+                <li><a href="'.base_url()."lecturer/page_to_load/examinations".'"><i class="menu-icon fa fa-gavel"></i>Examinations</a></li>
+                <li><a href = "'.base_url() ."lecturer/page_to_load/upload_notes".'"><i class = "menu-icon fa fa-upload"></i>Upload Notes</a></li>
+                <li><a href="'.base_url()."lecturer/log_out".'"><i class="menu-icon fa fa-signout"></i>Logout </a></li>
+	            </ul>
+	        	</div>
+		';
 		$data['total_students'] = $total_students[0]['total_students'];
-		$data['students'] = $this->m_lecturers->get_students();
-		$data['upload_section'] = $this->createUploadNotesSection();
-
+		$data['students'] = $this->m_lecturers->get_students($course_id);
+		// $data['students_marks'] = $this->m_lecturers->get_students_and_marks($course_id,NULL,1);
+		// get_students_and_marks
 		$data['units'] = $this->m_lecturers->get_lecturer_units($lecturer_id);
+		//echo "<pre>";print_r($data['units']);echo "</pre>";exit;
+		
+		$data['sidebar'] = $sidebar;
 
+		$data['upload_section'] = $this->createUploadNotesSection();
 
 		if ($selection == "messages") {
 			$this ->load->view('message.php',$data);
@@ -72,8 +124,7 @@ class Lecturer extends MY_Controller
 		}elseif ($selection == "news_feed") {
 			//$data['students'] = $this->m_lecturers->get_students();
 			$this ->load->view('news_feed.php',$data);
-		}
-		else if($selection == "upload_notes")
+		}else if($selection == "upload_notes")
 		{
 			$this->load->view("upload_notes", $data);
 		}
@@ -94,10 +145,29 @@ class Lecturer extends MY_Controller
 		// echo "<pre>";print_r($jibu);echo "</pre></br>";
 		// echo "<pre>";print_r($jibu_);echo "</pre>";
 
-		$jibu = $this->m_lecturers->examinations();
-		echo "<pre>";print_r($jibu);echo "</pre></br>";
+		$result = $this->m_lecturers->get_marks(70000);
+
+		if (empty($result)) {
+			$percentage = "The student has no prior records. ";
+		}else{
+			$percentage = "The student's previous percentage was: ".$result[0]['percentage'];
+			
+		}
+		echo $percentage;
 	}
 
+	function get_marks(){
+		$student_id = $_POST['student_id'];
+		$result = $this->m_lecturers->get_marks($student_id);
+
+		if (empty($result)) {
+			$percentage = "The student has no prior records. ";
+		}else{
+			$percentage = "The student's previous percentage was: ".$result[0]['percentage'];
+			
+		}
+		echo $percentage;
+	}
 	function reply(){
 		$reply = $this->m_lecturers->reply_message();
 	}
@@ -124,21 +194,25 @@ class Lecturer extends MY_Controller
 		$units = $this->m_lecturers->lecturer_units($this->session->userdata('username'));
 		$topics = $this->m_lecturers->getTopics();
 		$units_section .= '<form method = "POST" action = "'.base_url().'lecturer/upload_notes" enctype = "multipart/form-data">';
-		$units_section .= '<div class="input-group" style="width: 100%;padding:4px;"><span class="input-group-addon" style="width: 40%;">Targeted Topic: </span>';
-		$units_section .= '<select name = "topic" class = "form-control" required>';
+		$units_section .= '<table><tr>';
+		$units_section .= '<td><div class="input-group" style="width: 100%;padding:4px;"><span class="input-group-addon" style="width: 40%;">Targeted Topic: </span></td>';
+		$units_section .= '<td><select name = "topic" class = "form-control" required>';
 		foreach ($topics as $topic) {
 			$units_section .= '<option value = "'.$topic['topic_no'].'">'.$topic['topic'].'</option>';
 		}
-		$units_section .= '</select></div>';
-		$units_section .= '<div class="input-group" style="width: 100%;padding:4px;"><span class="input-group-addon" style="width: 40%;">Unit: </span>';
-		$units_section .= '<select name = "unit" class = "form-control" required>';
+		$units_section .= '</select></td></div></tr>';
+		$units_section .= '<tr><td><div class="input-group" style="width: 100%;padding:4px;"><span class="input-group-addon" style="width: 40%;">Unit: </span></td>';
+		$units_section .= '<td><select name = "unit" class = "form-control" required>';
 		foreach ($units as $unit) {
 			$units_section .='<option value = "'.$unit['unit_id'].'">'.$unit['unit_name'].'</option>';
 		}
-		$units_section .= '</select></div>';
-		$units_section .= '<div class = "input-group" style = "width: 100%;padding:4px;"><span class="input-group-addon" style="width: 40%;">Description: </span><textarea name = "description" class = "textfield form-control" required></textarea></div>';
-		$units_section .= '<div class = "input-group" style = "width: 100%;padding:4px;"><span class="input-group-addon" style="width: 40%;">Upload File: </span><input type = "file" name="upload_file" value = "Pick File" required/></div>';
-		$units_section .= '<div class = "input-group"><button type = "submit" class = "btn btn-success"><i class = "fa fa-upload"></i> Upload Notes</button></div>';
+		$units_section .= '</select></td></div></tr>';
+		$units_section .= '<tr>
+							<td><div class = "input-group" style = "width: 100%;padding:4px;"><span class="input-group-addon" style="width: 40%;">Description: </span></td><td><textarea  name = "description" class = "textfield form-control" required></textarea></div></td></tr>';
+		$units_section .= '<tr><td><div class = "input-group" style = "width: 100%;padding:4px;"><span class="input-group-addon" style="width: 40%;">Upload File: </span></td><td><input type = "file" name="upload_file" value = "Pick File" class = "inputs" required/></div></td></tr>';
+		$units_section .= '<tr></br><td colspan = "2"><center><div class = "input-group"><button type = "submit" class = "btn margin_top"><i class = "fa fa-upload"></i> Upload Notes</button></div></center></td></tr>';
+		$units_section .= '</table>';
+		
 		$units_section .= '</form>';
 		return $units_section;
 	}

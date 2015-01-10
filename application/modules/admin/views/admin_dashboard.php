@@ -21,7 +21,7 @@
                     <div class="small-box bg-aqua">
                         <div class="inner">
                             <h3>
-                                150
+                                <?php echo $course[0]['total']; ?>
                             </h3>
                             <p>
                                Courses
@@ -40,7 +40,7 @@
                     <div class="small-box bg-green">
                         <div class="inner">
                             <h3>
-                                53<sup style="font-size: 20px">%</sup>
+                                <?php echo $unit[0]['total']; ?><!-- <sup style="font-size: 20px">%</sup> -->
                             </h3>
                             <p>
                                 Units
@@ -59,7 +59,7 @@
                     <div class="small-box bg-yellow">
                         <div class="inner">
                             <h3>
-                                44
+                               <?php echo $lecturer[0]['total']; ?>
                             </h3>
                             <p>
                                 Lecturers
@@ -78,7 +78,7 @@
                     <div class="small-box bg-red">
                         <div class="inner">
                             <h3>
-                                65
+                                <?php echo $student[0]['total']; ?>
                             </h3>
                             <p>
                                 Students
@@ -92,21 +92,37 @@
                         </a>
                     </div>
                 </div><!-- ./col -->
+            </div>
 
-                <div class="nav-tabs-custom">
-                                <!-- Tabs within a box -->
-                                <ul class="nav nav-tabs pull-right">
-                                    <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-                                    <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-                                    <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
-                                </ul>
-                                <div class="tab-content no-padding">
-                                    <!-- Morris chart - Sales -->
-                                    <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
-                                    <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
-                                </div>
-                            </div><!-- /.nav-tabs-custom -->
-            </div><!-- /.row -->
+            <div class="row">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <i class="fa fa-envelope"></i>
+                        <h3 class="box-title">Quick Email</h3>
+                        <!-- tools box -->
+                        <div class="pull-right box-tools">
+                            <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+                        </div><!-- /. tools -->
+                    </div>
+                    <form action="<?php echo base_url(). 'admin/quick_mail'?>" method="post">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="recipient" placeholder="Email to:"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="subject" placeholder="Subject"/>
+                            </div>
+                            <div>
+                                <textarea class="textarea" name = "message" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="box-footer clearfix">
+                            <button class="pull-right btn btn-default" id="sendEmail" type = "submit">Send <i class="fa fa-arrow-circle-right"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+                
 
         </section><!-- /.content -->
     </aside><!-- /.right-side --

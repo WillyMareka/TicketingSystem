@@ -48,7 +48,7 @@
   <body style = "background-color: #000 !important;">
   <div class = "centered">
   	<h1 class = "animated shake"><i class = "fa fa-exclamation-triangle"></i> ACCESS DENIED</h1>
-  	<div class = "animated bounceIn"><h3>Sorry. You cannot view this page unless you are logged in.</h3>
+  	<div class = "animated bounceIn"><h3>Sorry!! You cannot view this page unless you are logged in.</h3>
   	<h4>Please go <a href = "<?php echo base_url();?>">home</a> to Log In</h4></div>
   	<h3 class = "animated fadeInDown">OR</h3>
   	<div class = "animated zoomIn"><h4>Go <input action="action" type="button" value="Back" onclick="history.go(-1);" class = "btn btn-default"/></h4></div>

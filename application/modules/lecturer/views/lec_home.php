@@ -79,6 +79,7 @@ $full_name = $fname.' '.$sname.' '.$onames;
             <!-- /navbar-inner -->
         </div>
         <!-- /navbar -->
+<<<<<<< HEAD
         <div class="sidebar">
             <ul class="widget widget-menu unstyled">
                 <li class="active"><a href="<?php echo base_url()."lecturer"?>"><i class="menu-icon fa fa-dashboard"></i>Dashboard
@@ -107,6 +108,9 @@ $full_name = $fname.' '.$sname.' '.$onames;
                 <li><a href="<?php echo base_url().'lecturer/log_out' ?>"><i class="menu-icon fa fa-signout"></i>Logout </a></li>
             </ul>
         </div>
+=======
+<?php echo $sidebar; ?>
+>>>>>>> 4b7562348a4f412f1bb3db80023f3c6e984bc6e1
         
         <div class="wrapper">
             <div class="container">

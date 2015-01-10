@@ -3,6 +3,7 @@ var msg_path = 'lecturer/messages';
 var reply_path = 'lecturer/reply';
 var attendance_path = 'lecturer/attendance';
 var exam_path = 'lecturer/examinations';
+var marks_path = 'lecturer/get_marks';
 $(document).ready(function(){
 	$('#message_compose').addClass('fadeOutUp');
 
@@ -18,7 +19,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#submit_im').click(function(){
+	$('#submit_im').click(function(event){
 		event.preventDefault();
 		var msg = $('.msg').val();
 		var sbj = $('.sbj').val();
@@ -46,15 +47,28 @@ $(document).ready(function(){
 		}//end of if
 	});//LEAVE THIS ALONE
 
-	// $('#exam_form').submit(function(){
-	// 	alert('SUBMITTED FORM');
-	// });
-	$('#save_examination').click(function(){
+	$('.student_select').change(function(){
+		var student_id = $('.student_select').val();
+		// alert(student_id);return;
+		
+		$.ajax({
+			type:'POST',
+			url:base_url.concat(marks_path),
+			data:{
+				'student_id':student_id
+			},success:function(msg){
+				console.log(msg);
+				$('#error_message').replaceWith('<div id="error_message"><i id="im_icon" class = "fa fa-info-circle"></i> '+msg+'</div>');
+			}
+		});
+	});
+	$('#save_examination').click(function(event){
 		event.preventDefault();
 		var cat_1 = $('.cat_1').val();
 		var cat_2 = $('.cat_2').val();
 		var final_exam = $('.final_exam').val();
 		var student_select = $('.student_select').val();
+		//alert(student_select);return;
 
 		var path = base_url.concat(exam_path);
 
@@ -69,7 +83,7 @@ $(document).ready(function(){
 				type:'POST',
 				url:path,
 				data:{
-					'student':student_select,
+					'student_select':student_select,
 					'cat_1':cat_1,
 					'cat_2':cat_2,
 					'final_exam':final_exam
@@ -105,7 +119,7 @@ $(document).ready(function(){
 		};
 	});//end of message compose modal
 
-	$('.message_view_link,.close_msg_view_modal').click(function(){
+	$('.message_view_link,.close_msg_view_modal').click(function(event){
 		event.preventDefault();
 		// alert($(this).attr('value'));return;
 		var msg_id = $(this).attr('value');
@@ -145,7 +159,7 @@ $(document).ready(function(){
 		$('.alert-success').removeClass('fadeInDown');
 		$('.alert-success').addClass('fadeUpOut');
 	});
-	$('.update_attendance').click(function(){
+	$('.update_attendance').click(function(event){
 		event.preventDefault();
 		var student_selection = $('#student_select option:selected').val();
 		var morning_class = $('.morning_class').is(':checked');

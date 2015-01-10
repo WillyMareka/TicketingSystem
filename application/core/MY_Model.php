@@ -77,7 +77,6 @@ class MY_Model extends CI_Model {
             FROM  students s,student_course s_c,courses c WHERE c.course_id = s_c.course_id AND s.id = s_c.student_id $filter
             ");
         $total_students = $result->result_array();
-
         return $total_students;
     }
 

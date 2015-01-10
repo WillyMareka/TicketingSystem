@@ -10,11 +10,24 @@ class M_student extends MY_Model {
 
     public function getStudentDetails($id)
     {
+        $student = "";
     	$query = $this->db->query("SELECT s.firstname, s.lastname, s.othernames, s.student_phone, s.parent_phone, s.student_email, s.parent_email, s.location, s.photo, c.course_id, c.course_name FROM students s, courses c, student_course t WHERE s.id = ".$id." AND c.course_id = t.course_id AND t.student_id = ".$id."");
     	$result = $query->result_array();
+<<<<<<< HEAD
     	foreach ($result as $key => $value) {
+=======
+
+    	if($result)
+        {
+            foreach ($result as $key => $value) {
+>>>>>>> 4b7562348a4f412f1bb3db80023f3c6e984bc6e1
     		$student = $value;
-    	}
+    	   }
+        }
+        else
+        {
+            echo "No found!";
+        }
     	return $student;
     }
 
